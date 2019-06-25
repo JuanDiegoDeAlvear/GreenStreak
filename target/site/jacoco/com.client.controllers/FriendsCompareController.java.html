@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FriendsCompareController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Starter OOPProject-Template</a> &gt; <a href="index.source.html" class="el_package">com.client.controllers</a> &gt; <span class="el_source">FriendsCompareController.java</span></div><h1>FriendsCompareController.java</h1><pre class="source lang-java linenums">package com.client.controllers;
+
+import com.client.logic.Profile;
+import com.jfoenix.controls.JFXButton;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+
+public class FriendsCompareController {
+
+    @FXML
+    private Label userOne;
+
+    @FXML
+    private Label scoreOne;
+
+    @FXML
+    private Label carbonFootOne;
+
+    @FXML
+    private Label ecoFootOne;
+
+    @FXML
+    private Label carbonSavedOne;
+
+    @FXML
+    private Label userTwo;
+
+    @FXML
+    private Label scoreTwo;
+
+    @FXML
+    private Label carbonFootTwo;
+
+    @FXML
+    private Label ecoFootTwo;
+
+    @FXML
+    private Label carbonSavedTwo;
+
+    @FXML
+    private JFXButton closeBtn;
+
+    private String usernameone;
+    private String usernametwo;
+
+
+    private String scoreone;
+    private String scoretwo;
+
+    private String carbonfootone;
+    private String carbonfoottow;
+    private String carbonsavedone;
+    private String carbonsavetwo;
+
+    private String ecoone;
+    private String ecotwo;
+
+    private FriendsController friendsController;
+
+
+    /**
+     * Empty Constructor.
+     * profile1 sets Profile using profile
+     * profile2 sets Profile using Profile
+     */
+    public FriendsCompareController(Profile profile1, Profile profile2,
+<span class="nc" id="L68">                                    FriendsController friendController) {</span>
+<span class="nc" id="L69">        usernameone = profile1.getName();</span>
+<span class="nc" id="L70">        usernametwo = profile2.getName();</span>
+<span class="nc" id="L71">        scoreone = String.valueOf(profile1.getScore().getScore());</span>
+<span class="nc" id="L72">        scoretwo = String.valueOf(profile2.getScore().getScore());</span>
+<span class="nc" id="L73">        carbonfootone = String.valueOf( (int) profile1.getScore().getFootprint());</span>
+<span class="nc" id="L74">        carbonfoottow = String.valueOf( (int) profile2.getScore().getFootprint());</span>
+<span class="nc" id="L75">        carbonsavedone = String.valueOf( ((int) profile1.getScore().getFootprint() - 16) * - 1);</span>
+<span class="nc" id="L76">        carbonsavetwo = String.valueOf(( (int) profile2.getScore().getFootprint() - 16) * - 1);</span>
+<span class="nc" id="L77">        ecoone = String.valueOf( (int) profile1.getScore().getFootprintEco());</span>
+<span class="nc" id="L78">        ecotwo = String.valueOf( (int) profile2.getScore().getFootprintEco());</span>
+
+<span class="nc" id="L80">        this.friendsController = friendController;</span>
+<span class="nc" id="L81">    }</span>
+
+    @FXML
+    void close(ActionEvent event) {
+<span class="nc" id="L85">        friendsController.friendsCompare.setVisible(false);</span>
+
+<span class="nc" id="L87">    }</span>
+
+    @FXML
+    void initialize() {
+<span class="nc" id="L91">        this.userOne.setText(usernameone);</span>
+<span class="nc" id="L92">        this.scoreOne.setText(scoreone);</span>
+<span class="nc" id="L93">        this.carbonFootOne.setText(carbonfootone);</span>
+<span class="nc" id="L94">        this.ecoFootOne.setText(ecoone);</span>
+<span class="nc" id="L95">        this.userTwo.setText(usernametwo);</span>
+<span class="nc" id="L96">        this.scoreTwo.setText(scoretwo);</span>
+<span class="nc" id="L97">        this.carbonFootTwo.setText(carbonfoottow);</span>
+<span class="nc" id="L98">        this.ecoFootTwo.setText(ecotwo);</span>
+<span class="nc" id="L99">        this.carbonSavedOne.setText(carbonsavedone);</span>
+<span class="nc" id="L100">        this.carbonSavedTwo.setText(carbonsavetwo);</span>
+<span class="nc" id="L101">    }</span>
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PostCatalog.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Starter OOPProject-Template</a> &gt; <a href="index.source.html" class="el_package">com.client.logic</a> &gt; <span class="el_source">PostCatalog.java</span></div><h1>PostCatalog.java</h1><pre class="source lang-java linenums">package com.client.logic;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
+public class PostCatalog {
+    private ArrayList&lt;SuperPost&gt; postcatalog;
+
+<span class="nc" id="L10">    public PostCatalog() {</span>
+<span class="nc" id="L11">        this.postcatalog = new ArrayList&lt;SuperPost&gt;();</span>
+<span class="nc" id="L12">    }</span>
+
+    /**
+     * sort by Date.
+     *
+     * @param pc postCatalog
+     * @return PostCatalog
+     */
+    public static PostCatalog sortByDate(PostCatalog pc) {
+        //returns new postcatalog that has been sorted
+<span class="nc" id="L22">        ArrayList&lt;SuperPost&gt; posts = pc.getPostcatalog();</span>
+
+<span class="nc" id="L24">        posts.sort(Comparator.comparing(SuperPost::getDate));</span>
+<span class="nc" id="L25">        Collections.reverse(posts);</span>
+<span class="nc" id="L26">        PostCatalog cat = new PostCatalog();</span>
+<span class="nc" id="L27">        cat.getPostcatalog().addAll(posts);</span>
+
+<span class="nc" id="L29">        return cat;</span>
+    }
+
+    public void add(SuperPost post) {
+<span class="nc" id="L33">        postcatalog.add(post);</span>
+<span class="nc" id="L34">    }</span>
+
+    public int size() {
+<span class="nc" id="L37">        return postcatalog.size();</span>
+    }
+
+    public SuperPost get(int index) {
+<span class="nc" id="L41">        return postcatalog.get(index);</span>
+    }
+
+    public ArrayList&lt;SuperPost&gt; getPostcatalog() {
+<span class="nc" id="L45">        return postcatalog;</span>
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+<span class="nc bnc" id="L50" title="All 2 branches missed.">        if (this == obj) {</span>
+<span class="nc" id="L51">            return true;</span>
+        }
+<span class="nc bnc" id="L53" title="All 2 branches missed.">        if (!(obj instanceof PostCatalog)) {</span>
+<span class="nc" id="L54">            return false;</span>
+        }
+
+<span class="nc" id="L57">        PostCatalog that = (PostCatalog) obj;</span>
+
+<span class="nc bnc" id="L59" title="All 2 branches missed.">        return getPostcatalog() != null ? getPostcatalog()</span>
+<span class="nc bnc" id="L60" title="All 2 branches missed.">                .equals(that.getPostcatalog()) : that.getPostcatalog() == null;</span>
+    }
+
+}
+
+
+
+
+
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

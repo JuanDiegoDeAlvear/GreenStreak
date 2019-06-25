@@ -1,0 +1,823 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DbImplement.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Starter OOPProject-Template</a> &gt; <a href="index.source.html" class="el_package">com.server.database</a> &gt; <span class="el_source">DbImplement.java</span></div><h1>DbImplement.java</h1><pre class="source lang-java linenums">package com.server.database;
+
+
+import com.client.logic.ConsumptionPost;
+import com.client.logic.EnergySurvey;
+import com.client.logic.FoodPost;
+import com.client.logic.FoodSurvey;
+import com.client.logic.LifeStyleSurvey;
+import com.client.logic.SignUpUser;
+import com.client.logic.TransportationPost;
+import com.client.logic.TransportationSurvey;
+import com.client.logic.User;
+import org.jetbrains.annotations.NotNull;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+/**
+ * This is a Singleton class.
+ */
+public class DbImplement { //A good idea might be creating a different class per relation
+
+    /**
+     * Class variables and Class instance.
+     */
+<span class="fc" id="L28">    private static DbImplement dbImplementInstance = null;</span>
+
+    private DbAdapter dbAdapter;
+
+
+    /**
+     * Constructor.
+     *
+     * @param dbAdapter instance.
+     */
+<span class="fc" id="L38">    private DbImplement(DbAdapter dbAdapter) {</span>
+<span class="fc" id="L39">        this.dbAdapter = dbAdapter;</span>
+<span class="fc" id="L40">    }</span>
+
+    /**
+     * Getters and setters.
+     */
+
+    /**
+     * Getter.
+     *
+     * @return Returns the dbadapter instance.
+     */
+    public DbAdapter getDbAdapter() {
+<span class="nc" id="L52">        return dbAdapter;</span>
+    }
+
+    /**
+     * Setter.
+     *
+     * @param dbAdapter Instance.
+     */
+    public void setDbAdapter(DbAdapter dbAdapter) {
+<span class="fc" id="L61">        this.dbAdapter = dbAdapter;</span>
+<span class="fc" id="L62">    }</span>
+
+
+    /**
+     * This method will set a dbImplementInstance.
+     *
+     * @param dbImplement dbImplement object.
+     */
+    public static void setInstance(DbImplement dbImplement) {
+<span class="nc" id="L71">        dbImplementInstance = dbImplement;</span>
+<span class="nc" id="L72">    }</span>
+
+    /**
+     * This method will return a dbImplementInstance.
+     *
+     * @return Returns a dbImplementInstance.
+     */
+    public static DbImplement getInstance() {
+<span class="pc bpc" id="L80" title="1 of 2 branches missed.">        if (dbImplementInstance == null) {</span>
+<span class="nc" id="L81">            dbImplementInstance = new DbImplement(DbAdapter.getInstance());</span>
+        }
+
+<span class="fc" id="L84">        return dbImplementInstance;</span>
+    }
+
+    /**
+     * This mwthod will get a dbImplement instance.
+     *
+     * @param dbAdapter sbAdapter object.
+     * @return Returns a dbImplementInstance.
+     */
+    public static DbImplement getInstance(DbAdapter dbAdapter) {
+<span class="fc bfc" id="L94" title="All 2 branches covered.">        if (dbImplementInstance == null) {</span>
+<span class="fc" id="L95">            dbImplementInstance = new DbImplement(dbAdapter);</span>
+        }
+<span class="fc" id="L97">        dbImplementInstance.setDbAdapter(dbAdapter);</span>
+<span class="fc" id="L98">        return dbImplementInstance;</span>
+    }
+
+
+    /*
+   ------------------------------------------------------------------------------------------------
+
+                                                SURVEY &amp; PROFILE METHODS
+
+   ------------------------------------------------------------------------------------------------
+    */
+
+    /**
+     * This method will insert all of the user's primary information.
+     *
+     * @param details This are the details that we are trying to insert in the database.
+     * @return The method will return a boolean value.
+     */
+    public boolean signupUser(SignUpUser details) {
+
+<span class="nc" id="L118">        System.out.println(&quot;Inserting user data for signup&quot;);</span>
+<span class="nc" id="L119">        boolean result = false;</span>
+
+        try {
+
+<span class="nc" id="L123">            PreparedStatement st = dbAdapter.conn.prepareStatement(&quot;INSERT &quot;</span>
+                    + &quot;INTO usuario (username, email, password)&quot;
+                    + &quot;VALUES (?,?,?)&quot;);
+
+<span class="nc" id="L127">            st.setString(1, details.getUsername());</span>
+<span class="nc" id="L128">            st.setString(2, details.getEmail());</span>
+<span class="nc" id="L129">            st.setString(3, details.getPassword());</span>
+
+<span class="nc" id="L131">            st.executeUpdate();</span>
+<span class="nc" id="L132">            st.close();</span>
+
+
+
+<span class="nc" id="L136">            result = foodDataInsertion(details.getFoodProfile(),details.getUsername());</span>
+<span class="nc" id="L137">            result &amp;= energyDataInsertion(details.getEnergyProfile(),details.getUsername());</span>
+<span class="nc" id="L138">            result &amp;= transportationDataInsertion(details.getTransportationProfile(),</span>
+<span class="nc" id="L139">                    details.getUsername());</span>
+<span class="nc" id="L140">            result &amp;= lifeStyleDataInsertion(details.getLifeStyleProfile(), details.getUsername());</span>
+
+<span class="nc" id="L142">            result &amp;= insertDefaultScore(details.getUsername());</span>
+<span class="nc" id="L143">            result &amp;= insertDefaultAchievement(details.getUsername());</span>
+
+<span class="nc" id="L145">            return result;</span>
+
+
+<span class="nc" id="L148">        } catch (SQLException e) {</span>
+
+<span class="nc" id="L150">            e.printStackTrace();</span>
+<span class="nc" id="L151">            return result;</span>
+
+        }
+
+
+    }
+
+    /**
+     * This method will insert the default score when signup occurs.
+     *
+     * @param username This is the user's username.
+     * @return The method will return a boolean value if it is successful.
+     */
+    private boolean insertDefaultScore(String username) {
+
+<span class="nc" id="L166">        String query = &quot;INSERT INTO scores (greenstreak, score, footprint, ecofootprint, username)&quot;</span>
+                + &quot; VALUES(0,0,0,0,\'&quot; + username + &quot;\')&quot;;
+
+        try {
+
+<span class="nc" id="L171">            PreparedStatement st = dbAdapter.getConn().prepareStatement(query);</span>
+
+<span class="nc" id="L173">            st.executeUpdate();</span>
+<span class="nc" id="L174">            st.close();</span>
+
+<span class="nc" id="L176">            return true;</span>
+<span class="nc" id="L177">        } catch (SQLException e) {</span>
+
+<span class="nc" id="L179">            e.printStackTrace();</span>
+<span class="nc" id="L180">            return false;</span>
+        }
+
+    }
+
+    /**
+     * This method will insert the default values for the achievements.
+     *
+     * @param username This is the username of the user.
+     * @return This method will return a boolean value.
+     */
+    private boolean insertDefaultAchievement(String username) {
+
+<span class="nc" id="L193">        String query = &quot;INSERT INTO achievements&quot;</span>
+                + &quot;(\&quot;firstPost\&quot;, \&quot;firstFriend\&quot;, \&quot;hundkm\&quot;,&quot;
+                + &quot; \&quot;fiveDayRecycle\&quot;, \&quot;topRank\&quot;, \&quot;lowEco\&quot;, \&quot;username\&quot;, &quot;
+                + &quot;\&quot;fiveDaysv\&quot;, \&quot;carblSix\&quot;, \&quot;locaL\&quot;, \&quot;loggeD\&quot;) VALUES(false , false ,false,&quot;
+                + &quot;false,false,false,\'&quot; + username
+                + &quot;\',false,false,false,false)&quot;;
+
+        try {
+
+<span class="nc" id="L202">            PreparedStatement st = dbAdapter.getConn().prepareStatement(query);</span>
+
+<span class="nc" id="L204">            st.executeUpdate();</span>
+<span class="nc" id="L205">            st.close();</span>
+
+<span class="nc" id="L207">            return true;</span>
+<span class="nc" id="L208">        } catch (SQLException e) {</span>
+
+<span class="nc" id="L210">            e.printStackTrace();</span>
+<span class="nc" id="L211">            return false;</span>
+
+        }
+
+    }
+
+    //Adding information to the energy data of the user
+
+    /**
+     * Iserts the data regarding energy.
+     *
+     * @param survey energy survey for lifeStyle.
+     * @param username This is the user's username.
+     * @return The method will return a boolean value.
+     */
+    public boolean energyDataInsertion(EnergySurvey survey, String username) {
+
+<span class="nc" id="L228">        System.out.println(&quot;Pleae insert all of the energy data.&quot;);</span>
+
+        try {
+
+<span class="nc" id="L232">            PreparedStatement st = dbAdapter.conn.prepareStatement(&quot;INSERT INTO energy &quot;</span>
+                    + &quot;VALUES (?,?,?,?,?,?)&quot;);
+
+<span class="nc" id="L235">            st.setString(1, survey.getTypeHouse());</span>
+<span class="nc" id="L236">            st.setInt(2, survey.getAmountRoommates());</span>
+<span class="nc" id="L237">            st.setBoolean(3, survey.getGreenEnergy());</span>
+<span class="nc" id="L238">            st.setBoolean(4, survey.getEfficientLighting());</span>
+<span class="nc" id="L239">            st.setString(5, username);</span>
+<span class="nc" id="L240">            st.setString(6, survey.getAmountEnergy());</span>
+
+<span class="nc" id="L242">            st.executeUpdate();</span>
+<span class="nc" id="L243">            st.close();</span>
+
+<span class="nc" id="L245">            return true;</span>
+
+<span class="nc" id="L247">        } catch (SQLException e) {</span>
+
+<span class="nc" id="L249">            e.printStackTrace();</span>
+
+<span class="nc" id="L251">            return false;</span>
+
+        }
+
+    }
+
+    //Adding information to the food data of the user
+
+    /**
+     * Inserts all of the food related information about the user.
+     *
+     * @param survey   Food survey.
+     * @param username This is the username of the user, whose data we are inserting.
+     * @return The method will return a boolean value based on whethjer it is successful.
+     */
+    public boolean foodDataInsertion(FoodSurvey survey, String username) {
+
+<span class="nc" id="L268">        System.out.println(&quot;Pleae insert all of the diet data.&quot;);</span>
+
+        try {
+
+<span class="nc" id="L272">            PreparedStatement st = dbAdapter.conn.prepareStatement(&quot;INSERT INTO food &quot;</span>
+                    + &quot;VALUES (?,?,?,?,?,?,?)&quot;);
+
+<span class="nc" id="L275">            st.setString(1, survey.getAmountOrganicFood());</span>
+<span class="nc" id="L276">            st.setString(2, survey.getAmountLocalFood());</span>
+<span class="nc" id="L277">            st.setString(3, survey.getAmountWastedFood());</span>
+<span class="nc" id="L278">            st.setString(4, survey.getAmountFoodPackaged());</span>
+<span class="nc" id="L279">            st.setString(5, survey.getAmountFoodCompost());</span>
+<span class="nc" id="L280">            st.setString(6, survey.getDietChoice());</span>
+<span class="nc" id="L281">            st.setString(7, username);</span>
+
+<span class="nc" id="L283">            st.executeUpdate();</span>
+<span class="nc" id="L284">            st.close();</span>
+
+<span class="nc" id="L286">            return true;</span>
+
+<span class="nc" id="L288">        } catch (SQLException e) {</span>
+
+<span class="nc" id="L290">            e.printStackTrace();</span>
+<span class="nc" id="L291">            return false;</span>
+
+        }
+
+    }
+
+    //Adding information to the transportation data of the user
+
+    /**
+     * Inserts the required information about the user transportation-wise.
+     *
+     * @param username Username of the user.
+     * @param survey the TransportationSurvey object.
+     * @return The method will return a boolean value.
+     */
+    public boolean transportationDataInsertion(TransportationSurvey survey, String username) {
+
+<span class="nc" id="L308">        System.out.println(&quot;Please insert all of the transport data.&quot;);</span>
+
+        try {
+
+<span class="nc" id="L312">            PreparedStatement st = dbAdapter.conn.prepareStatement(&quot;INSERT INTO transportation &quot;</span>
+                    + &quot;VALUES (?,?,?,?,?)&quot;);
+
+<span class="nc" id="L315">            st.setFloat(1, survey.getAveHoursFly());</span>
+<span class="nc" id="L316">            st.setFloat(2, survey.getAveKmPerDay());</span>
+<span class="nc" id="L317">            st.setString(3, survey.getTypeOfCar());</span>
+<span class="nc" id="L318">            st.setString(4, survey.getMainModeTransport());</span>
+<span class="nc" id="L319">            st.setString(5, username);</span>
+
+<span class="nc" id="L321">            st.executeUpdate();</span>
+<span class="nc" id="L322">            st.close();</span>
+
+<span class="nc" id="L324">            return true;</span>
+
+<span class="nc" id="L326">        } catch (SQLException e) {</span>
+
+<span class="nc" id="L328">            e.printStackTrace();</span>
+
+<span class="nc" id="L330">            return false;</span>
+        }
+    }
+
+    /**
+     * This method inserts the user data regarding his/her lifestyle.
+     *
+     * @param survey   This is the survey containing the information.
+     * @param username This is the username whose information we are sending to the database.
+     * @return This method will return a boolean depending on whether it carried out the task.
+     */
+    public boolean lifeStyleDataInsertion(LifeStyleSurvey survey, String username) {
+
+<span class="nc" id="L343">        System.out.println(&quot;Please insert all of the lifestyle data.&quot;);</span>
+
+        try {
+
+<span class="nc" id="L347">            PreparedStatement st = dbAdapter.conn.prepareStatement(&quot;INSERT INTO lifestyle &quot;</span>
+                    + &quot;VALUES (?,?,?,?,?,?)&quot;);
+
+<span class="nc" id="L350">            st.setString(1, survey.getHowOftenBigPurchase());</span>
+<span class="nc" id="L351">            st.setString(2, survey.getWeeklyWaste());</span>
+<span class="nc" id="L352">            st.setString(3, survey.getRecycle());</span>
+<span class="nc" id="L353">            st.setString(4, survey.getApplianceUse());</span>
+<span class="nc" id="L354">            st.setInt(5, survey.getAveShowerTime());</span>
+<span class="nc" id="L355">            st.setString(6, username);</span>
+
+<span class="nc" id="L357">            st.executeUpdate();</span>
+<span class="nc" id="L358">            st.close();</span>
+
+<span class="nc" id="L360">            return true;</span>
+<span class="nc" id="L361">        } catch (SQLException e) {</span>
+
+<span class="nc" id="L363">            e.printStackTrace();</span>
+<span class="nc" id="L364">            return false;</span>
+
+        }
+
+    }
+
+    /**
+     * This method offers the chance to search the username without fully knowing it.
+     *
+     * @param username String representing the known part of the username.
+     * @return This method will return an ArrayList of Strings.
+     */
+    public ArrayList&lt;String&gt; searchUsername(String username) {
+
+<span class="fc" id="L378">        ArrayList&lt;String&gt; usernames = new ArrayList&lt;&gt;();</span>
+
+        try {
+<span class="fc" id="L381">            PreparedStatement st = dbAdapter.getConn().prepareStatement(&quot;SELECT username &quot;</span>
+                    + &quot;FROM usuario &quot;
+                    + &quot;WHERE username LIKE \'%&quot; + username + &quot;%\' &quot;);
+
+<span class="fc" id="L385">            ResultSet result = dbAdapter.query(st);</span>
+
+<span class="fc bfc" id="L387" title="All 2 branches covered.">            while (result.next()) {</span>
+<span class="fc" id="L388">                usernames.add(result.getString(1));</span>
+            }
+
+<span class="fc" id="L391">            return usernames;</span>
+
+<span class="nc" id="L393">        } catch (SQLException e) {</span>
+
+<span class="nc" id="L395">            return null;</span>
+        }
+    }
+
+    /**
+     * This method will delete a user from the database.
+     *
+     * @param username This is the username of the users whose account we will delete.
+     * @return Will return a boolean depending on whether it successfully carries out the task.
+     */
+    public boolean deleteUser(String username) {
+
+
+        try {
+<span class="nc" id="L409">            PreparedStatement st = dbAdapter.conn.prepareStatement(&quot;DELETE * &quot;</span>
+                    + &quot;FROM usuario &quot;
+                    + &quot;WHERE username = \'&quot; + username + &quot;\'&quot;);
+
+<span class="nc" id="L413">            return true;</span>
+<span class="nc" id="L414">        } catch (SQLException e) {</span>
+<span class="nc" id="L415">            return false;</span>
+        }
+    }
+
+    /*
+    ------------------------------------------------------------------------------------------------
+
+                                                    POST METHODS ADDERS
+
+    ------------------------------------------------------------------------------------------------
+    */
+
+
+    /**
+     * Adds ConsumptionPost to the database and returns true if operation was successful.
+     *
+     * @param post post.
+     * @return whether the operation was successful.
+     */
+    public boolean addConsumptionPost(ConsumptionPost post) {
+
+<span class="nc" id="L436">        System.out.println(&quot;Please insert the requiired data for the consumption post&quot;);</span>
+
+        try {
+
+<span class="nc" id="L440">            PreparedStatement st = dbAdapter.conn.prepareStatement(&quot;INSERT INTO &quot;</span>
+                    + &quot;consumption_post(username, consume, state, date)&quot;
+                    + &quot;VALUES (?,?,?,current_timestamp )&quot;);
+
+<span class="nc" id="L444">            st.setString(1, post.getUsername());</span>
+<span class="nc" id="L445">            st.setString(2, post.getConsume());</span>
+<span class="nc" id="L446">            st.setBoolean(3, post.getState());</span>
+
+<span class="nc" id="L448">            st.executeUpdate();</span>
+<span class="nc" id="L449">            st.close();</span>
+
+<span class="nc" id="L451">            return true;</span>
+
+
+<span class="nc" id="L454">        } catch (SQLException e) {</span>
+
+<span class="nc" id="L456">            e.printStackTrace();</span>
+
+<span class="nc" id="L458">            return false;</span>
+
+        }
+
+    }
+
+    /**
+     * Adds TransportationPost to the database and returns true if operation was successful.
+     *
+     * @param post Transportation post.
+     * @return whether the operation was successful.
+     */
+    public boolean addTransportationPost(TransportationPost post) {
+
+<span class="nc" id="L472">        System.out.println(&quot;Please insert the required data for the transportation post&quot;);</span>
+
+        try {
+
+<span class="nc" id="L476">            PreparedStatement st = dbAdapter.conn.prepareStatement(&quot;INSERT INTO &quot;</span>
+                    + &quot;transportation_post(username, kilometers, type, date)&quot;
+                    + &quot;VALUES (?,?,?,current_timestamp )&quot;);
+
+<span class="nc" id="L480">            st.setString(1, post.getUsername());</span>
+<span class="nc" id="L481">            st.setString(3, post.getType());</span>
+<span class="nc" id="L482">            st.setDouble(2, post.getKilometer());</span>
+
+<span class="nc" id="L484">            st.executeUpdate();</span>
+<span class="nc" id="L485">            st.close();</span>
+
+<span class="nc" id="L487">            return true;</span>
+
+<span class="nc" id="L489">        } catch (SQLException e) {</span>
+
+<span class="nc" id="L491">            e.printStackTrace();</span>
+
+<span class="nc" id="L493">            return false;</span>
+
+        }
+
+    }
+
+    /**
+     * Adds FoodPost to the database and returns true if operation was successful.
+     *
+     * @param post Food post.
+     * @return whether the operation was successful.
+     */
+    public boolean addFoodPost(FoodPost post) {
+
+<span class="nc" id="L507">        System.out.println(&quot;Please write down the required information for the food post&quot;);</span>
+
+        try {
+
+<span class="nc" id="L511">            PreparedStatement st = dbAdapter.conn.prepareStatement(&quot;INSERT INTO &quot;</span>
+                    + &quot;food_post(username, meal, type, date)&quot;
+                    + &quot;VALUES (?,?,?,current_timestamp)&quot;);
+
+<span class="nc" id="L515">            st.setString(1, post.getUsername());</span>
+<span class="nc" id="L516">            st.setString(2, post.getMeal());</span>
+<span class="nc" id="L517">            st.setString(3, post.getType());</span>
+
+<span class="nc" id="L519">            st.executeUpdate();</span>
+<span class="nc" id="L520">            st.close();</span>
+
+<span class="nc" id="L522">            return true;</span>
+
+<span class="nc" id="L524">        } catch (SQLException e) {</span>
+
+<span class="nc" id="L526">            e.printStackTrace();</span>
+
+<span class="nc" id="L528">            return false;</span>
+
+        }
+
+    }
+
+    /*
+    ------------------------------------------------------------------------------------------------
+
+                                                  USER VERIFICATION METHODS
+
+    ------------------------------------------------------------------------------------------------
+    */
+
+    /**
+     * User verification.
+     *
+     * @param details user verification details.
+     * @return returns whether the user is in the database.
+     */
+    public boolean checkLogin(User details) {
+
+<span class="nc" id="L550">        System.out.println(&quot;Please send the required information to verify user&quot;);</span>
+
+        try {
+
+<span class="nc" id="L554">            String username = details.getusername();</span>
+<span class="nc" id="L555">            String password = details.getPassword(); // Tiene que mandar 'juan' y 'hola' no jua</span>
+<span class="nc" id="L556">            String query = &quot;SELECT username, password&quot;</span>
+                    + &quot; FROM usuario &quot;
+                    + &quot; WHERE username = \'&quot; + username + &quot;\' AND password = \'&quot; + password + &quot;\'&quot;;
+
+<span class="nc" id="L560">            System.out.println(&quot;dbAdapter.connected to PostgreSQL database!&quot;);</span>
+<span class="nc" id="L561">            System.out.println(&quot;Reading records...&quot;);</span>
+<span class="nc" id="L562">            ResultSet resultSet = dbAdapter.query(query);</span>
+
+<span class="nc bnc" id="L564" title="All 2 branches missed.">            if (resultSet.next()) {</span>
+
+<span class="nc" id="L566">                return true;</span>
+
+            }
+
+<span class="nc" id="L570">            return false;</span>
+
+<span class="nc" id="L572">        } catch (SQLException e) {</span>
+
+<span class="nc" id="L574">            e.printStackTrace();</span>
+
+<span class="nc" id="L576">            return false;</span>
+
+        }
+
+    }
+
+    /**
+     * Returns whether the given attribute contains the given value in the User table.
+     * @param attribute the attribute being checked (eg: username).
+     * @param value the value being checked (eg:Raul).
+     * @return whether the value is in the database under the attribute.
+     */
+    public boolean existsUser(String attribute, String value) {
+
+<span class="nc" id="L590">        System.out.println(&quot;Checking if the user exists.&quot;);</span>
+
+        try {
+
+<span class="nc" id="L594">            String query = &quot;SELECT \'&quot; + attribute + &quot;\' FROM usuario&quot;</span>
+                    + &quot; WHERE \'&quot; + attribute + &quot;\' = \'&quot; + value + &quot;\'&quot;;
+
+<span class="nc" id="L597">            dbAdapter.stnt = dbAdapter.conn.createStatement();</span>
+
+<span class="nc" id="L599">            System.out.println(&quot;dbAdapter.connected to PostgreSQL database!: Reading records..&quot;);</span>
+
+<span class="nc" id="L601">            ResultSet resultSet = dbAdapter.query(query);</span>
+
+<span class="nc bnc" id="L603" title="All 2 branches missed.">            if (resultSet.next()) {</span>
+<span class="nc" id="L604">                return true;</span>
+            }
+
+<span class="nc" id="L607">            resultSet.close();</span>
+<span class="nc" id="L608">            return false;</span>
+
+<span class="nc" id="L610">        } catch (SQLException e) {</span>
+<span class="nc" id="L611">            e.printStackTrace();</span>
+<span class="nc" id="L612">            return false;</span>
+        }
+
+    }
+
+    /*
+    ------------------------------------------------------------------------------------------------
+
+                                                POSTS METHODS GETTERS
+
+    ------------------------------------------------------------------------------------------------
+    */
+
+    /**
+     * Returns FoodPost from data in selected row in ResultSet set.
+     *
+     * @param data resultSet.
+     * @return reutrns null if exception an object if it works.
+     */
+    public FoodPost foodPostFromSet(@NotNull ResultSet data) {
+<span class="fc" id="L632">        FoodPost result = new FoodPost();</span>
+<span class="fc" id="L633">        System.out.println(&quot;Creating food post&quot;);</span>
+
+        try {
+<span class="fc" id="L636">            result.setMeal(data.getString(&quot;meal&quot;));</span>
+<span class="fc" id="L637">            result.setType(data.getString(&quot;type&quot;));</span>
+<span class="fc" id="L638">            result.setDate(data.getTimestamp(&quot;date&quot;));</span>
+<span class="fc" id="L639">            result.setUsername(data.getString(&quot;username&quot;));</span>
+<span class="fc" id="L640">            result.setPostClass(&quot;food&quot;);</span>
+            //      result.setPoints(data.getInt(&quot;points&quot;));
+
+<span class="nc" id="L643">        } catch (SQLException e) {</span>
+<span class="nc" id="L644">            e.printStackTrace();</span>
+<span class="nc" id="L645">            return null;</span>
+<span class="fc" id="L646">        }</span>
+<span class="fc" id="L647">        return result;</span>
+    }
+
+
+    /**
+     * Returns TransportationPost object from the data within the database.
+     *
+     * @param data resultSet.
+     * @return returns null if there is an exception.
+     */
+    public TransportationPost transportationPostFromSet(@NotNull ResultSet data) {
+
+<span class="fc" id="L659">        TransportationPost result = new TransportationPost();</span>
+<span class="fc" id="L660">        System.out.println(&quot;Creating transportation post&quot;);</span>
+
+        try {
+
+<span class="fc" id="L664">            result.setKilometer(data.getDouble(&quot;kilometers&quot;));</span>
+<span class="fc" id="L665">            result.setType(data.getString(&quot;type&quot;));</span>
+<span class="fc" id="L666">            result.setDate(data.getTimestamp(&quot;date&quot;));</span>
+<span class="fc" id="L667">            result.setUsername(data.getString(&quot;username&quot;));</span>
+<span class="fc" id="L668">            result.setPostClass(&quot;transportation&quot;);</span>
+            //  result.setPoints(data.getInt(&quot;points&quot;));
+
+<span class="nc" id="L671">        } catch (SQLException e) {</span>
+
+<span class="nc" id="L673">            e.printStackTrace();</span>
+<span class="nc" id="L674">            return null;</span>
+
+<span class="fc" id="L676">        }</span>
+
+<span class="fc" id="L678">        return result;</span>
+
+    }
+
+
+    /**
+     * Returns ConsumptionPost object from the data retrieved from the database.
+     *
+     * @param data resultSet.
+     * @return returns null if there is an exception.
+     */
+    public ConsumptionPost consumptionPostFromSet(@NotNull ResultSet data) {
+
+<span class="fc" id="L691">        ConsumptionPost result = new ConsumptionPost();</span>
+
+        try {
+
+<span class="fc" id="L695">            result.setConsume(data.getString(&quot;consume&quot;));</span>
+<span class="fc" id="L696">            result.setState(data.getBoolean(&quot;state&quot;));</span>
+<span class="fc" id="L697">            result.setDate(data.getTimestamp(&quot;date&quot;));</span>
+<span class="fc" id="L698">            result.setUsername(data.getString(&quot;username&quot;));</span>
+<span class="fc" id="L699">            result.setPostClass(&quot;ConsumptionPost&quot;);</span>
+            //    result.setPoints(data.getInt(&quot;points&quot;));
+
+<span class="nc" id="L702">        } catch (SQLException e) {</span>
+
+<span class="nc" id="L704">            e.printStackTrace();</span>
+<span class="nc" id="L705">            return null;</span>
+
+<span class="fc" id="L707">        }</span>
+
+<span class="fc" id="L709">        return result;</span>
+
+    }
+
+
+    /**
+     * Getting the posts related to post.
+     *
+     * @param attribute name of the attribute.
+     * @param value     value of the attribute.
+     * @return Returns an ArrayList of FoodPosts.
+     */
+    public ArrayList&lt;FoodPost&gt; getFoodPosts(String attribute, String value) {
+
+<span class="fc" id="L723">        String query = &quot;SELECT * FROM food_post  WHERE &quot; + attribute + &quot;= \'&quot; + value + &quot;\'&quot;;</span>
+<span class="fc" id="L724">        ResultSet data = dbAdapter.query(query);</span>
+
+        try {
+
+<span class="fc" id="L728">            ArrayList&lt;FoodPost&gt; result = new ArrayList&lt;&gt;();</span>
+
+<span class="fc bfc" id="L730" title="All 2 branches covered.">            while (data.next()) {</span>
+<span class="fc" id="L731">                System.out.println(&quot;Creating Food Post&quot;);</span>
+<span class="fc" id="L732">                result.add(foodPostFromSet(data));</span>
+            }
+
+<span class="fc" id="L735">            return result;</span>
+
+<span class="nc" id="L737">        } catch (SQLException | NullPointerException e) {</span>
+<span class="nc" id="L738">            e.printStackTrace();</span>
+<span class="nc" id="L739">            return null;</span>
+        }
+
+
+    }
+
+
+    /**
+     * Returns the transportation post.
+     *
+     * @param attribute name of the column(attribute).
+     * @param value     actual value of the attribute.
+     * @return Returns na ArrayList of TransportationPosts.
+     */
+    public ArrayList&lt;TransportationPost&gt; getTransportationPost(String attribute, String value) {
+
+<span class="fc" id="L755">        String query = &quot;SELECT * FROM transportation_post  WHERE &quot; + attribute</span>
+                + &quot; = \'&quot; + value + &quot;\'&quot;;
+<span class="fc" id="L757">        ResultSet data = dbAdapter.query(query);</span>
+
+        try {
+
+<span class="fc" id="L761">            ArrayList&lt;TransportationPost&gt; result = new ArrayList&lt;&gt;();</span>
+
+<span class="fc bfc" id="L763" title="All 2 branches covered.">            while (data.next()) {</span>
+<span class="fc" id="L764">                System.out.println(&quot;Creating Transportation Post&quot;);</span>
+<span class="fc" id="L765">                result.add(transportationPostFromSet(data));</span>
+            }
+
+<span class="fc" id="L768">            return result;</span>
+
+<span class="nc" id="L770">        } catch (SQLException | NullPointerException e) {</span>
+
+<span class="nc" id="L772">            e.printStackTrace();</span>
+<span class="nc" id="L773">            return null;</span>
+
+        }
+
+
+    }
+
+
+    /**
+     * Return the consumption post.
+     *
+     * @param attribute name of the column.
+     * @param value     actual value of the attribute.
+     * @return Returns an arryList of consumptionPosts.
+     */
+    public ArrayList&lt;ConsumptionPost&gt; getConsumptionPost(String attribute, String value) {
+
+<span class="fc" id="L790">        String query = &quot;SELECT * FROM consumption_post  WHERE &quot; + attribute + &quot; = \'&quot;</span>
+                + value + &quot;\'&quot;;
+<span class="fc" id="L792">        System.out.println(&quot;Querying for: &quot; + query);</span>
+<span class="fc" id="L793">        ResultSet data = dbAdapter.query(query);</span>
+
+        try {
+            //FIX THIS
+
+<span class="fc" id="L798">            ArrayList&lt;ConsumptionPost&gt; result = new ArrayList&lt;&gt;();</span>
+
+<span class="fc bfc" id="L800" title="All 2 branches covered.">            while (data.next())  {</span>
+<span class="fc" id="L801">                System.out.println(&quot;Creating consumption Post&quot;);</span>
+<span class="fc" id="L802">                result.add(consumptionPostFromSet(data));</span>
+            }
+
+<span class="fc" id="L805">            return result;</span>
+
+<span class="nc" id="L807">        } catch (SQLException | NullPointerException e) {</span>
+
+<span class="nc" id="L809">            e.printStackTrace();</span>
+<span class="nc" id="L810">            return null;</span>
+
+        }
+
+
+    }
+
+
+
+     
+
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

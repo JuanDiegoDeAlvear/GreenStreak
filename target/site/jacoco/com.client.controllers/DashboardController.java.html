@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DashboardController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Starter OOPProject-Template</a> &gt; <a href="index.source.html" class="el_package">com.client.controllers</a> &gt; <span class="el_source">DashboardController.java</span></div><h1>DashboardController.java</h1><pre class="source lang-java linenums">package com.client.controllers;
+
+import com.client.ServerCommunication;
+import com.client.logic.ConsumptionPost;
+import com.client.logic.FoodPost;
+import com.client.logic.PostCatalog;
+import com.client.logic.TransportationPost;
+import eu.hansolo.tilesfx.Tile;
+import eu.hansolo.tilesfx.TileBuilder;
+import eu.hansolo.tilesfx.chart.TilesFXSeries;
+import eu.hansolo.tilesfx.skins.BarChartItem;
+import javafx.fxml.FXML;
+import javafx.scene.chart.XYChart;
+import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import org.kordamp.ikonli.javafx.FontIcon;
+
+import java.net.URL;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.List;
+import java.util.ResourceBundle;
+
+<span class="nc" id="L28">public class DashboardController {</span>
+
+    XYChart.Series&lt;String, String&gt; series;
+    @FXML
+    private ResourceBundle resources;
+
+    @FXML
+    private URL location;
+
+    @FXML
+    private AnchorPane dashboarContentPane;
+
+    @FXML
+    private VBox pain1;
+
+    @FXML
+    private VBox pain2;
+
+    @FXML
+    private VBox pain3;
+
+    @FXML
+    private VBox pain4;
+
+    @FXML
+    private VBox pain5;
+
+    @FXML
+    private Label points;
+
+    @FXML
+    private VBox pointsTile;
+<span class="nc" id="L60">    private int size = 200;</span>
+    private Tile food;
+    private Tile transport;
+    private Tile carbon;
+    private Tile greenstreak;
+    private Tile consumption;
+
+    @FXML
+    void initialize() {
+
+<span class="nc" id="L70">        RankingsController.scoreCalc();</span>
+
+<span class="nc" id="L72">        setPoints(LoginController.userprofile.getScore().getScore());</span>
+        //need to be changed after the server fix it
+        //setGreenStreak(LoginController.userprofile.getScore().getGreenstreak());
+
+<span class="nc" id="L76">        BarChartItem bci1 = new BarChartItem(&quot;Vegan&quot;, vegancheck(), Color.rgb(46, 204, 113));</span>
+<span class="nc" id="L77">        BarChartItem bci2 = new BarChartItem(&quot;Vegetarian&quot;, vegeterianCheck(),</span>
+<span class="nc" id="L78">                Color.rgb(52, 152, 219));</span>
+<span class="nc" id="L79">        BarChartItem bci3 = new BarChartItem(&quot;Meat&quot;, meatCheck(), Color.rgb(230, 126, 34));</span>
+
+<span class="nc" id="L81">        food = TileBuilder.create()</span>
+<span class="nc" id="L82">                .prefSize(size + 80, size + 50)</span>
+<span class="nc" id="L83">                .skinType(Tile.SkinType.BAR_CHART)</span>
+<span class="nc" id="L84">                .title(&quot;Meal History&quot;)</span>
+<span class="nc" id="L85">                .barChartItems(bci1, bci2, bci3)</span>
+<span class="nc" id="L86">                .build();</span>
+<span class="nc" id="L87">        food.setTextVisible(true);</span>
+<span class="nc" id="L88">        food.setBackgroundColor(Color.rgb(44, 62, 80));</span>
+<span class="nc" id="L89">        pain1.getChildren().add(food);</span>
+
+
+<span class="nc" id="L92">        XYChart.Series&lt;String, Number&gt; bikes = new XYChart.Series&lt;&gt;();</span>
+<span class="nc" id="L93">        bikes.setName(&quot;Bike&quot;);</span>
+<span class="nc" id="L94">        TilesFXSeries bikeData = new TilesFXSeries(bikes);</span>
+<span class="nc" id="L95">        bikeData.setStroke(Color.rgb(46, 204, 113));</span>
+<span class="nc" id="L96">        bikeData.setLegendSymbolFill(Color.rgb(46, 204, 113));</span>
+
+<span class="nc" id="L98">        XYChart.Series&lt;String, Number&gt; cars = new XYChart.Series&lt;&gt;();</span>
+<span class="nc" id="L99">        cars.setName(&quot;Car&quot;);</span>
+<span class="nc" id="L100">        TilesFXSeries carData = new TilesFXSeries(cars);</span>
+<span class="nc" id="L101">        carData.setStroke(Color.rgb(230, 126, 34));</span>
+<span class="nc" id="L102">        carData.setLegendSymbolFill(Color.rgb(230, 126, 34));</span>
+
+<span class="nc" id="L104">        XYChart.Series&lt;String, Number&gt; publicTrans = new XYChart.Series&lt;&gt;();</span>
+<span class="nc" id="L105">        publicTrans.setName(&quot;Public Transport&quot;);</span>
+<span class="nc" id="L106">        TilesFXSeries pubtransData = new TilesFXSeries(publicTrans);</span>
+<span class="nc" id="L107">        pubtransData.setStroke(Color.rgb(52, 152, 219));</span>
+<span class="nc" id="L108">        pubtransData.setLegendSymbolFill(Color.rgb(52, 152, 219));</span>
+
+<span class="nc" id="L110">        transport = TileBuilder.create()</span>
+<span class="nc" id="L111">                .prefSize(2 * size, size + 50)</span>
+<span class="nc" id="L112">                .skinType(Tile.SkinType.SMOOTHED_CHART)</span>
+<span class="nc" id="L113">                .chartType(Tile.ChartType.LINE)</span>
+<span class="nc" id="L114">                .title(&quot;Transportation&quot;)</span>
+<span class="nc" id="L115">                .backgroundColor(Color.rgb(44, 62, 80))</span>
+<span class="nc" id="L116">                .chartGridColor(Color.rgb(107, 140, 173))</span>
+<span class="nc" id="L117">                .tilesFxSeries(bikeData, carData, pubtransData)</span>
+<span class="nc" id="L118">                .chartGridColor(Color.rgb(107, 140, 173))</span>
+<span class="nc" id="L119">                .foregroundColor(Color.rgb(107, 140, 173))</span>
+<span class="nc" id="L120">                .build();</span>
+
+<span class="nc" id="L122">        pain2.getChildren().add(transport);</span>
+
+<span class="nc" id="L124">        transportGraph();</span>
+
+<span class="nc" id="L126">        carbon = TileBuilder.create()</span>
+<span class="nc" id="L127">                .prefSize(size, size + 60)</span>
+<span class="nc" id="L128">                .skinType(Tile.SkinType.GAUGE)</span>
+<span class="nc" id="L129">                .title(&quot;Carbon Footprint&quot; + &quot;\n&quot; + &quot;The amount of CO2 you release in a year&quot;)</span>
+<span class="nc" id="L130">                .unit(&quot;tons of CO2&quot;)</span>
+<span class="nc" id="L131">                .threshold(7)</span>
+<span class="nc" id="L132">                .value(LoginController.userprofile.getScore().getFootprint())</span>
+<span class="nc" id="L133">                .minValue(-5)</span>
+<span class="nc" id="L134">                .maxValue(30)</span>
+<span class="nc" id="L135">                .barColor(Color.rgb(46, 204, 113))</span>
+<span class="nc" id="L136">                .thresholdColor(Color.rgb(241, 196, 15))</span>
+<span class="nc" id="L137">                .backgroundColor(Color.rgb(44, 62, 80))</span>
+<span class="nc" id="L138">                .build();</span>
+
+<span class="nc" id="L140">        pain3.getChildren().add(carbon);</span>
+
+<span class="nc" id="L142">        FontIcon leaf = new FontIcon();</span>
+<span class="nc" id="L143">        leaf.setIconLiteral(&quot;icm-fire&quot;);</span>
+<span class="nc" id="L144">        leaf.setIconColor(Color.rgb(46, 204, 113));</span>
+<span class="nc" id="L145">        leaf.setIconSize(32);</span>
+
+<span class="nc" id="L147">        int score = LoginController.userprofile.getScore().getScore();</span>
+<span class="nc" id="L148">        int level = (score / 1000) + 1;</span>
+
+<span class="nc" id="L150">        greenstreak = TileBuilder.create()</span>
+<span class="nc" id="L151">                .prefSize(size, size)</span>
+<span class="nc" id="L152">                .skinType(Tile.SkinType.CIRCULAR_PROGRESS)</span>
+<span class="nc" id="L153">                .title(&quot;GreenStreak&quot; )</span>
+<span class="nc" id="L154">                .unit(&quot;%&quot;)</span>
+<span class="nc" id="L155">                .graphic(leaf)</span>
+<span class="nc" id="L156">                .backgroundColor(Color.rgb(44, 62, 80))</span>
+<span class="nc" id="L157">                .barColor(Color.rgb(46, 204, 113))</span>
+<span class="nc" id="L158">                .value((score - (level - 1) * 1000) / ((double) 1000) * 100)</span>
+<span class="nc" id="L159">                .valueColor(Color.rgb(46, 204, 113))</span>
+<span class="nc" id="L160">                .barBackgroundColor(Color.rgb(236, 240, 241))</span>
+<span class="nc" id="L161">                .textSize(Tile.TextSize.BIGGER)</span>
+<span class="nc" id="L162">                .build();</span>
+<span class="nc" id="L163">        pain4.getChildren().add(greenstreak);</span>
+
+<span class="nc" id="L165">        BarChartItem bci4 = new BarChartItem(&quot;Recycled&quot;, recyclecheck(), Color.rgb(39, 174, 96));</span>
+<span class="nc" id="L166">        BarChartItem bci5 = new BarChartItem(&quot;Bought Local&quot;, localcheck(), Color.rgb(68, 189, 50));</span>
+<span class="nc" id="L167">        BarChartItem bci6 = new BarChartItem(&quot;Bought Second Hand&quot;,</span>
+<span class="nc" id="L168">                secondHandcheck(), Color.rgb(26, 188, 156));</span>
+<span class="nc" id="L169">        consumption = TileBuilder.create()</span>
+<span class="nc" id="L170">                .prefSize(size + 50, size + 65)</span>
+<span class="nc" id="L171">                .skinType(Tile.SkinType.BAR_CHART)</span>
+<span class="nc" id="L172">                .title(&quot;Consumption History&quot;)</span>
+<span class="nc" id="L173">                .barChartItems(bci4, bci5, bci6)</span>
+<span class="nc" id="L174">                .backgroundColor(Color.rgb(44, 62, 80))</span>
+<span class="nc" id="L175">                .autoScale(false)</span>
+<span class="nc" id="L176">                .build();</span>
+<span class="nc" id="L177">        consumption.setTextVisible(true);</span>
+<span class="nc" id="L178">        pain5.getChildren().add(consumption);</span>
+
+<span class="nc" id="L180">    }</span>
+
+    private void transportGraph() {
+<span class="nc" id="L183">        PostCatalog posts = ServerCommunication.recievepostarray(LoginController.getusername());</span>
+<span class="nc" id="L184">        posts = PostCatalog.sortByDate(posts);</span>
+
+        TransportationPost[] transposts = ServerCommunication
+<span class="nc" id="L187">                .getTransportationPosts(LoginController.getusername());</span>
+
+<span class="nc" id="L189">        List&lt;TransportationPost&gt; tposts = Arrays.asList(transposts);</span>
+<span class="nc" id="L190">        tposts.sort(Comparator.comparing(TransportationPost::getDate));</span>
+
+<span class="nc bnc" id="L192" title="All 2 branches missed.">        int domain = (tposts.size() &lt;= 14) ? tposts.size() : 14;</span>
+
+<span class="nc bnc" id="L194" title="All 2 branches missed.">        for (int i = 0; i &lt; domain; i++) {</span>
+<span class="nc" id="L195">            Date date = tposts.get(i).getDate();</span>
+<span class="nc" id="L196">            String day = parseDay(date);</span>
+<span class="nc" id="L197">            String type = tposts.get(i).getType();</span>
+<span class="nc" id="L198">            double dist = tposts.get(i).getKilometer();</span>
+
+<span class="nc" id="L200">            setTransport(type, dist, day);</span>
+        }
+
+        //RankingsController.scoreCalc();
+
+
+<span class="nc" id="L206">    }</span>
+
+    private String parseDay(Date date) {
+<span class="nc" id="L209">        Calendar cal = Calendar.getInstance();</span>
+<span class="nc" id="L210">        cal.setTimeInMillis(date.getTime());</span>
+<span class="nc" id="L211">        int month = cal.get(Calendar.MONTH);</span>
+<span class="nc" id="L212">        int day = cal.get(Calendar.DAY_OF_MONTH);</span>
+
+<span class="nc" id="L214">        return month + &quot;.&quot; + day;</span>
+    }
+
+
+    private int secondHandcheck() {
+<span class="nc" id="L219">        int result = 0;</span>
+<span class="nc" id="L220">        ConsumptionPost[] check = ServerCommunication.getConsumptionPosts(</span>
+<span class="nc" id="L221">                LoginController.getusername());</span>
+
+<span class="nc bnc" id="L223" title="All 2 branches missed.">        for (int i = 0 ; i &lt; check.length ; i++) {</span>
+<span class="nc" id="L224">            ConsumptionPost poster = check[i];</span>
+<span class="nc bnc" id="L225" title="All 2 branches missed.">            if (poster.getConsume().equals(&quot;used&quot;)) {</span>
+<span class="nc" id="L226">                result++;</span>
+            }
+        }
+<span class="nc" id="L229">        return result ;</span>
+    }
+
+    private int localcheck() {
+<span class="nc" id="L233">        int result = 0;</span>
+<span class="nc" id="L234">        ConsumptionPost[] check = ServerCommunication.getConsumptionPosts(</span>
+<span class="nc" id="L235">                LoginController.getusername());</span>
+
+<span class="nc bnc" id="L237" title="All 2 branches missed.">        for (int i = 0 ; i &lt; check.length ; i++) {</span>
+<span class="nc" id="L238">            ConsumptionPost poster = check[i];</span>
+<span class="nc bnc" id="L239" title="All 2 branches missed.">            if (poster.getConsume().equals(&quot;Local Produce&quot;)) {</span>
+<span class="nc" id="L240">                result++;</span>
+            }
+        }
+<span class="nc" id="L243">        return result ;</span>
+    }
+
+    private int recyclecheck() {
+<span class="nc" id="L247">        int result = 0;</span>
+<span class="nc" id="L248">        ConsumptionPost[] check = ServerCommunication.getConsumptionPosts(</span>
+<span class="nc" id="L249">                LoginController.getusername());</span>
+
+<span class="nc bnc" id="L251" title="All 2 branches missed.">        for (int i = 0 ; i &lt; check.length ; i++) {</span>
+<span class="nc" id="L252">            ConsumptionPost poster = check[i];</span>
+<span class="nc bnc" id="L253" title="All 2 branches missed.">            if (poster.getConsume().equals(&quot;Recycle&quot;)) {</span>
+<span class="nc" id="L254">                result++;</span>
+            }
+        }
+<span class="nc" id="L257">        return result ;</span>
+    }
+
+    private int vegancheck() {
+<span class="nc" id="L261">        int result = 0;</span>
+<span class="nc" id="L262">        FoodPost[] check = ServerCommunication.getFoodPosts(LoginController.getusername());</span>
+
+<span class="nc bnc" id="L264" title="All 2 branches missed.">        for (int i = 0 ; i &lt; check.length ; i++) {</span>
+<span class="nc" id="L265">            FoodPost poster = check[i];</span>
+<span class="nc bnc" id="L266" title="All 2 branches missed.">            if (poster.getType().equals(&quot;Vegan&quot;)) {</span>
+<span class="nc" id="L267">                result++;</span>
+            }
+        }
+<span class="nc" id="L270">        return result ;</span>
+    }
+
+    private int vegeterianCheck() {
+<span class="nc" id="L274">        int result = 0;</span>
+<span class="nc" id="L275">        FoodPost[] check = ServerCommunication.getFoodPosts(LoginController.getusername());</span>
+
+<span class="nc bnc" id="L277" title="All 2 branches missed.">        for (int i = 0 ; i &lt; check.length ; i++) {</span>
+<span class="nc" id="L278">            FoodPost poster = check[i];</span>
+<span class="nc bnc" id="L279" title="All 2 branches missed.">            if (poster.getType().equals(&quot;Vegetarian&quot;)) {</span>
+<span class="nc" id="L280">                result++;</span>
+            }
+        }
+<span class="nc" id="L283">        return result ;</span>
+    }
+
+    private int meatCheck() {
+<span class="nc" id="L287">        int result = 0;</span>
+<span class="nc" id="L288">        FoodPost[] check = ServerCommunication.getFoodPosts(LoginController.getusername());</span>
+
+<span class="nc bnc" id="L290" title="All 2 branches missed.">        for (int i = 0 ; i &lt; check.length ; i++) {</span>
+<span class="nc" id="L291">            FoodPost poster = check[i];</span>
+<span class="nc bnc" id="L292" title="All 2 branches missed.">            if (poster.getType().equals(&quot;Meat&quot;)) {</span>
+<span class="nc" id="L293">                result++;</span>
+            }
+        }
+<span class="nc" id="L296">        return result ;</span>
+    }
+
+    public void setPoints(int val) {
+<span class="nc" id="L300">        points.setText(val + &quot;&quot;);</span>
+<span class="nc" id="L301">    }</span>
+
+    /**
+     * Sets value for the greenstreak bar.
+     * @param val value to add to greenstreak
+     */
+    public void setGreenStreak(double val) {
+<span class="nc" id="L308">        val = val * 100;</span>
+<span class="nc" id="L309">        System.out.println(val);</span>
+<span class="nc" id="L310">        greenstreak.setValue(val);</span>
+<span class="nc" id="L311">    }</span>
+
+    /**
+     * Method that takes amount of certain meals.
+     *
+     * @param numVegan      num of Vegan meals in total
+     * @param numVegetarian num of Vegetarian meals in total
+     * @param numMeat       num of meat meals in total
+     */
+    public void setFood(int numVegan, int numVegetarian, int numMeat) {
+<span class="nc" id="L321">        BarChartItem bci1 = new BarChartItem(&quot;Vegan&quot;, numVegan, Color.rgb(46, 204, 113));</span>
+<span class="nc" id="L322">        BarChartItem bci2 = new BarChartItem(&quot;Vegetarian&quot;, numVegetarian, Color.rgb(52, 152, 219));</span>
+<span class="nc" id="L323">        BarChartItem bci3 = new BarChartItem(&quot;Meat&quot;, numMeat, Color.rgb(230, 126, 34));</span>
+
+<span class="nc" id="L325">        food.clearBarChartItems();</span>
+<span class="nc" id="L326">        food.addBarChartItem(bci1);</span>
+<span class="nc" id="L327">        food.addBarChartItem(bci2);</span>
+<span class="nc" id="L328">        food.addBarChartItem(bci3);</span>
+<span class="nc" id="L329">    }</span>
+
+    /**
+     * SetTransport.
+     *
+     * @param type vehicle
+     * @param dist distance
+     * @param day  what date
+     */
+    public void setTransport(String type, double dist, String day) {
+        //this method must be called for every data point
+<span class="nc bnc" id="L340" title="All 2 branches missed.">        if (type.equals(&quot;bike&quot;)) {</span>
+<span class="nc" id="L341">            transport.getSeries().get(0).getData().add(new XYChart.Data&lt;&gt;(day, dist));</span>
+        }
+
+<span class="nc bnc" id="L344" title="All 2 branches missed.">        if (type.equals(&quot;car&quot;)) {</span>
+<span class="nc" id="L345">            transport.getSeries().get(1).getData().add(new XYChart.Data&lt;&gt;(day, dist));</span>
+        }
+
+<span class="nc bnc" id="L348" title="All 2 branches missed.">        if (type.equals(&quot;publictransportation&quot;)) {</span>
+<span class="nc" id="L349">            transport.getSeries().get(2).getData().add(new XYChart.Data&lt;&gt;(day, dist));</span>
+        }
+<span class="nc" id="L351">    }</span>
+
+    public void setCarbon(double carbonFootprint) {
+<span class="nc" id="L354">        carbon.setValue(carbonFootprint);</span>
+<span class="nc" id="L355">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

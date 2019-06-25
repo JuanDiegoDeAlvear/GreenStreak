@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Profile.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Starter OOPProject-Template</a> &gt; <a href="index.source.html" class="el_package">com.client.logic</a> &gt; <span class="el_source">Profile.java</span></div><h1>Profile.java</h1><pre class="source lang-java linenums">package com.client.logic;
+
+
+import java.util.ArrayList;
+
+public class Profile {
+
+    private String name;
+    private Score score;
+    private Achievement achievement;
+    private ArrayList&lt;String&gt; friendlist;
+
+    private EnergySurvey energyProfile;
+    private FoodSurvey foodProfile;
+    private TransportationSurvey transportationProfile;
+    private LifeStyleSurvey lifeStyleProfile;
+
+    /**
+     * Constructor.
+     */
+    public Profile(String name,
+                   EnergySurvey energyProfile, FoodSurvey foodProfile,
+                   TransportationSurvey transportationProfile,
+<span class="nc" id="L24">                   LifeStyleSurvey lifeStyleProfile) {</span>
+<span class="nc" id="L25">        this.name = name;</span>
+<span class="nc" id="L26">        this.score = new Score(0, 0, 0, 0);</span>
+<span class="nc" id="L27">        this.energyProfile = energyProfile;</span>
+<span class="nc" id="L28">        this.achievement = null;</span>
+<span class="nc" id="L29">        this.foodProfile = foodProfile;</span>
+<span class="nc" id="L30">        this.transportationProfile = transportationProfile;</span>
+<span class="nc" id="L31">        this.lifeStyleProfile = lifeStyleProfile;</span>
+<span class="nc" id="L32">        this.friendlist = new ArrayList&lt;&gt;();</span>
+
+<span class="nc" id="L34">    }</span>
+
+
+    /**
+     * Empty constructor.
+     */
+<span class="fc" id="L40">    public Profile() {</span>
+<span class="fc" id="L41">        this.name = null;</span>
+<span class="fc" id="L42">        this.score = new Score(0, 0, 0, 0);</span>
+<span class="fc" id="L43">        this.achievement = null;</span>
+<span class="fc" id="L44">        this.energyProfile = null;</span>
+<span class="fc" id="L45">        this.foodProfile = null;</span>
+<span class="fc" id="L46">        this.transportationProfile = null;</span>
+<span class="fc" id="L47">        this.lifeStyleProfile = null;</span>
+<span class="fc" id="L48">        this.friendlist = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L49">    }</span>
+
+    public String getName() {
+<span class="nc" id="L52">        return name;</span>
+    }
+
+    public void setName(String name) {
+<span class="fc" id="L56">        this.name = name;</span>
+<span class="fc" id="L57">    }</span>
+
+
+    public EnergySurvey getEnergyProfile() {
+<span class="nc" id="L61">        return energyProfile;</span>
+    }
+
+    public void setEnergyProfile(EnergySurvey energyProfile) {
+<span class="fc" id="L65">        this.energyProfile = energyProfile;</span>
+<span class="fc" id="L66">    }</span>
+
+    public FoodSurvey getFoodProfile() {
+<span class="nc" id="L69">        return foodProfile;</span>
+    }
+
+    public void setFoodProfile(FoodSurvey foodProfile) {
+<span class="fc" id="L73">        this.foodProfile = foodProfile;</span>
+<span class="fc" id="L74">    }</span>
+
+    public TransportationSurvey getTransportationProfile() {
+<span class="nc" id="L77">        return transportationProfile;</span>
+    }
+
+    public void setTransportationProfile(TransportationSurvey transportationProfile) {
+<span class="fc" id="L81">        this.transportationProfile = transportationProfile;</span>
+<span class="fc" id="L82">    }</span>
+
+    public LifeStyleSurvey getLifeStyleProfile() {
+<span class="nc" id="L85">        return lifeStyleProfile;</span>
+    }
+
+    public void setLifeStyleProfile(LifeStyleSurvey lifeStyleProfile) {
+<span class="fc" id="L89">        this.lifeStyleProfile = lifeStyleProfile;</span>
+<span class="fc" id="L90">    }</span>
+
+    public Achievement getAchievement() {
+<span class="nc" id="L93">        return achievement;</span>
+    }
+
+    public void setAchievement(Achievement achievement) {
+<span class="fc" id="L97">        this.achievement = achievement;</span>
+<span class="fc" id="L98">    }</span>
+
+    /**
+     * Add Friend.
+     *
+     * @param name add username as string
+     * @return String as username
+     */
+    public String addFriend(String name) {
+<span class="nc bnc" id="L107" title="All 2 branches missed.">        for (int x = 0; x &lt; friendlist.size(); x++) {</span>
+<span class="nc bnc" id="L108" title="All 2 branches missed.">            if (friendlist.get(x) == null) {</span>
+<span class="nc" id="L109">                friendlist.set(x, name);</span>
+<span class="nc" id="L110">                return name + &quot; has been added to &quot; + this.getName();</span>
+            }
+        }
+<span class="nc" id="L113">        friendlist.add(name);</span>
+<span class="nc" id="L114">        return name + &quot; has been added to &quot; + this.getName();</span>
+    }
+
+    /**
+     * remove friend from friendlist.
+     *
+     * @param name set profile using String
+     * @return String
+     */
+    public String removeFriend(String name) {
+<span class="nc bnc" id="L124" title="All 2 branches missed.">        for (int x = 0; x &lt; friendlist.size(); x++) {</span>
+<span class="nc bnc" id="L125" title="All 2 branches missed.">            if (friendlist.get(x) == name) {</span>
+<span class="nc" id="L126">                friendlist.remove(name);</span>
+<span class="nc" id="L127">                return name + &quot; has been removed&quot;;</span>
+            }
+        }
+<span class="nc" id="L130">        return name + &quot; was not a friend to &quot; + this.getName();</span>
+    }
+
+    public ArrayList&lt;String&gt; getFriendList() {
+<span class="nc" id="L134">        return friendlist;</span>
+    }
+
+    public void setFriendList(ArrayList friendList) {
+<span class="fc" id="L138">        this.friendlist = friendList;</span>
+<span class="fc" id="L139">    }</span>
+
+
+    @Override
+    public boolean equals(Object obj) {
+<span class="pc bpc" id="L144" title="1 of 2 branches missed.">        if (this == obj) {</span>
+<span class="fc" id="L145">            return true;</span>
+        }
+<span class="nc bnc" id="L147" title="All 2 branches missed.">        if (!(obj instanceof Profile)) {</span>
+<span class="nc" id="L148">            return false;</span>
+        }
+
+<span class="nc" id="L151">        Profile profile = (Profile) obj;</span>
+
+<span class="nc bnc" id="L153" title="All 2 branches missed.">        if (getLifeStyleProfile() != null ? !getLifeStyleProfile()</span>
+<span class="nc bnc" id="L154" title="All 4 branches missed.">                .equals(profile.getLifeStyleProfile()) : profile.getLifeStyleProfile() != null) {</span>
+<span class="nc" id="L155">            return false;</span>
+        }
+
+<span class="nc bnc" id="L158" title="All 2 branches missed.">        if (getTransportationProfile() != null ? !getTransportationProfile()</span>
+<span class="nc bnc" id="L159" title="All 2 branches missed.">                .equals(profile.getTransportationProfile()) : profile</span>
+<span class="nc bnc" id="L160" title="All 2 branches missed.">                .getTransportationProfile() != null) {</span>
+<span class="nc" id="L161">            return false;</span>
+        }
+<span class="nc bnc" id="L163" title="All 4 branches missed.">        return checkHalf(profile) &amp;&amp; checkAnotherPart(profile);</span>
+    }
+
+    private boolean checkAnotherPart(Profile profile) {
+<span class="nc bnc" id="L167" title="All 2 branches missed.">        if (getFriendList() != null ? !getFriendList()</span>
+<span class="nc bnc" id="L168" title="All 4 branches missed.">                .equals(profile.getFriendList()) : profile.getFriendList() != null) {</span>
+<span class="nc" id="L169">            return false;</span>
+        }
+<span class="nc bnc" id="L171" title="All 2 branches missed.">        if (getEnergyProfile() != null ? !getEnergyProfile()</span>
+<span class="nc bnc" id="L172" title="All 4 branches missed.">                .equals(profile.getEnergyProfile()) : profile.getEnergyProfile() != null) {</span>
+<span class="nc" id="L173">            return false;</span>
+        }
+<span class="nc bnc" id="L175" title="All 2 branches missed.">        return getFoodProfile() != null ? getFoodProfile()</span>
+<span class="nc bnc" id="L176" title="All 2 branches missed.">                .equals(profile.getFoodProfile()) : profile.getFoodProfile() == null;</span>
+    }
+
+
+    public Score getScore() {
+<span class="nc" id="L181">        return score;</span>
+    }
+
+    public void setScore(Score score) {
+<span class="fc" id="L185">        this.score = score;</span>
+<span class="fc" id="L186">    }</span>
+
+    private boolean checkHalf(Profile profile) {
+
+<span class="nc bnc" id="L190" title="All 2 branches missed.">        return getName() != null ? getName()</span>
+<span class="nc bnc" id="L191" title="All 2 branches missed.">                .equals(profile.getName()) : profile.getName() == null;</span>
+
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

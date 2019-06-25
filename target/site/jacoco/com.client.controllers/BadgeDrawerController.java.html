@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BadgeDrawerController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Starter OOPProject-Template</a> &gt; <a href="index.source.html" class="el_package">com.client.controllers</a> &gt; <span class="el_source">BadgeDrawerController.java</span></div><h1>BadgeDrawerController.java</h1><pre class="source lang-java linenums">package com.client.controllers;
+
+import com.client.logic.Achievement;
+import com.jfoenix.controls.JFXButton;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
+
+public class BadgeDrawerController {
+
+    @FXML
+    private VBox badgeContainer;
+
+    @FXML
+    private ImageView ach1;
+
+    @FXML
+    private Label achText1;
+
+    @FXML
+    private ImageView ach2;
+
+    @FXML
+    private Label achText2;
+
+    @FXML
+    private ImageView ach3;
+
+    @FXML
+    private Label achText3;
+
+    @FXML
+    private ImageView ach4;
+
+    @FXML
+    private Label achText4;
+
+    @FXML
+    private ImageView ach5;
+
+    @FXML
+    private Label achText5;
+
+    @FXML
+    private VBox badgeContainer1;
+
+    @FXML
+    private ImageView ach6;
+
+    @FXML
+    private Label achText6;
+
+    @FXML
+    private ImageView ach7;
+
+    @FXML
+    private Label achText7;
+
+    @FXML
+    private ImageView ach8;
+
+    @FXML
+    private Label achText8;
+
+    @FXML
+    private ImageView ach9;
+
+    @FXML
+    private Label achText9;
+
+    @FXML
+    private ImageView ach10;
+
+    @FXML
+    private Label achText10;
+
+    @FXML
+    private JFXButton close;
+
+    private AnchorPane badgedraw;
+
+<span class="nc" id="L86">    public BadgeDrawerController(AnchorPane badgedraw) {</span>
+<span class="nc" id="L87">        this.badgedraw = badgedraw;</span>
+<span class="nc" id="L88">    }</span>
+
+    @FXML
+    void close(ActionEvent event) {
+<span class="nc" id="L92">        badgedraw.setVisible(false);</span>
+<span class="nc" id="L93">    }</span>
+
+    @FXML
+    void initialize() {
+<span class="nc" id="L97">        Achievement ach = LoginController.userprofile.getAchievement();</span>
+
+<span class="nc bnc" id="L99" title="All 2 branches missed.">        if (ach.isLoggedin()) {</span>
+<span class="nc" id="L100">            Image ic = new Image(getClass().getResourceAsStream(&quot;/images/leafbadge.png&quot;));</span>
+<span class="nc" id="L101">            ach1.setImage(ic);</span>
+<span class="nc" id="L102">            achText1.setText(&quot;First Login&quot;);</span>
+        }
+
+<span class="nc bnc" id="L105" title="All 2 branches missed.">        if (ach.isFirstPost()) {</span>
+<span class="nc" id="L106">            Image ic = new Image(getClass().getResourceAsStream(&quot;/images/post.png&quot;));</span>
+<span class="nc" id="L107">            ach2.setImage(ic);</span>
+<span class="nc" id="L108">            achText2.setText(&quot;First Post&quot;);</span>
+        }
+
+<span class="nc bnc" id="L111" title="All 2 branches missed.">        if (ach.isFirstFriend()) {</span>
+<span class="nc" id="L112">            Image ic = new Image(getClass().getResourceAsStream(&quot;/images/friends.png&quot;));</span>
+<span class="nc" id="L113">            ach3.setImage(ic);</span>
+<span class="nc" id="L114">            achText3.setText(&quot;First Friend&quot;);</span>
+        }
+
+<span class="nc bnc" id="L117" title="All 2 branches missed.">        if (ach.isFiveDaysr()) {</span>
+<span class="nc" id="L118">            Image ic = new Image(getClass().getResourceAsStream(&quot;/images/recyclebadge.png&quot;));</span>
+<span class="nc" id="L119">            ach4.setImage(ic);</span>
+<span class="nc" id="L120">            achText4.setText(&quot;Recycle 5 Days&quot;);</span>
+        }
+
+<span class="nc bnc" id="L123" title="All 2 branches missed.">        if (ach.isHundKm()) {</span>
+<span class="nc" id="L124">            Image ic = new Image(getClass().getResourceAsStream(&quot;/images/bike.png&quot;));</span>
+<span class="nc" id="L125">            ach5.setImage(ic);</span>
+<span class="nc" id="L126">            achText5.setText(&quot;Biked 100 km&quot;);</span>
+        }
+
+<span class="nc bnc" id="L129" title="All 2 branches missed.">        if (ach.isCarblsix()) {</span>
+<span class="nc" id="L130">            Image ic = new Image(getClass().getResourceAsStream(&quot;/images/footprintbadge.png&quot;));</span>
+<span class="nc" id="L131">            ach6.setImage(ic);</span>
+<span class="nc" id="L132">            achText6.setText(&quot;Low Carbon Footprint&quot;);</span>
+        }
+
+<span class="nc" id="L135">        checker(ach);</span>
+<span class="nc" id="L136">    }</span>
+
+    private void checker(Achievement ach) {
+<span class="nc bnc" id="L139" title="All 2 branches missed.">        if (ach.isLocal()) {</span>
+<span class="nc" id="L140">            Image ic = new Image(getClass().getResourceAsStream(&quot;/images/local.png&quot;));</span>
+<span class="nc" id="L141">            ach7.setImage(ic);</span>
+<span class="nc" id="L142">            achText7.setText(&quot;Buy Local&quot;);</span>
+        }
+
+<span class="nc bnc" id="L145" title="All 2 branches missed.">        if (ach.isToprank()) {</span>
+<span class="nc" id="L146">            Image ic = new Image(getClass().getResourceAsStream(&quot;/images/leader1.png&quot;));</span>
+<span class="nc" id="L147">            ach8.setImage(ic);</span>
+<span class="nc" id="L148">            achText8.setText(&quot;Top Ranked&quot;);</span>
+        }
+
+<span class="nc bnc" id="L151" title="All 2 branches missed.">        if (ach.isLowEco()) {</span>
+<span class="nc" id="L152">            Image ic = new Image(getClass().getResourceAsStream(&quot;/images/earthbadge.png&quot;));</span>
+<span class="nc" id="L153">            ach9.setImage(ic);</span>
+<span class="nc" id="L154">            achText9.setText(&quot;Your Eco AF&quot;);</span>
+        }
+
+<span class="nc bnc" id="L157" title="All 2 branches missed.">        if (ach.isFivedaysv()) {</span>
+<span class="nc" id="L158">            Image ic = new Image(getClass().getResourceAsStream(&quot;/images/Bananabadge.png&quot;));</span>
+<span class="nc" id="L159">            ach10.setImage(ic);</span>
+<span class="nc" id="L160">            achText10.setText(&quot;5 Days Vegan&quot;);</span>
+        }
+<span class="nc" id="L162">    }</span>
+
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

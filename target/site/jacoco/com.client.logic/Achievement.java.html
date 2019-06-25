@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Achievement.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Starter OOPProject-Template</a> &gt; <a href="index.source.html" class="el_package">com.client.logic</a> &gt; <span class="el_source">Achievement.java</span></div><h1>Achievement.java</h1><pre class="source lang-java linenums">package com.client.logic;
+
+import com.client.ServerCommunication;
+import com.client.controllers.LoginController;
+
+import java.awt.AWTException;
+import java.awt.Image;
+import java.awt.SystemTray;
+import java.awt.Toolkit;
+import java.awt.TrayIcon;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.LinkedHashSet;
+import java.util.Set;
+
+
+public class Achievement {
+
+    private boolean firstPost;
+    private boolean firstFriend;
+    private boolean hundKm;
+    private boolean fiveDaysr;
+    private boolean toprank;
+    private boolean lowEco;
+    private boolean loggedin;
+    private boolean carblsix;
+    private boolean fivedaysv;
+    private boolean local;
+
+
+    /**
+     * Empty constructor.
+     */
+<span class="fc" id="L36">    public Achievement() {</span>
+<span class="fc" id="L37">        this.firstPost = false;</span>
+<span class="fc" id="L38">        this.firstFriend = false;</span>
+<span class="fc" id="L39">        this.hundKm = false;</span>
+<span class="fc" id="L40">        this.fiveDaysr = false;</span>
+<span class="fc" id="L41">        this.toprank = false;</span>
+<span class="fc" id="L42">        this.lowEco = false;</span>
+<span class="fc" id="L43">        this.loggedin = false;</span>
+<span class="fc" id="L44">        this.carblsix = false;</span>
+<span class="fc" id="L45">        this.fivedaysv = false;</span>
+<span class="fc" id="L46">    }</span>
+
+
+    /**
+     * First Friend Achievement and if true
+     * it sends a SystemTray notification
+     * and sends achievements to server.
+     */
+    public void checkfirstfriend() {
+<span class="nc bnc" id="L55" title="All 2 branches missed.">        if (!isFirstFriend()) {</span>
+<span class="nc bnc" id="L56" title="All 2 branches missed.">            if (LoginController.userprofile.getFriendList().size() &gt;= 1) {</span>
+<span class="nc" id="L57">                setFirstFriend(true);</span>
+<span class="nc" id="L58">                ServerCommunication.sendAchievements(LoginController.getusername(),LoginController</span>
+<span class="nc" id="L59">                        .userprofile.getAchievement());</span>
+<span class="nc" id="L60">                displayTray(&quot;Friendship bond&quot;);</span>
+            }
+        }
+<span class="nc" id="L63">    }</span>
+
+    /**
+     * First Post Achievement and if true
+     * it sends a SystemTray notification
+     * and sends achievements to server.
+     */
+    public void checkfirstPost() {
+<span class="nc bnc" id="L71" title="All 2 branches missed.">        if (!isFirstPost()) {</span>
+            PostCatalog posts = ServerCommunication
+<span class="nc" id="L73">                    .recievepostarray(LoginController.getusername());</span>
+<span class="nc bnc" id="L74" title="All 2 branches missed.">            if (posts.size() &gt;= 1) {</span>
+<span class="nc" id="L75">                setFirstPost(true);</span>
+<span class="nc" id="L76">                ServerCommunication.sendAchievements(LoginController.getusername(),LoginController</span>
+<span class="nc" id="L77">                        .userprofile.getAchievement());</span>
+
+<span class="nc" id="L79">                displayTray(&quot;You've made your first post&quot;);</span>
+
+            }
+        }
+
+<span class="nc" id="L84">    }</span>
+
+    /**
+     * Low eco than 5.2 Achievement and if true
+     * it sends a SystemTray notification
+     * and sends achievements to server.
+     */
+    public void checklowEco() {
+<span class="nc bnc" id="L92" title="All 2 branches missed.">        if (!isLowEco()) {</span>
+<span class="nc bnc" id="L93" title="All 2 branches missed.">            if (Calculations.totalEco(LoginController.userprofile.getFoodProfile(),</span>
+<span class="nc" id="L94">                    LoginController.userprofile.getTransportationProfile(), LoginController</span>
+<span class="nc" id="L95">                            .userprofile.getEnergyProfile(),</span>
+<span class="nc" id="L96">                    LoginController.userprofile.getLifeStyleProfile()) &lt;= 5.2) {</span>
+<span class="nc" id="L97">                setLowEco(true);</span>
+<span class="nc" id="L98">                ServerCommunication.sendAchievements(LoginController.getusername(),LoginController</span>
+<span class="nc" id="L99">                        .userprofile.getAchievement());</span>
+
+<span class="nc" id="L101">                displayTray(&quot;Eco score better than average&quot;);</span>
+            }
+
+        }
+
+<span class="nc" id="L106">    }</span>
+
+    /**
+     * checks if user achieved the Buying local more than 5 days
+     * if true it sends it to server and stops.
+     */
+    public void checkLocal() {
+<span class="nc bnc" id="L113" title="All 2 branches missed.">        if (!isLocal()) {</span>
+            ConsumptionPost[] posts = ServerCommunication
+<span class="nc" id="L115">                    .getConsumptionPosts(LoginController.getusername());</span>
+<span class="nc" id="L116">            int local = 0;</span>
+<span class="nc bnc" id="L117" title="All 2 branches missed.">            for (int i = 0; i != posts.length; i++) {</span>
+<span class="nc bnc" id="L118" title="All 2 branches missed.">                if (posts[i].getConsume().equals(&quot;Local Produce&quot;)) {</span>
+<span class="nc" id="L119">                    local++;</span>
+                }
+<span class="nc bnc" id="L121" title="All 2 branches missed.">                if (local &gt;= 5) {</span>
+<span class="nc" id="L122">                    setLocal(true);</span>
+<span class="nc" id="L123">                    ServerCommunication.sendAchievements(LoginController</span>
+<span class="nc" id="L124">                            .getusername(),LoginController</span>
+<span class="nc" id="L125">                            .userprofile.getAchievement());</span>
+<span class="nc" id="L126">                    displayTray(&quot;Supporter of local production&quot;);</span>
+                }
+            }
+        }
+<span class="nc" id="L130">    }</span>
+
+    /**
+     * check if user achieved the 100KM achievement
+     * by bike if true sends to server and stops.
+     */
+    public void checkhundKm() {
+<span class="nc bnc" id="L137" title="All 2 branches missed.">        if (!isHundKm()) {</span>
+<span class="nc bnc" id="L138" title="All 2 branches missed.">            if (hundKmhelp()) {</span>
+<span class="nc" id="L139">                setHundKm(true);</span>
+<span class="nc" id="L140">                ServerCommunication.sendAchievements(LoginController</span>
+<span class="nc" id="L141">                        .getusername(),LoginController</span>
+<span class="nc" id="L142">                        .userprofile.getAchievement());</span>
+
+<span class="nc" id="L144">                displayTray(&quot;Biker&quot;);</span>
+                //send to server
+            }
+        }
+<span class="nc" id="L148">    }</span>
+
+    /**
+     * Helper function to check if the user
+     * have the Distance covered by bike is 100 or more.
+     *
+     * @return boolean
+     */
+    private boolean hundKmhelp() {
+<span class="nc" id="L157">        double distance = 0;</span>
+
+        TransportationPost[] checker = ServerCommunication
+<span class="nc" id="L160">                .getTransportationPosts(LoginController.getusername());</span>
+<span class="nc bnc" id="L161" title="All 2 branches missed.">        for (int i = 0; i &lt; checker.length; i++) {</span>
+<span class="nc" id="L162">            SuperPost poster = checker[i];</span>
+<span class="nc" id="L163">            TransportationPost post = (TransportationPost) poster;</span>
+<span class="nc bnc" id="L164" title="All 2 branches missed.">            if (post.getType().equals(&quot;bike&quot;)) {</span>
+<span class="nc" id="L165">                distance = distance + post.getKilometer();</span>
+            }
+        }
+<span class="nc bnc" id="L168" title="All 2 branches missed.">        return distance &gt;= 100;</span>
+    }
+
+    /**
+     * checks if the user achieved the Five Days of Recycle
+     * if true then sends it to server and stops.
+     */
+    public void checkfiveDaysr() {
+<span class="nc" id="L176">        ArrayList&lt;String&gt; check = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L177">        fivedaysrhelp(ServerCommunication.getConsumptionPosts(LoginController</span>
+<span class="nc" id="L178">                .getusername()), check);</span>
+
+<span class="nc" id="L180">        Set&lt;String&gt; set = new LinkedHashSet&lt;&gt;(check.size());</span>
+<span class="nc bnc" id="L181" title="All 2 branches missed.">        for (String element : check) {</span>
+<span class="nc" id="L182">            set.addAll(Collections.singleton(element));</span>
+<span class="nc" id="L183">        }</span>
+
+<span class="nc" id="L185">        ArrayList&lt;String&gt; uniqueList = new ArrayList&lt;&gt;(set);</span>
+
+<span class="nc bnc" id="L187" title="All 2 branches missed.">        if (uniqueList.size() == 5) {</span>
+<span class="nc" id="L188">            setFiveDaysr(true);</span>
+<span class="nc" id="L189">            ServerCommunication.sendAchievements(LoginController.getusername(),LoginController</span>
+<span class="nc" id="L190">                    .userprofile.getAchievement());</span>
+<span class="nc" id="L191">            displayTray(&quot;Mr Recycle&quot;);</span>
+        }
+<span class="nc" id="L193">    }</span>
+
+    /**
+     * Helper function to Five Days of Recycle
+     * check is filtered to get recycle.
+     *
+     * @param posts sets posts with array of Consumptionposts
+     * @param check sets the check with arraylist
+     */
+    private void fivedaysrhelp(ConsumptionPost[] posts, ArrayList&lt;String&gt; check) {
+<span class="nc bnc" id="L203" title="All 2 branches missed.">        for (int i = 0; i &lt; posts.length; i++) {</span>
+<span class="nc" id="L204">            SuperPost poster = posts[i];</span>
+<span class="nc" id="L205">            ConsumptionPost post = (ConsumptionPost) poster;</span>
+<span class="nc bnc" id="L206" title="All 4 branches missed.">            if (post.getConsume().equals(&quot;Recycle&quot;) &amp;&amp; post.getState()) {</span>
+<span class="nc" id="L207">                check.add(dateFormat(post.getDate()));</span>
+            }
+        }
+
+<span class="nc" id="L211">    }</span>
+
+    /**
+     * check if the user achieved the first on the league
+     * if true sends to server and stops.
+     */
+    public void checktoprank() {
+<span class="nc bnc" id="L218" title="All 2 branches missed.">        if (!isToprank()) {</span>
+<span class="nc" id="L219">            ArrayList&lt;RankingEntry&gt; el = ServerCommunication.globalRankingScore();</span>
+<span class="nc bnc" id="L220" title="All 2 branches missed.">            if (el.get(0).getUsername() == LoginController.getusername()) {</span>
+<span class="nc" id="L221">                setToprank(true);</span>
+<span class="nc" id="L222">                ServerCommunication.sendAchievements(LoginController.getusername(),LoginController</span>
+<span class="nc" id="L223">                        .userprofile.getAchievement());</span>
+<span class="nc" id="L224">                displayTray(&quot;Top League&quot;);</span>
+            }
+        }
+<span class="nc" id="L227">    }</span>
+
+    /**
+     * This method will help when testing the server getAchievements method
+     *
+     * @param obj This is the object.
+     * @return The method will return a boolean value.
+     */
+    @Override
+    public boolean equals(Object obj) {
+<span class="pc bpc" id="L237" title="1 of 2 branches missed.">        if (this == obj) {</span>
+<span class="nc" id="L238">            return true;</span>
+        }
+<span class="pc bpc" id="L240" title="2 of 4 branches missed.">        if (obj == null || getClass() != obj.getClass()) {</span>
+<span class="nc" id="L241">            return false;</span>
+        }
+<span class="fc" id="L243">        Achievement that = (Achievement) obj;</span>
+<span class="pc bpc" id="L244" title="1 of 2 branches missed.">        return isFirstPost() == that.isFirstPost()</span>
+<span class="pc bpc" id="L245" title="1 of 2 branches missed.">                &amp;&amp; isFirstFriend() == that.isFirstFriend()</span>
+<span class="pc bpc" id="L246" title="1 of 2 branches missed.">                &amp;&amp; equalhelper(that)</span>
+<span class="pc bpc" id="L247" title="1 of 2 branches missed.">                &amp;&amp; equalhelp(that);</span>
+    }
+
+    private boolean equalhelper(Achievement that) {
+<span class="pc bpc" id="L251" title="1 of 2 branches missed.">        return isHundKm() == that.isHundKm()</span>
+<span class="pc bpc" id="L252" title="1 of 2 branches missed.">                &amp;&amp; isFiveDaysr() == that.isFiveDaysr()</span>
+<span class="pc bpc" id="L253" title="1 of 2 branches missed.">                &amp;&amp; isFivedaysv() == that.isFivedaysv()</span>
+<span class="pc bpc" id="L254" title="1 of 2 branches missed.">                &amp;&amp; isLocal() == that.isLocal();</span>
+    }
+
+    private boolean equalhelp(Achievement that) {
+<span class="pc bpc" id="L258" title="1 of 2 branches missed.">        return isToprank() == that.isToprank()</span>
+<span class="pc bpc" id="L259" title="1 of 2 branches missed.">                &amp;&amp; isLowEco() == that.isLowEco()</span>
+<span class="pc bpc" id="L260" title="1 of 2 branches missed.">                &amp;&amp; isLoggedin() == that.isLoggedin()</span>
+<span class="pc bpc" id="L261" title="1 of 2 branches missed.">                &amp;&amp; isCarblsix() == that.isCarblsix() ;</span>
+    }
+
+
+    /**
+     * Helper function to check for the achievement
+     * Five Days vegan.
+     * check is being changed to filter the vegan posts only.
+     *
+     * @param posts sets posts as Array of foodpost
+     * @param check sets check as an Arraylist
+     */
+    private void fivedaysvhelp(FoodPost[] posts, ArrayList&lt;String&gt; check) {
+<span class="nc bnc" id="L274" title="All 2 branches missed.">        for (int i = 0; i &lt; posts.length; i++) {</span>
+<span class="nc" id="L275">            SuperPost poster = posts[i];</span>
+<span class="nc" id="L276">            FoodPost post = (FoodPost) poster;</span>
+<span class="nc bnc" id="L277" title="All 2 branches missed.">            if (post.getType().equals(&quot;Vegan&quot;)) {</span>
+<span class="nc" id="L278">                check.add(dateFormat(post.getDate()));</span>
+            }
+
+        }
+<span class="nc" id="L282">    }</span>
+
+    /**
+     * checks if the user achieved the First Login
+     * if true it will send it to server and stop.
+     */
+    public void loggedin() {
+<span class="nc bnc" id="L289" title="All 2 branches missed.">        if (!isLoggedin()) {</span>
+<span class="nc" id="L290">            setLoggedin(true);</span>
+<span class="nc" id="L291">            ServerCommunication.sendAchievements(LoginController.getusername(),LoginController</span>
+<span class="nc" id="L292">                    .userprofile.getAchievement());</span>
+<span class="nc" id="L293">            displayTray(&quot;Login for the first time&quot;);</span>
+        }
+<span class="nc" id="L295">    }</span>
+
+    /**
+     * checks if the user achieved the Footprint less
+     * than 16 if true it will send it to server and stop.
+     */
+    public void carblsixach() {
+<span class="nc bnc" id="L302" title="All 2 branches missed.">        if (!isCarblsix()) {</span>
+<span class="nc bnc" id="L303" title="All 2 branches missed.">            if (LoginController.userprofile.getScore().getFootprint() &lt; 16) {</span>
+<span class="nc" id="L304">                displayTray(&quot;Better Than Average&quot;);</span>
+<span class="nc" id="L305">                setCarblsix(true);</span>
+<span class="nc" id="L306">                ServerCommunication.sendAchievements(LoginController.getusername(),LoginController</span>
+<span class="nc" id="L307">                        .userprofile.getAchievement());</span>
+            }
+        }
+<span class="nc" id="L310">    }</span>
+
+    /**
+     * Check if the user achieved the Five Days of vegan
+     * if true it will send it to sever and stop.
+     */
+    public void checkfiveDaysv() {
+<span class="nc bnc" id="L317" title="All 2 branches missed.">        if (!isFivedaysv()) {</span>
+<span class="nc" id="L318">            ArrayList&lt;String&gt; check = new ArrayList&lt;&gt;();</span>
+
+<span class="nc" id="L320">            fivedaysvhelp(ServerCommunication.getFoodPosts(LoginController</span>
+<span class="nc" id="L321">                .getusername()), check);</span>
+
+<span class="nc" id="L323">            Set&lt;String&gt; set = new LinkedHashSet&lt;&gt;(check.size());</span>
+<span class="nc bnc" id="L324" title="All 2 branches missed.">            for (String element : check) {</span>
+<span class="nc" id="L325">                set.addAll(Collections.singleton(element));</span>
+<span class="nc" id="L326">            }</span>
+
+<span class="nc" id="L328">            ArrayList&lt;String&gt; uniqueList = new ArrayList&lt;&gt;(set);</span>
+<span class="nc bnc" id="L329" title="All 2 branches missed.">            if (uniqueList.size() == 5) {</span>
+<span class="nc" id="L330">                setFivedaysv(true);</span>
+<span class="nc" id="L331">                ServerCommunication.sendAchievements(LoginController.getusername(),LoginController</span>
+<span class="nc" id="L332">                        .userprofile.getAchievement());</span>
+<span class="nc" id="L333">                displayTray(&quot;Mr Recycle&quot;);</span>
+            }
+        }
+<span class="nc" id="L336">    }</span>
+
+    void displayTray(String statment) {
+<span class="nc" id="L339">        SystemTray tray = SystemTray.getSystemTray();</span>
+
+<span class="nc" id="L341">        Image image = Toolkit.getDefaultToolkit()</span>
+<span class="nc" id="L342">                .createImage(&quot;resources/images/leaf.png&quot;);</span>
+<span class="nc" id="L343">        TrayIcon trayIcon = new TrayIcon(image, &quot;GreenStreak&quot;);</span>
+        //Let the system resize the image if needed
+<span class="nc" id="L345">        trayIcon.setImageAutoSize(true);</span>
+        //Set tooltip text for the tray icon
+<span class="nc" id="L347">        trayIcon.setToolTip(&quot;System tray icon demo&quot;);</span>
+        try {
+<span class="nc" id="L349">            tray.add(trayIcon);</span>
+<span class="nc" id="L350">        } catch (AWTException e) {</span>
+<span class="nc" id="L351">            e.printStackTrace();</span>
+<span class="nc" id="L352">        }</span>
+<span class="nc" id="L353">        trayIcon.displayMessage(&quot;You made an Achievement&quot;,</span>
+                statment, TrayIcon.MessageType.INFO);
+<span class="nc" id="L355">    }</span>
+
+    String dateFormat(Date da) {
+<span class="nc" id="L358">        SimpleDateFormat sdf = new SimpleDateFormat(&quot;EEE, d MMM yyyy&quot;);</span>
+<span class="nc" id="L359">        String date = sdf.format(da);</span>
+<span class="nc" id="L360">        return date;</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L365">        return &quot;Achievement{&quot; + &quot;firstPost=&quot; + firstPost</span>
+                + &quot;, firstFriend=&quot; + firstFriend + &quot;, hundKm=&quot; + hundKm
+                + &quot;, fiveDaysr=&quot; + fiveDaysr + &quot;, toprank=&quot; + toprank
+                + &quot;, lowEco=&quot; + lowEco + &quot;, loggedin=&quot; + loggedin
+                + &quot;, carblsix=&quot; + carblsix + &quot;, fivedaysv=&quot; + fivedaysv
+                + &quot;, local=&quot; + local + '}';
+    }
+
+    public boolean isFirstPost() {
+<span class="fc" id="L374">        return firstPost;</span>
+    }
+
+    public void setFirstPost(boolean firstPost) {
+<span class="fc" id="L378">        this.firstPost = firstPost;</span>
+<span class="fc" id="L379">    }</span>
+
+    public boolean isFirstFriend() {
+<span class="fc" id="L382">        return firstFriend;</span>
+    }
+
+    public void setFirstFriend(boolean firstFriend) {
+<span class="fc" id="L386">        this.firstFriend = firstFriend;</span>
+<span class="fc" id="L387">    }</span>
+
+    public boolean isHundKm() {
+<span class="fc" id="L390">        return hundKm;</span>
+    }
+
+    public void setHundKm(boolean hundKm) {
+<span class="fc" id="L394">        this.hundKm = hundKm;</span>
+<span class="fc" id="L395">    }</span>
+
+    public boolean isFiveDaysr() {
+<span class="fc" id="L398">        return fiveDaysr;</span>
+    }
+
+    public void setFiveDaysr(boolean fiveDaysr) {
+<span class="fc" id="L402">        this.fiveDaysr = fiveDaysr;</span>
+<span class="fc" id="L403">    }</span>
+
+    public boolean isToprank() {
+<span class="fc" id="L406">        return toprank;</span>
+    }
+
+    public void setToprank(boolean toprank) {
+<span class="fc" id="L410">        this.toprank = toprank;</span>
+<span class="fc" id="L411">    }</span>
+
+    public boolean isLowEco() {
+<span class="fc" id="L414">        return lowEco;</span>
+    }
+
+    public void setLowEco(boolean lowEco) {
+<span class="fc" id="L418">        this.lowEco = lowEco;</span>
+<span class="fc" id="L419">    }</span>
+
+    public boolean isLoggedin() {
+<span class="fc" id="L422">        return loggedin;</span>
+    }
+
+    public void setLoggedin(boolean loggedin) {
+<span class="fc" id="L426">        this.loggedin = loggedin;</span>
+<span class="fc" id="L427">    }</span>
+
+    public boolean isCarblsix() {
+<span class="fc" id="L430">        return carblsix;</span>
+    }
+
+    public void setCarblsix(boolean bool) {
+<span class="fc" id="L434">        carblsix = bool;</span>
+<span class="fc" id="L435">    }</span>
+
+    public boolean isFivedaysv() {
+<span class="fc" id="L438">        return fivedaysv;</span>
+    }
+
+    public void setFivedaysv(boolean fivedaysv) {
+<span class="fc" id="L442">        this.fivedaysv = fivedaysv;</span>
+<span class="fc" id="L443">    }</span>
+
+    public boolean isLocal() {
+<span class="fc" id="L446">        return local;</span>
+    }
+
+    public void setLocal(boolean local) {
+<span class="fc" id="L450">        this.local = local;</span>
+<span class="fc" id="L451">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SignUpUser.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Starter OOPProject-Template</a> &gt; <a href="index.source.html" class="el_package">com.client.logic</a> &gt; <span class="el_source">SignUpUser.java</span></div><h1>SignUpUser.java</h1><pre class="source lang-java linenums">package com.client.logic;
+
+public class SignUpUser {
+    private String username;
+    private String password;
+    private String email;
+
+    private EnergySurvey energyProfile;
+    private FoodSurvey foodProfile;
+    private TransportationSurvey transportationProfile;
+    private LifeStyleSurvey lifeStyleProfile;
+
+    /**
+     * Empty constructor.
+     */
+<span class="fc" id="L16">    public SignUpUser() {</span>
+<span class="fc" id="L17">        this.username = null;</span>
+<span class="fc" id="L18">        this.password = null;</span>
+<span class="fc" id="L19">        this.email = null;</span>
+<span class="fc" id="L20">        this.energyProfile = null;</span>
+<span class="fc" id="L21">        this.foodProfile = null;</span>
+<span class="fc" id="L22">        this.transportationProfile = null;</span>
+<span class="fc" id="L23">        this.lifeStyleProfile = null;</span>
+<span class="fc" id="L24">    }</span>
+
+    /**
+     * Constructor.
+     */
+    public SignUpUser(String username, String password, String email,
+                      EnergySurvey energyProfile, FoodSurvey foodProfile,
+                      TransportationSurvey transportationProfile,
+<span class="nc" id="L32">                      LifeStyleSurvey lifeStyleProfile) {</span>
+<span class="nc" id="L33">        this.username = username;</span>
+<span class="nc" id="L34">        this.password = password;</span>
+<span class="nc" id="L35">        this.email = email;</span>
+<span class="nc" id="L36">        this.energyProfile = energyProfile;</span>
+<span class="nc" id="L37">        this.foodProfile = foodProfile;</span>
+<span class="nc" id="L38">        this.transportationProfile = transportationProfile;</span>
+<span class="nc" id="L39">        this.lifeStyleProfile = lifeStyleProfile;</span>
+<span class="nc" id="L40">    }</span>
+
+    public String getUsername() {
+<span class="fc" id="L43">        return username;</span>
+    }
+
+    public void setUsername(String username) {
+<span class="fc" id="L47">        this.username = username;</span>
+<span class="fc" id="L48">    }</span>
+
+    public String getPassword() {
+<span class="fc" id="L51">        return password;</span>
+    }
+
+    public void setPassword(String password) {
+<span class="fc" id="L55">        this.password = password;</span>
+<span class="fc" id="L56">    }</span>
+
+    public String getEmail() {
+<span class="fc" id="L59">        return email;</span>
+    }
+
+    public void setEmail(String email) {
+<span class="fc" id="L63">        this.email = email;</span>
+<span class="fc" id="L64">    }</span>
+
+    public EnergySurvey getEnergyProfile() {
+<span class="fc" id="L67">        return energyProfile;</span>
+    }
+
+    public void setEnergyProfile(EnergySurvey energyProfile) {
+<span class="fc" id="L71">        this.energyProfile = energyProfile;</span>
+<span class="fc" id="L72">    }</span>
+
+    public FoodSurvey getFoodProfile() {
+<span class="fc" id="L75">        return foodProfile;</span>
+    }
+
+    public void setFoodProfile(FoodSurvey foodProfile) {
+<span class="fc" id="L79">        this.foodProfile = foodProfile;</span>
+<span class="fc" id="L80">    }</span>
+
+    public TransportationSurvey getTransportationProfile() {
+<span class="fc" id="L83">        return transportationProfile;</span>
+    }
+
+    public void setTransportationProfile(TransportationSurvey transportationProfile) {
+<span class="fc" id="L87">        this.transportationProfile = transportationProfile;</span>
+<span class="fc" id="L88">    }</span>
+
+    public LifeStyleSurvey getLifeStyleProfile() {
+<span class="fc" id="L91">        return lifeStyleProfile;</span>
+    }
+
+    public void setLifeStyleProfile(LifeStyleSurvey lifeStyleProfile) {
+<span class="fc" id="L95">        this.lifeStyleProfile = lifeStyleProfile;</span>
+<span class="fc" id="L96">    }</span>
+
+    @Override
+    public boolean equals(Object obj) {
+<span class="nc bnc" id="L100" title="All 2 branches missed.">        if (this == obj) {</span>
+<span class="nc" id="L101">            return true;</span>
+        }
+<span class="nc bnc" id="L103" title="All 2 branches missed.">        if (!(obj instanceof SignUpUser)) {</span>
+<span class="nc" id="L104">            return false;</span>
+        }
+
+<span class="nc" id="L107">        SignUpUser that = (SignUpUser) obj;</span>
+
+
+<span class="nc bnc" id="L110" title="All 2 branches missed.">        if (getLifeStyleProfile() != null ? !getLifeStyleProfile()</span>
+<span class="nc bnc" id="L111" title="All 4 branches missed.">                .equals(that.getLifeStyleProfile()) : that.getLifeStyleProfile() != null) {</span>
+<span class="nc" id="L112">            return false;</span>
+        }
+
+<span class="nc bnc" id="L115" title="All 4 branches missed.">        if (getTransportationProfile() != null ? !getTransportationProfile().equals(that</span>
+<span class="nc" id="L116">                .getTransportationProfile()) : that</span>
+<span class="nc bnc" id="L117" title="All 2 branches missed.">                .getTransportationProfile() != null) {</span>
+<span class="nc" id="L118">            return false;</span>
+        }
+<span class="nc" id="L120">        return checkHalf(that);</span>
+    }
+
+    private boolean checkHalf(SignUpUser that) {
+
+<span class="nc bnc" id="L125" title="All 4 branches missed.">        if (getUsername() != null ? !getUsername().equals(that.getUsername()) : that</span>
+<span class="nc bnc" id="L126" title="All 2 branches missed.">                .getUsername() != null) {</span>
+<span class="nc" id="L127">            return false;</span>
+        }
+<span class="nc bnc" id="L129" title="All 4 branches missed.">        if (getPassword() != null ? !getPassword().equals(that.getPassword()) : that</span>
+<span class="nc bnc" id="L130" title="All 2 branches missed.">                .getPassword() != null) {</span>
+<span class="nc" id="L131">            return false;</span>
+        }
+<span class="nc bnc" id="L133" title="All 6 branches missed.">        if (getEmail() != null ? !getEmail().equals(that.getEmail()) : that.getEmail() != null) {</span>
+<span class="nc" id="L134">            return false;</span>
+        }
+<span class="nc bnc" id="L136" title="All 4 branches missed.">        if (getEnergyProfile() != null ? !getEnergyProfile().equals(that.getEnergyProfile()) : that</span>
+<span class="nc bnc" id="L137" title="All 2 branches missed.">                .getEnergyProfile() != null) {</span>
+<span class="nc" id="L138">            return false;</span>
+        }
+<span class="nc bnc" id="L140" title="All 2 branches missed.">        return getFoodProfile() != null ? getFoodProfile()</span>
+<span class="nc bnc" id="L141" title="All 2 branches missed.">                .equals(that.getFoodProfile()) : that.getFoodProfile() == null;</span>
+
+    }
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

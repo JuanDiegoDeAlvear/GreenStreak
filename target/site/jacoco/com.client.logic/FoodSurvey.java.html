@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FoodSurvey.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Starter OOPProject-Template</a> &gt; <a href="index.source.html" class="el_package">com.client.logic</a> &gt; <span class="el_source">FoodSurvey.java</span></div><h1>FoodSurvey.java</h1><pre class="source lang-java linenums">package com.client.logic;
+
+public class FoodSurvey extends Survey {
+    // change to private
+    String amountOrganicFood;
+    String dietChoice;
+    String amountLocalFood;
+    String amountWastedFood;
+    String amountFoodPackaged;
+    String amountFoodCompost;
+
+    /**
+     * Empty constructor.
+     */
+<span class="fc" id="L15">    public FoodSurvey() {</span>
+<span class="fc" id="L16">        this.amountFoodCompost = null;</span>
+<span class="fc" id="L17">        this.dietChoice = null;</span>
+<span class="fc" id="L18">        this.amountLocalFood = null;</span>
+<span class="fc" id="L19">        this.amountWastedFood = null;</span>
+<span class="fc" id="L20">        this.amountFoodPackaged = null;</span>
+<span class="fc" id="L21">        this.amountFoodCompost = null;</span>
+
+<span class="fc" id="L23">    }</span>
+
+    /**
+     * Constructor.
+     */
+    public FoodSurvey(String amountOrganicFood, String dietChoice, String amountLocalFood,
+                      String amountWastedFood, String amountFoodPackaged,
+<span class="fc" id="L30">                      String amountFoodCompost) {</span>
+<span class="fc" id="L31">        this.amountOrganicFood = amountOrganicFood;</span>
+<span class="fc" id="L32">        this.dietChoice = dietChoice;</span>
+<span class="fc" id="L33">        this.amountLocalFood = amountLocalFood;</span>
+<span class="fc" id="L34">        this.amountWastedFood = amountWastedFood;</span>
+<span class="fc" id="L35">        this.amountFoodPackaged = amountFoodPackaged;</span>
+<span class="fc" id="L36">        this.amountFoodCompost = amountFoodCompost;</span>
+<span class="fc" id="L37">    }</span>
+
+    public String getAmountOrganicFood() {
+<span class="fc" id="L40">        return amountOrganicFood;</span>
+    }
+
+    public void setAmountOrganicFood(String amountOrganicFood) {
+<span class="fc" id="L44">        this.amountOrganicFood = amountOrganicFood;</span>
+<span class="fc" id="L45">    }</span>
+
+    public String getDietChoice() {
+<span class="fc" id="L48">        return dietChoice;</span>
+    }
+
+    public void setDietChoice(String dietChoice) {
+<span class="fc" id="L52">        this.dietChoice = dietChoice;</span>
+<span class="fc" id="L53">    }</span>
+
+    public String getAmountLocalFood() {
+<span class="fc" id="L56">        return amountLocalFood;</span>
+    }
+
+    public void setAmountLocalFood(String amountLocalFood) {
+<span class="fc" id="L60">        this.amountLocalFood = amountLocalFood;</span>
+<span class="fc" id="L61">    }</span>
+
+    public String getAmountWastedFood() {
+<span class="fc" id="L64">        return amountWastedFood;</span>
+    }
+
+    public void setAmountWastedFood(String amountWastedFood) {
+<span class="fc" id="L68">        this.amountWastedFood = amountWastedFood;</span>
+<span class="fc" id="L69">    }</span>
+
+    public String getAmountFoodPackaged() {
+<span class="fc" id="L72">        return amountFoodPackaged;</span>
+    }
+
+    public void setAmountFoodPackaged(String amountFoodPackaged) {
+<span class="fc" id="L76">        this.amountFoodPackaged = amountFoodPackaged;</span>
+<span class="fc" id="L77">    }</span>
+
+    public String getAmountFoodCompost() {
+<span class="fc" id="L80">        return amountFoodCompost;</span>
+    }
+
+    public void setAmountFoodCompost(String amountFoodCompost) {
+<span class="fc" id="L84">        this.amountFoodCompost = amountFoodCompost;</span>
+<span class="fc" id="L85">    }</span>
+
+    @Override
+    public boolean equals(Object obj) {
+
+<span class="fc bfc" id="L90" title="All 2 branches covered.">        if (this == obj) {</span>
+<span class="fc" id="L91">            return true;</span>
+        }
+
+<span class="fc bfc" id="L94" title="All 2 branches covered.">        if (!(obj instanceof FoodSurvey)) {</span>
+<span class="fc" id="L95">            return false;</span>
+        }
+
+<span class="fc" id="L98">        FoodSurvey that = (FoodSurvey) obj;</span>
+
+
+<span class="pc bpc" id="L101" title="1 of 4 branches missed.">        if (getAmountFoodCompost() != null ? !getAmountFoodCompost().equals(that</span>
+<span class="pc bnc" id="L102" title="All 2 branches missed.">                .getAmountFoodCompost()) : that.getAmountFoodCompost() != null) {</span>
+<span class="fc" id="L103">            return false;</span>
+        }
+
+<span class="pc bpc" id="L106" title="1 of 4 branches missed.">        if (getAmountWastedFood() != null ? !getAmountWastedFood().equals(that</span>
+<span class="pc bnc" id="L107" title="All 2 branches missed.">                .getAmountWastedFood()) : that.getAmountWastedFood() != null) {</span>
+<span class="fc" id="L108">            return false;</span>
+        }
+<span class="pc bpc" id="L110" title="1 of 4 branches missed.">        if (getAmountFoodPackaged() != null ? !getAmountFoodPackaged().equals(that</span>
+<span class="pc bnc" id="L111" title="All 2 branches missed.">                .getAmountFoodPackaged()) : that.getAmountFoodPackaged() != null) {</span>
+<span class="fc" id="L112">            return false;</span>
+        }
+
+<span class="fc" id="L115">        return checkHalf(that);</span>
+    }
+
+    private boolean checkHalf(FoodSurvey that) {
+
+<span class="pc bpc" id="L120" title="1 of 2 branches missed.">        if (getAmountOrganicFood() != null ? !getAmountOrganicFood()</span>
+<span class="pc bpc" id="L121" title="2 of 4 branches missed.">                .equals(that.getAmountOrganicFood()) : that.getAmountOrganicFood() != null) {</span>
+<span class="fc" id="L122">            return false;</span>
+        }
+<span class="pc bpc" id="L124" title="1 of 2 branches missed.">        if (getDietChoice() != null ? !getDietChoice()</span>
+<span class="pc bpc" id="L125" title="2 of 4 branches missed.">                .equals(that.getDietChoice()) : that.getDietChoice() != null) {</span>
+<span class="fc" id="L126">            return false;</span>
+        }
+<span class="pc bpc" id="L128" title="1 of 2 branches missed.">        return getAmountLocalFood() != null ? getAmountLocalFood().equals(that</span>
+<span class="pc bnc" id="L129" title="All 2 branches missed.">                .getAmountLocalFood()) : that.getAmountLocalFood() == null;</span>
+
+    }
+
+
+    @Override
+    public String toString() {
+<span class="nc" id="L136">        return &quot;FoodSurvey{&quot; + &quot;amountOrganicFood='&quot; + amountOrganicFood + '\''</span>
+                + &quot;, dietChoice='&quot; + dietChoice + '\''
+                + &quot;, amountLocalFood='&quot; + amountLocalFood + '\''
+                + &quot;, amountWastedFood='&quot; + amountWastedFood + '\''
+                + &quot;, amountFoodPackaged='&quot; + amountFoodPackaged + '\''
+                + &quot;, amountFoodCompost='&quot; + amountFoodCompost + '\''
+                + '}';
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

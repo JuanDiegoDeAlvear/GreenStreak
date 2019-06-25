@@ -1,0 +1,703 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXToggleButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<AnchorPane fx:id="newPostDialog" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox alignment="CENTER" prefHeight="60.0" prefWidth="150.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label prefHeight="68.0" text="New Post">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <graphic>
+                  <FontIcon iconLiteral="fa-edit" />
+               </graphic>
+            </Label>
+         </children>
+      </HBox>
+      <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="170.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <JFXButton fx:id="foodNav" onAction="#categoryNavigation" ripplerFill="WHITE" text="Food" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets bottom="7.0" left="20.0" right="20.0" top="7.0" />
+               </padding>
+               <graphic>
+                  <FontIcon iconLiteral="fa-cutlery" />
+               </graphic>
+               <VBox.margin>
+                  <Insets left="15.0" />
+               </VBox.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="tranportationNav" onAction="#categoryNavigation" text="Transportation" textFill="WHITE">
+               <padding>
+                  <Insets bottom="7.0" left="20.0" right="20.0" top="7.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <graphic>
+                  <FontIcon iconLiteral="fa-bus" />
+               </graphic>
+               <VBox.margin>
+                  <Insets left="15.0" />
+               </VBox.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="consumptionNav" onAction="#categoryNavigation" text="Consumption" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <padding>
+                  <Insets bottom="7.0" left="20.0" right="20.0" top="7.0" />
+               </padding>
+               <graphic>
+                  <FontIcon iconLiteral="fa-recycle" />
+               </graphic>
+               <VBox.margin>
+                  <Insets left="15.0" />
+               </VBox.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+         </children>
+         <effect>
+            <InnerShadow blurType="ONE_PASS_BOX" color="#464646" height="45.0" radius="22.0" width="45.0" />
+         </effect>
+      </VBox>
+      <AnchorPane fx:id="foodPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2c3e50;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="170.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <JFXButton fx:id="breakfastTab" onAction="#changeTab" text="Breakfast" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton fx:id="lunchTab" onAction="#changeTab" text="Lunch" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton fx:id="dinnerTab" onAction="#changeTab" text="Dinner" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+               </children>
+            </HBox>
+            <AnchorPane fx:id="breakfastPane" prefHeight="200.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <HBox alignment="BOTTOM_CENTER" prefHeight="34.0" prefWidth="340.0">
+                           <children>
+                              <Label text="Did you eat..." textFill="WHITE">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="56.0" prefWidth="340.0">
+                           <children>
+                              <JFXToggleButton fx:id="breakfastVegan" prefHeight="60.0" text="Vegan" textFill="WHITE" toggleColor="#27ae60" toggleLineColor="#2ecc71">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="breakfastFood" />
+                                 </toggleGroup>
+                              </JFXToggleButton>
+                              <JFXToggleButton fx:id="breakfastVegetarian" prefHeight="60.0" text="Vegetarian" textFill="WHITE" toggleColor="#2980b9" toggleGroup="$breakfastFood" toggleLineColor="#3498db">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </JFXToggleButton>
+                              <JFXToggleButton fx:id="breakfastMeat" prefHeight="60.0" text="Meat" textFill="WHITE" toggleColor="#d35400" toggleGroup="$breakfastFood" toggleLineColor="#e67e22">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </JFXToggleButton>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="53.0" prefWidth="340.0" spacing="50.0">
+                           <children>
+                              <JFXButton fx:id="breakfastPostBtn" onAction="#newFoodPost" ripplerFill="WHITE" style="-fx-background-color: #2ecc71;" text="Post" textFill="WHITE">
+                                 <padding>
+                                    <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <graphic>
+                                    <FontIcon iconColor="WHITE" iconLiteral="fa-pencil-square" />
+                                 </graphic>
+                              </JFXButton>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="lunchPane" prefHeight="200.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <HBox alignment="BOTTOM_CENTER" prefHeight="34.0" prefWidth="340.0">
+                           <children>
+                              <Label text="Did you eat..." textFill="WHITE">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="56.0" prefWidth="340.0">
+                           <children>
+                              <JFXToggleButton fx:id="lunchVegan" prefHeight="60.0" text="Vegan" textFill="WHITE" toggleColor="#27ae60" toggleLineColor="#2ecc71">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="lunchFood" />
+                                 </toggleGroup>
+                              </JFXToggleButton>
+                              <JFXToggleButton fx:id="lunchVegetarian" prefHeight="60.0" text="Vegetarian" textFill="WHITE" toggleColor="#2980b9" toggleGroup="$lunchFood" toggleLineColor="#3498db">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </JFXToggleButton>
+                              <JFXToggleButton fx:id="lunchMeat" prefHeight="60.0" text="Meat" textFill="WHITE" toggleColor="#d35400" toggleGroup="$lunchFood" toggleLineColor="#e67e22">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </JFXToggleButton>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="53.0" prefWidth="340.0" spacing="50.0">
+                           <children>
+                              <JFXButton fx:id="lunchPostBtn" onAction="#newFoodPost" ripplerFill="WHITE" style="-fx-background-color: #2ecc71;" text="Post" textFill="WHITE">
+                                 <padding>
+                                    <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <graphic>
+                                    <FontIcon iconColor="WHITE" iconLiteral="fa-pencil-square" />
+                                 </graphic>
+                              </JFXButton>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="dinnerPane" prefHeight="200.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <HBox alignment="BOTTOM_CENTER" prefHeight="34.0" prefWidth="340.0">
+                           <children>
+                              <Label text="Did you eat..." textFill="WHITE">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="56.0" prefWidth="340.0">
+                           <children>
+                              <JFXToggleButton fx:id="dinnerVegan" prefHeight="60.0" text="Vegan" textFill="WHITE" toggleColor="#27ae60" toggleLineColor="#2ecc71">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="dinnerFood" />
+                                 </toggleGroup>
+                              </JFXToggleButton>
+                              <JFXToggleButton fx:id="dinnerVegetarian" prefHeight="60.0" text="Vegetarian" textFill="WHITE" toggleColor="#2980b9" toggleGroup="$dinnerFood" toggleLineColor="#3498db">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </JFXToggleButton>
+                              <JFXToggleButton fx:id="dinnerMeat" prefHeight="60.0" text="Meat" textFill="WHITE" toggleColor="#d35400" toggleGroup="$dinnerFood" toggleLineColor="#e67e22">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </JFXToggleButton>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="53.0" prefWidth="340.0" spacing="50.0">
+                           <children>
+                              <JFXButton fx:id="dinnerPostBtn" onAction="#newFoodPost" ripplerFill="WHITE" style="-fx-background-color: #2ecc71;" text="Post" textFill="WHITE">
+                                 <padding>
+                                    <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <graphic>
+                                    <FontIcon iconColor="WHITE" iconLiteral="fa-pencil-square" />
+                                 </graphic>
+                              </JFXButton>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2c3e50" height="30.0" rotate="45.0" stroke="#2c3e50" strokeType="INSIDE" width="30.0" AnchorPane.leftAnchor="-14.0" AnchorPane.topAnchor="70.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="transportationPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2c3e50;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="170.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2c3e50" height="30.0" rotate="45.0" stroke="#2c3e50" strokeType="INSIDE" width="30.0" AnchorPane.leftAnchor="-14.0" AnchorPane.topAnchor="110.0" />
+            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <JFXButton fx:id="bikeTab" onAction="#changeTab" text="Bike" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton fx:id="carTab" onAction="#changeTab" text="Car" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton fx:id="transportTab" onAction="#changeTab" text="Public Transport" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton fx:id="planeTab" onAction="#changeTab" text="Plane" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+               </children>
+            </HBox>
+            <AnchorPane fx:id="bikePane" prefHeight="200.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <HBox alignment="BOTTOM_CENTER" prefHeight="34.0" prefWidth="340.0">
+                           <children>
+                              <Label text="How far did you travel?" textFill="WHITE">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="56.0" prefWidth="340.0" spacing="10.0">
+                           <children>
+                              <JFXTextField fx:id="bikeKm" focusColor="#2c3e50" onKeyReleased="#validate" prefHeight="29.0" prefWidth="150.0" promptText="Enter distance" style="-fx-background-color: #ffffff;" unFocusColor="#2c3e50">
+                                 <HBox.margin>
+                                    <Insets bottom="15.0" top="15.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </JFXTextField>
+                              <Label text="kilometers" textFill="WHITE">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="53.0" prefWidth="340.0" spacing="50.0">
+                           <children>
+                              <JFXButton fx:id="bikePostBtn" onAction="#newTransportationPost" ripplerFill="WHITE" style="-fx-background-color: #2ecc71;" text="Post" textFill="WHITE">
+                                 <padding>
+                                    <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <graphic>
+                                    <FontIcon iconColor="WHITE" iconLiteral="fa-pencil-square" />
+                                 </graphic>
+                              </JFXButton>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="carPane" prefHeight="200.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <HBox alignment="BOTTOM_CENTER" prefHeight="34.0" prefWidth="340.0">
+                           <children>
+                              <Label text="How far did you travel?" textFill="WHITE">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="56.0" prefWidth="340.0" spacing="10.0">
+                           <children>
+                              <JFXTextField fx:id="carKm" focusColor="#2c3e50" onKeyReleased="#validate" prefHeight="29.0" prefWidth="150.0" promptText="Enter distance" style="-fx-background-color: #ffffff;" unFocusColor="#2c3e50">
+                                 <HBox.margin>
+                                    <Insets bottom="15.0" top="15.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </JFXTextField>
+                              <Label text="kilometers" textFill="WHITE">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="53.0" prefWidth="340.0" spacing="50.0">
+                           <children>
+                              <JFXButton fx:id="carPostBtn" onAction="#newTransportationPost" ripplerFill="WHITE" style="-fx-background-color: #2ecc71;" text="Post" textFill="WHITE">
+                                 <padding>
+                                    <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <graphic>
+                                    <FontIcon iconColor="WHITE" iconLiteral="fa-pencil-square" />
+                                 </graphic>
+                              </JFXButton>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="transportPane" prefHeight="200.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <HBox alignment="BOTTOM_CENTER" prefHeight="34.0" prefWidth="340.0">
+                           <children>
+                              <Label text="How far did you travel?" textFill="WHITE">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="56.0" prefWidth="340.0" spacing="10.0">
+                           <children>
+                              <JFXTextField fx:id="publicTransportKm" focusColor="#2c3e50" onKeyReleased="#validate" prefHeight="29.0" prefWidth="150.0" promptText="Enter distance" style="-fx-background-color: #ffffff;" unFocusColor="#2c3e50">
+                                 <HBox.margin>
+                                    <Insets bottom="15.0" top="15.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </JFXTextField>
+                              <Label text="kilometers" textFill="WHITE">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="53.0" prefWidth="340.0" spacing="50.0">
+                           <children>
+                              <JFXButton fx:id="publicTransportPostBtn" onAction="#newTransportationPost" ripplerFill="WHITE" style="-fx-background-color: #2ecc71;" text="Post" textFill="WHITE">
+                                 <padding>
+                                    <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <graphic>
+                                    <FontIcon iconColor="WHITE" iconLiteral="fa-pencil-square" />
+                                 </graphic>
+                              </JFXButton>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="planePane" layoutX="10.0" layoutY="50.0" prefHeight="200.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <HBox alignment="BOTTOM_CENTER" prefHeight="34.0" prefWidth="340.0">
+                           <children>
+                              <Label text="How far did you travel?" textFill="WHITE">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="56.0" prefWidth="340.0" spacing="10.0">
+                           <children>
+                              <JFXTextField fx:id="planeKm" focusColor="#2c3e50" onKeyReleased="#validate" prefHeight="29.0" prefWidth="150.0" promptText="Enter distance" style="-fx-background-color: #ffffff;" unFocusColor="#2c3e50">
+                                 <HBox.margin>
+                                    <Insets bottom="15.0" top="15.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </JFXTextField>
+                              <Label text="kilometers" textFill="WHITE">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="53.0" prefWidth="340.0" spacing="50.0">
+                           <children>
+                              <JFXButton fx:id="planePostBtn" onAction="#newTransportationPost" ripplerFill="WHITE" style="-fx-background-color: #2ecc71;" text="Post" textFill="WHITE">
+                                 <padding>
+                                    <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <graphic>
+                                    <FontIcon iconColor="WHITE" iconLiteral="fa-pencil-square" />
+                                 </graphic>
+                              </JFXButton>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="consumptionPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2c3e50;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="170.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <JFXButton fx:id="recycleTab" onAction="#changeTab" text="Recycle" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton fx:id="produceTab" onAction="#changeTab" text="Local Produce" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton fx:id="usedTab" onAction="#changeTab" text="Buy Used" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+               </children>
+            </HBox>
+            <AnchorPane fx:id="recyclePane" prefHeight="200.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <HBox alignment="BOTTOM_CENTER" prefHeight="34.0" prefWidth="340.0">
+                           <children>
+                              <Label text="Did you recycle your trash?" textFill="WHITE">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="56.0" prefWidth="340.0">
+                           <children>
+                              <JFXToggleButton fx:id="recycleBool" prefHeight="60.0" prefWidth="110.0" text="Yes" textFill="WHITE" toggleColor="#27ae60" toggleLineColor="#2ecc71">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </JFXToggleButton>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="53.0" prefWidth="340.0" spacing="50.0">
+                           <children>
+                              <JFXButton fx:id="recyclePostBtn" onAction="#newConsumptionPost" ripplerFill="WHITE" style="-fx-background-color: #2ecc71;" text="Post" textFill="WHITE">
+                                 <padding>
+                                    <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <graphic>
+                                    <FontIcon iconColor="WHITE" iconLiteral="fa-pencil-square" />
+                                 </graphic>
+                              </JFXButton>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="producePane" prefHeight="200.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <HBox alignment="BOTTOM_CENTER" prefHeight="34.0" prefWidth="340.0">
+                           <children>
+                              <Label text="Did you purchase food from a local producer?" textFill="WHITE">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="56.0" prefWidth="340.0">
+                           <children>
+                              <JFXToggleButton fx:id="localProduceBool" prefHeight="60.0" prefWidth="110.0" text="Yes" textFill="WHITE" toggleColor="#27ae60" toggleLineColor="#2ecc71">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </JFXToggleButton>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="53.0" prefWidth="340.0" spacing="50.0">
+                           <children>
+                              <JFXButton fx:id="producePostBtn" onAction="#newConsumptionPost" ripplerFill="WHITE" style="-fx-background-color: #2ecc71;" text="Post" textFill="WHITE">
+                                 <padding>
+                                    <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <graphic>
+                                    <FontIcon iconColor="WHITE" iconLiteral="fa-pencil-square" />
+                                 </graphic>
+                              </JFXButton>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="usedPane" prefHeight="200.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <HBox alignment="BOTTOM_CENTER" prefHeight="34.0" prefWidth="340.0">
+                           <children>
+                              <Label text="Did you buy second hand or used goods?" textFill="WHITE">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="56.0" prefWidth="340.0">
+                           <children>
+                              <JFXToggleButton fx:id="usedBool" prefHeight="60.0" prefWidth="102.0" text="Yes" textFill="WHITE" toggleColor="#d35400" toggleLineColor="#e67e22">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </JFXToggleButton>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="53.0" prefWidth="340.0" spacing="50.0">
+                           <children>
+                              <JFXButton fx:id="usedPostBtn" onAction="#newConsumptionPost" ripplerFill="WHITE" style="-fx-background-color: #2ecc71;" text="Post" textFill="WHITE">
+                                 <padding>
+                                    <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <graphic>
+                                    <FontIcon iconColor="WHITE" iconLiteral="fa-pencil-square" />
+                                 </graphic>
+                              </JFXButton>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2c3e50" height="30.0" rotate="45.0" stroke="#2c3e50" strokeType="INSIDE" width="30.0" AnchorPane.leftAnchor="-14.0" AnchorPane.topAnchor="150.0" />
+         </children>
+      </AnchorPane>
+      <JFXButton fx:id="cancelBtn" onAction="#cancelPost" text="Done" textFill="#d0d0d0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <graphic>
+            <FontIcon iconColor="#d0d0d0" iconLiteral="fa-times-circle" />
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" layoutX="7.0" layoutY="107.0" rotate="45.0" stroke="WHITE" strokeType="INSIDE" width="30.0" AnchorPane.leftAnchor="-14.0" AnchorPane.topAnchor="135.0" />
+   </children>
+</AnchorPane>

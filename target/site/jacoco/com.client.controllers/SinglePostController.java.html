@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SinglePostController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Starter OOPProject-Template</a> &gt; <a href="index.source.html" class="el_package">com.client.controllers</a> &gt; <span class="el_source">SinglePostController.java</span></div><h1>SinglePostController.java</h1><pre class="source lang-java linenums">package com.client.controllers;
+
+import com.jfoenix.controls.JFXButton;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.paint.Color;
+import org.kordamp.ikonli.javafx.FontIcon;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class SinglePostController {
+
+    String posttype;
+    String postval;
+    Date postdate;
+    String postclass;
+    @FXML
+    private FontIcon postIcon;
+
+    @FXML
+    private Label postType;
+
+    @FXML
+    private Label postValue;
+
+    @FXML
+    private Label postTime;
+
+    @FXML
+    private JFXButton deletePostBtn;
+
+    /**
+     * Create single post.
+     *
+     * @param posttype  sets posttype using string
+     * @param postvalue sets postvalue using string
+     * @param postclass sets postclass using string
+     * @param posttime  sets posttime using string
+     */
+    public SinglePostController(String posttype, String postvalue,
+<span class="nc" id="L43">                                String postclass, Date posttime) {</span>
+<span class="nc" id="L44">        this.posttype = posttype;</span>
+<span class="nc" id="L45">        this.postval = postvalue;</span>
+<span class="nc" id="L46">        this.postdate = posttime;</span>
+<span class="nc" id="L47">        this.postclass = postclass;</span>
+<span class="nc" id="L48">    }</span>
+
+    @FXML
+    void initialize() {
+<span class="nc" id="L52">        postType.setText(posttype);</span>
+<span class="nc" id="L53">        postValue.setText(postval);</span>
+<span class="nc" id="L54">        postTime.setText(timeFormat(postdate));</span>
+
+<span class="nc bnc" id="L56" title="All 2 branches missed.">        if (postclass.equals(&quot;food&quot;)) {</span>
+<span class="nc" id="L57">            postIcon.setIconLiteral(&quot;fa-cutlery&quot;);</span>
+<span class="nc" id="L58">            foodchecker();</span>
+        }
+
+<span class="nc bnc" id="L61" title="All 2 branches missed.">        if (postclass.equals(&quot;transport&quot;)) {</span>
+<span class="nc" id="L62">            transportchecker();</span>
+        }
+
+<span class="nc bnc" id="L65" title="All 2 branches missed.">        if (postclass.equals(&quot;consumption&quot;)) {</span>
+<span class="nc" id="L66">            consumptionchecker();</span>
+        }
+<span class="nc" id="L68">    }</span>
+
+    private void foodchecker() {
+<span class="nc bnc" id="L71" title="All 2 branches missed.">        if (posttype.equals(&quot;breakfast&quot;)) {</span>
+<span class="nc" id="L72">            postType.setText(&quot;Breakfast&quot;);</span>
+<span class="nc bnc" id="L73" title="All 2 branches missed.">        } else if (posttype.equals(&quot;lunch&quot;)) {</span>
+<span class="nc" id="L74">            postType.setText(&quot;Lunch&quot;);</span>
+        } else {
+<span class="nc" id="L76">            postType.setText(&quot;Dinner&quot;);</span>
+        }
+<span class="nc bnc" id="L78" title="All 2 branches missed.">        if (postval.equals(&quot;Vegetarian&quot;)) {</span>
+<span class="nc" id="L79">            postIcon.setIconColor(Color.rgb(52, 152, 219));</span>
+        }
+
+<span class="nc bnc" id="L82" title="All 2 branches missed.">        if (postval.equals(&quot;Meat&quot;)) {</span>
+<span class="nc" id="L83">            postIcon.setIconColor(Color.rgb(230, 126, 34));</span>
+        }
+<span class="nc" id="L85">    }</span>
+
+    private void consumptionchecker() {
+<span class="nc bnc" id="L88" title="All 2 branches missed.">        if (posttype.equals(&quot;Recycle&quot;)) {</span>
+<span class="nc" id="L89">            postIcon.setIconLiteral(&quot;fa-recycle&quot;);</span>
+<span class="nc" id="L90">            postType.setText(&quot;Recycled&quot;);</span>
+<span class="nc" id="L91">            postvalchecker();</span>
+
+        }
+<span class="nc bnc" id="L94" title="All 2 branches missed.">        if (posttype.equals(&quot;used&quot;)) {</span>
+<span class="nc" id="L95">            postIcon.setIconLiteral(&quot;fa-hand-peace-o&quot;);</span>
+<span class="nc" id="L96">            postType.setText(&quot;Bought second-hand&quot;);</span>
+<span class="nc" id="L97">            postvalchecker();</span>
+        }
+<span class="nc bnc" id="L99" title="All 2 branches missed.">        if (posttype.equals(&quot;Local Produce&quot;)) {</span>
+<span class="nc" id="L100">            postIcon.setIconLiteral(&quot;fa-map-marker&quot;);</span>
+<span class="nc" id="L101">            postType.setText(&quot;Bought local produce&quot;);</span>
+<span class="nc" id="L102">            postvalchecker();</span>
+        }
+<span class="nc" id="L104">    }</span>
+
+    private void transportchecker() {
+<span class="nc bnc" id="L107" title="All 2 branches missed.">        if (posttype.equals(&quot;car&quot;)) {</span>
+<span class="nc" id="L108">            postIcon.setIconLiteral(&quot;fa-car&quot;);</span>
+<span class="nc" id="L109">            postIcon.setIconColor(Color.rgb(230, 126, 34));</span>
+<span class="nc" id="L110">            postType.setText(&quot;Car&quot;);</span>
+<span class="nc bnc" id="L111" title="All 2 branches missed.">        } else if (posttype.equals(&quot;plane&quot;)) {</span>
+<span class="nc" id="L112">            postIcon.setIconLiteral(&quot;fa-plane&quot;);</span>
+<span class="nc" id="L113">            postIcon.setIconColor(Color.rgb(231, 76, 60));</span>
+<span class="nc" id="L114">            postType.setText(&quot;Plane&quot;);</span>
+<span class="nc bnc" id="L115" title="All 2 branches missed.">        } else if (posttype.equals(&quot;publictransportation&quot;)) {</span>
+<span class="nc" id="L116">            postIcon.setIconLiteral(&quot;fa-train&quot;);</span>
+<span class="nc" id="L117">            postIcon.setIconColor(Color.rgb(52, 152, 219));</span>
+<span class="nc" id="L118">            postType.setText(&quot;Public Transportation&quot;);</span>
+        } else {
+<span class="nc" id="L120">            postType.setText(&quot;Bike&quot;);</span>
+        }
+<span class="nc" id="L122">    }</span>
+
+    private void postvalchecker() {
+<span class="nc bnc" id="L125" title="All 2 branches missed.">        if (postval.equals(&quot;No&quot;)) {</span>
+<span class="nc" id="L126">            postIcon.setIconColor(Color.rgb(230, 126, 34));</span>
+        }
+<span class="nc" id="L128">    }</span>
+
+    @FXML
+    void deletePost(ActionEvent event) {
+<span class="nc bnc" id="L132" title="All 2 branches missed.">        if (event.getSource() == deletePostBtn) {</span>
+            //yay
+        }
+<span class="nc" id="L135">    }</span>
+
+    /**
+     * formats time to simple format.
+     *
+     * @param date sets date using Date
+     * @return String
+     */
+    public String timeFormat(Date date) {
+<span class="nc" id="L144">        SimpleDateFormat sdf = new SimpleDateFormat(&quot;h:mm a&quot;);</span>
+<span class="nc" id="L145">        String result = sdf.format(date);</span>
+<span class="nc" id="L146">        return result;</span>
+    }
+
+
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

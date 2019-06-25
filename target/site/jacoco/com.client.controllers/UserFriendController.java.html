@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserFriendController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Starter OOPProject-Template</a> &gt; <a href="index.source.html" class="el_package">com.client.controllers</a> &gt; <span class="el_source">UserFriendController.java</span></div><h1>UserFriendController.java</h1><pre class="source lang-java linenums">package com.client.controllers;
+
+import com.client.ServerCommunication;
+import com.client.logic.Profile;
+import com.jfoenix.controls.JFXButton;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
+public class UserFriendController {
+
+    @FXML
+    private JFXButton username;
+
+    @FXML
+    private Label score;
+
+    @FXML
+    private Label footprint;
+
+    @FXML
+    private JFXButton addFriendBtn;
+
+    @FXML
+    private JFXButton removeFriendBtn;
+
+    @FXML
+    private JFXButton cancelRequestBtn;
+
+    @FXML
+    private JFXButton acceptRequest;
+
+    @FXML
+    private HBox requestAction;
+
+    @FXML
+    private JFXButton declineRequestBtn;
+
+    private String user;
+    private int points;
+    private String carbonprint;
+    private boolean isFriend;
+    private FriendsController friendsController;
+
+    /**
+     * Empty Constructor.
+     * friendsController set friendscontroller using class
+     */
+<span class="nc" id="L58">    public UserFriendController(String username, FriendsController friendsController) {</span>
+<span class="nc" id="L59">        this.user = username;</span>
+<span class="nc" id="L60">        this.points = 0;</span>
+<span class="nc" id="L61">        this.carbonprint = null;</span>
+<span class="nc" id="L62">        this.friendsController = friendsController;</span>
+<span class="nc" id="L63">    }</span>
+
+    private String getname() {
+<span class="nc" id="L66">        return this.user;</span>
+    }
+
+    @FXML
+    void addFriend() {
+<span class="nc bnc" id="L71" title="All 2 branches missed.">        if (ServerCommunication.sendFriendRequest(LoginController.getusername(), getname())) {</span>
+<span class="nc" id="L72">            alert(&quot;Friend request has been sent to &quot; + this.getname());</span>
+<span class="nc" id="L73">            friendsController.initialize();</span>
+<span class="nc" id="L74">            friendsController.loadFriends(LoginController.userprofile</span>
+<span class="nc" id="L75">                    .getFriendList(), friendsController.getFriendsPane());</span>
+        } else {
+<span class="nc" id="L77">            alert(&quot;Connection error&quot;);</span>
+<span class="nc" id="L78">            friendsController.initialize();</span>
+<span class="nc" id="L79">            friendsController.loadFriends(LoginController.userprofile</span>
+<span class="nc" id="L80">                    .getFriendList(), friendsController.getFriendsPane());</span>
+
+        }
+
+<span class="nc" id="L84">    }</span>
+
+    @FXML
+    void removeFriend() {
+<span class="nc bnc" id="L88" title="All 2 branches missed.">        if (alert()) {</span>
+<span class="nc bnc" id="L89" title="All 2 branches missed.">            if (ServerCommunication.removeFriend(LoginController.getusername(),</span>
+<span class="nc" id="L90">                    getname())) {</span>
+<span class="nc" id="L91">                LoginController.userprofile.removeFriend(getname());</span>
+<span class="nc" id="L92">                alert(&quot;Changes are made&quot;);</span>
+<span class="nc" id="L93">                friendsController.initialize();</span>
+<span class="nc" id="L94">                friendsController.loadFriends(LoginController</span>
+<span class="nc" id="L95">                        .userprofile.getFriendList(), friendsController.getFriendsPane());</span>
+            } else {
+<span class="nc" id="L97">                alert(&quot;Connection error&quot;);</span>
+<span class="nc" id="L98">                friendsController.initialize();</span>
+<span class="nc" id="L99">                friendsController.loadFriends(LoginController</span>
+<span class="nc" id="L100">                        .userprofile.getFriendList(), friendsController.getFriendsPane());</span>
+
+            }
+
+        }
+
+<span class="nc" id="L106">    }</span>
+
+    @FXML
+    void acceptRequest(ActionEvent event) {
+<span class="nc bnc" id="L110" title="All 2 branches missed.">        if (ServerCommunication.acceptFriendRequest(LoginController</span>
+<span class="nc" id="L111">                .getusername(),getname())) {</span>
+<span class="nc" id="L112">            LoginController.userprofile.addFriend(getname());</span>
+<span class="nc" id="L113">            friendsController.loadFriends(ServerCommunication.getSentRequests(</span>
+<span class="nc" id="L114">                    LoginController.getusername()), friendsController.requestsPane);</span>
+        } else {
+<span class="nc" id="L116">            alert(&quot;Connection Error&quot;);</span>
+        }
+<span class="nc" id="L118">    }</span>
+
+    @FXML
+    void declineRequest(ActionEvent event) {
+<span class="nc bnc" id="L122" title="All 2 branches missed.">        if (ServerCommunication.declineFriendRequest(LoginController</span>
+<span class="nc" id="L123">                .getusername(),getname())) {</span>
+<span class="nc" id="L124">            friendsController.loadFriends(ServerCommunication.getSentRequests(</span>
+<span class="nc" id="L125">                    LoginController.getusername()), friendsController.requestsPane);</span>
+        } else {
+<span class="nc" id="L127">            alert(&quot;Connection Error&quot;);</span>
+        }
+<span class="nc" id="L129">    }</span>
+
+    @FXML
+    void viewUser() {
+<span class="nc bnc" id="L133" title="All 2 branches missed.">        if (ServerCommunication.getStatus(LoginController.getusername(), user) == 1) {</span>
+<span class="nc" id="L134">            FXMLLoader loader = new FXMLLoader(getClass()</span>
+<span class="nc" id="L135">                    .getResource(&quot;/fxml/friendcompare.fxml&quot;));</span>
+<span class="nc" id="L136">            FriendsCompareController fcp = new FriendsCompareController(LoginController</span>
+                    .userprofile,
+<span class="nc" id="L138">                    ServerCommunication.getProfile(user ,LoginController</span>
+<span class="nc" id="L139">                            .getusername()), this.friendsController);</span>
+<span class="nc" id="L140">            loader.setController(fcp);</span>
+            try {
+<span class="nc" id="L142">                Parent root = loader.load();</span>
+<span class="nc" id="L143">                AnchorPane paner = friendsController.getfriendcomp();</span>
+<span class="nc" id="L144">                paner.getChildren().addAll(root);</span>
+<span class="nc" id="L145">                paner.setVisible(true);</span>
+<span class="nc" id="L146">            } catch (IOException e) {</span>
+<span class="nc" id="L147">                e.printStackTrace();</span>
+<span class="nc" id="L148">            }</span>
+<span class="nc" id="L149">        } else {</span>
+<span class="nc" id="L150">            alert(&quot;Sorry this user is not your friend&quot;);</span>
+        }
+
+<span class="nc" id="L153">    }</span>
+
+    @FXML
+    void initialize() {
+<span class="nc" id="L157">        Profile target = ServerCommunication.getProfile(user,LoginController.getusername());</span>
+<span class="nc" id="L158">        this.username.setText(user);</span>
+<span class="nc bnc" id="L159" title="All 4 branches missed.">        switch (ServerCommunication.getStatus(LoginController.getusername(), user)) {</span>
+            case 1:
+<span class="nc" id="L161">                addFriendBtn.setVisible(false);</span>
+<span class="nc" id="L162">                removeFriendBtn.setVisible(true);</span>
+<span class="nc" id="L163">                cancelRequestBtn.setVisible(false);</span>
+<span class="nc" id="L164">                this.score.setText(target.getScore().getScore() + &quot;&quot;);</span>
+<span class="nc" id="L165">                this.score.setVisible(true);</span>
+<span class="nc" id="L166">                this.footprint.setText((int) target.getScore().getFootprint() + &quot;&quot;);</span>
+<span class="nc" id="L167">                this.footprint.setVisible(true);</span>
+<span class="nc" id="L168">                break;</span>
+            case 0:
+<span class="nc" id="L170">                addFriendBtn.setVisible(false);</span>
+<span class="nc" id="L171">                removeFriendBtn.setVisible(false);</span>
+<span class="nc bnc" id="L172" title="All 2 branches missed.">                if (checker()) {</span>
+<span class="nc" id="L173">                    this.requestAction.setVisible(true);</span>
+                } else {
+<span class="nc" id="L175">                    cancelRequestBtn.setVisible(true);</span>
+                }
+<span class="nc" id="L177">                this.score.setVisible(false);</span>
+<span class="nc" id="L178">                this.footprint.setVisible(false);</span>
+<span class="nc" id="L179">                break;</span>
+            case 2:
+<span class="nc" id="L181">                removeFriendBtn.setVisible(false);</span>
+<span class="nc" id="L182">                addFriendBtn.setVisible(false);</span>
+<span class="nc" id="L183">                cancelRequestBtn.setVisible(false);</span>
+<span class="nc" id="L184">                this.score.setVisible(false);</span>
+<span class="nc" id="L185">                this.footprint.setVisible(false);</span>
+<span class="nc" id="L186">                break;</span>
+            default:
+                break;
+
+        }
+
+<span class="nc" id="L192">    }</span>
+
+    private boolean checker() {
+        ArrayList&lt;String&gt; check = ServerCommunication
+<span class="nc" id="L196">                .getSentRequests(LoginController.getusername());</span>
+<span class="nc bnc" id="L197" title="All 2 branches missed.">        for (int i = 0 ;  i &lt; check.size() ; i ++  ) {</span>
+<span class="nc bnc" id="L198" title="All 2 branches missed.">            if (check.get(i).equals(getname())) {</span>
+<span class="nc" id="L199">                return false ;</span>
+            }
+        }
+<span class="nc" id="L202">        return true ;</span>
+    }
+
+    @FXML
+    void cancelRequest(ActionEvent event) {
+
+<span class="nc bnc" id="L208" title="All 2 branches missed.">        if (ServerCommunication.cancelRequest(LoginController.getusername(), this.user)) {</span>
+<span class="nc" id="L209">            alert(&quot;request canceled&quot;);</span>
+<span class="nc bnc" id="L210" title="All 2 branches missed.">            if (friendsController.selectedPane.equals(friendsController.sentPane)) {</span>
+<span class="nc" id="L211">                friendsController.loadFriends(ServerCommunication</span>
+<span class="nc" id="L212">                                .getSentRequests(LoginController.getusername()),</span>
+                        friendsController.sentPane);
+            } else {
+<span class="nc" id="L215">                friendsController.selectedPane = friendsController.getFriendsPane();</span>
+<span class="nc" id="L216">                friendsController.loadFriends(ServerCommunication</span>
+<span class="nc" id="L217">                                .getFriends(LoginController.getusername()),</span>
+<span class="nc" id="L218">                        friendsController.getFriendsPane());</span>
+            }
+        }
+<span class="nc" id="L221">    }</span>
+
+    private boolean alert() {
+<span class="nc" id="L224">        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, &quot;&quot;,</span>
+                ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+<span class="nc" id="L226">        alert.setHeaderText(&quot;Are you sure you want to remove this user ?&quot;);</span>
+<span class="nc" id="L227">        alert.showAndWait();</span>
+<span class="nc bnc" id="L228" title="All 2 branches missed.">        return alert.getResult() == ButtonType.YES;</span>
+    }
+
+    private void alert(String statment) {
+<span class="nc" id="L232">        Alert alert = new Alert(Alert.AlertType.INFORMATION);</span>
+<span class="nc" id="L233">        alert.setHeaderText(statment);</span>
+<span class="nc" id="L234">        alert.showAndWait();</span>
+<span class="nc" id="L235">    }</span>
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

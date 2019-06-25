@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FriendDatabaseManager.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Starter OOPProject-Template</a> &gt; <a href="index.source.html" class="el_package">com.server.database</a> &gt; <span class="el_source">FriendDatabaseManager.java</span></div><h1>FriendDatabaseManager.java</h1><pre class="source lang-java linenums">package com.server.database;
+
+import java.util.ArrayList;
+
+public class FriendDatabaseManager {
+
+<span class="fc" id="L7">    private static FriendDatabaseManager friendDatabaseManagerInstance = null;</span>
+
+    private DbFriendship dbFriendship;
+
+    /**
+     * Constructor.
+     *
+     * @param dbFriendship dbFriendship.
+     */
+<span class="fc" id="L16">    private FriendDatabaseManager(DbFriendship dbFriendship) {</span>
+<span class="fc" id="L17">        this.dbFriendship = dbFriendship;</span>
+<span class="fc" id="L18">    }</span>
+
+    /**
+     * Setter.
+     *
+     * @param friendDatabaseManagerInstance Instance.
+     */
+    public static void setFriendDatabaseManagerInstance(FriendDatabaseManager
+                                                                friendDatabaseManagerInstance) {
+<span class="fc" id="L27">        FriendDatabaseManager.friendDatabaseManagerInstance = friendDatabaseManagerInstance;</span>
+<span class="fc" id="L28">    }</span>
+
+    /**
+     * Getter.
+     *
+     * @return Returns an instance
+     */
+    public static FriendDatabaseManager getInstance() {
+<span class="fc bfc" id="L36" title="All 2 branches covered.">        if (friendDatabaseManagerInstance == null) {</span>
+<span class="fc" id="L37">            friendDatabaseManagerInstance = new FriendDatabaseManager(DbFriendship.getInstance());</span>
+        }
+<span class="fc" id="L39">        return friendDatabaseManagerInstance;</span>
+    }
+
+
+    /**
+     * This method will return an array containing the usernames sorted by size.
+     *
+     * @param username1 username of the user carrying out the action.
+     * @param username2 username of the user that receives the request.
+     * @return returns an array with the sorted usernames.
+     */
+    public String[] sortUsernames(String username1, String username2) {
+
+<span class="fc" id="L52">        String[] sortedUsernames = new String[2];</span>
+
+<span class="pc bpc" id="L54" title="1 of 2 branches missed.">        if ((username1.compareTo(username2)) &lt; 0) {</span>
+
+<span class="nc" id="L56">            sortedUsernames[0] = username1;</span>
+<span class="nc" id="L57">            sortedUsernames[1] = username2;</span>
+
+<span class="nc" id="L59">            return sortedUsernames;</span>
+
+        } else {
+
+<span class="fc" id="L63">            sortedUsernames[0] = username2;</span>
+<span class="fc" id="L64">            sortedUsernames[1] = username1;</span>
+
+<span class="fc" id="L66">            return sortedUsernames;</span>
+        }
+
+
+    }
+
+    /**
+     * Sets the relationship as user1 requests friends with user2.
+     *
+     * @param username1 the user sending the request.
+     * @param username2 the user receiving the request.
+     * @return whether the operation was successful.
+     */
+    public boolean sendRequest(String username1, String username2) {
+
+<span class="nc" id="L81">        String[] usernames = sortUsernames(username1, username2);</span>
+
+<span class="nc" id="L83">        String firstUsername = usernames[0];</span>
+<span class="nc" id="L84">        String secondUsername = usernames[1];</span>
+
+
+<span class="nc" id="L87">        return dbFriendship.friendRequest(firstUsername, secondUsername, 0, username1);</span>
+    }
+
+    /**
+     * Returns the useranmes of all the users that comply with the status.
+     * 0: friend requests, 1: friends, 2: blocked
+     *
+     * @param username the user who has the friends
+     * @return the usermanes of the friends
+     */
+    public String[] getUsersByStatus(String username, int status) {
+
+<span class="nc" id="L99">        ArrayList&lt;String&gt; data = dbFriendship.getUsersByStatus(username, status);</span>
+
+<span class="nc" id="L101">        String[] result = data.toArray(new String[data.size()]);</span>
+
+<span class="nc" id="L103">        return result;</span>
+    }
+
+
+    /**
+     * Sets the status between the first and the second user to .
+     * whatever it is desired by the first user.
+     *
+     * @param username1 The username of who accepts the friend request.
+     * @param username2 The username of who's friend request is accepted.
+     * @param status    This will be the desired status of the relationship by username 1.
+     * @return whether the operation was successful.
+     */
+    public boolean setStatus(String username1, String username2, int status) {
+
+
+<span class="nc" id="L119">        String[] usernames = sortUsernames(username1, username2);</span>
+
+<span class="nc" id="L121">        String firstUsername = usernames[0];</span>
+<span class="nc" id="L122">        String secondUsername = usernames[1];</span>
+
+
+<span class="nc" id="L125">        return dbFriendship.setStatus(firstUsername, secondUsername, status, username1);</span>
+    }
+
+
+    /**
+     * Deletes the friendship status between two people, effectively removing it.
+     *
+     * @param username1 The username of the person removing a friend.
+     * @param username2 The username of the friend being removed.
+     * @return whether the operation was successful.
+     */
+    public boolean removeFriend(String username1, String username2) {
+
+<span class="nc" id="L138">        String[] usernames = sortUsernames(username1, username2);</span>
+
+<span class="nc" id="L140">        String firstUsername = usernames[0];</span>
+<span class="nc" id="L141">        String secondUsername = usernames[1];</span>
+
+<span class="nc" id="L143">        return dbFriendship.removeFirend(firstUsername, secondUsername);</span>
+    }
+
+    /**
+     * Returns the friendship status between two users.
+     *
+     * @param username1 The username of the first user.
+     * @param username2 The username of the second user.
+     * @return whether the operation was successful.
+     */
+    public int getStatus(String username1, String username2) {
+
+<span class="nc" id="L155">        String[] usernames = sortUsernames(username1, username2);</span>
+
+<span class="nc" id="L157">        String firstUsername = usernames[0];</span>
+<span class="nc" id="L158">        String secondUsername = usernames[1];</span>
+
+<span class="nc" id="L160">        return dbFriendship.getStatus(firstUsername, secondUsername);</span>
+    }
+
+    /**
+     * This method will return the requests
+     *
+     * @param name This is the user's username.
+     * @return Returns a String[].
+     */
+    public String[] getSentRequests(String name) {
+<span class="nc" id="L170">        ArrayList&lt;String&gt; names = dbFriendship.getSentRequests(name);</span>
+<span class="nc" id="L171">        return names.toArray(new String[names.size()]);</span>
+    }
+
+    /**
+     * This method will return the requests
+     *
+     * @param name This is the user's username.
+     * @return Returns a String[].
+     */
+    public String[] getReceivedRequests(String name) {
+<span class="nc" id="L181">        ArrayList&lt;String&gt; names = dbFriendship.getReceivedRequests(name);</span>
+<span class="nc" id="L182">        return names.toArray(new String[names.size()]);</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

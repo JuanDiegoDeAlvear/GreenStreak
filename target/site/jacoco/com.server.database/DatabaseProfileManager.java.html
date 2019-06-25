@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DatabaseProfileManager.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Starter OOPProject-Template</a> &gt; <a href="index.source.html" class="el_package">com.server.database</a> &gt; <span class="el_source">DatabaseProfileManager.java</span></div><h1>DatabaseProfileManager.java</h1><pre class="source lang-java linenums">package com.server.database;
+
+import com.client.logic.Achievement;
+import com.client.logic.EnergySurvey;
+import com.client.logic.FoodSurvey;
+import com.client.logic.LifeStyleSurvey;
+import com.client.logic.Profile;
+import com.client.logic.RankingEntry;
+import com.client.logic.Score;
+import com.client.logic.TransportationSurvey;
+
+import java.util.ArrayList;
+
+
+/**
+ * This is a singleton class.
+ */
+public class DatabaseProfileManager {
+
+    private static DatabaseProfileManager databaseProfileManagerInstance;
+
+    private static DatabaseProfile databaseProfile;
+
+<span class="fc" id="L24">    private DatabaseProfileManager(DatabaseProfile databaseProfile) {</span>
+<span class="fc" id="L25">        this.databaseProfile = databaseProfile;</span>
+<span class="fc" id="L26">    }</span>
+
+    /**
+     * This method will return an instance.
+     *
+     * @return Returns instance.
+     */
+    public static DatabaseProfileManager getInstance() {
+<span class="pc bpc" id="L34" title="1 of 2 branches missed.">        if (databaseProfileManagerInstance == null) {</span>
+<span class="nc" id="L35">            databaseProfileManagerInstance =</span>
+<span class="nc" id="L36">                    new DatabaseProfileManager(DatabaseProfile.getInstance());</span>
+        }
+<span class="fc" id="L38">        return databaseProfileManagerInstance;</span>
+    }
+
+    /**
+     * Getter.
+     *
+     * @param databaseProfile Tis is the object.
+     * @return Returns an instance.
+     */
+    public static DatabaseProfileManager getInstance(DatabaseProfile databaseProfile) {
+<span class="fc bfc" id="L48" title="All 2 branches covered.">        if (databaseProfileManagerInstance == null) {</span>
+<span class="fc" id="L49">            databaseProfileManagerInstance = new DatabaseProfileManager(databaseProfile);</span>
+        }
+
+<span class="fc" id="L52">        setDatabaseProfile(databaseProfile);</span>
+<span class="fc" id="L53">        return databaseProfileManagerInstance;</span>
+    }
+
+    /**
+     * Getter.
+     *
+     * @param username1 This is username.
+     * @param username2 This is username.
+     * @return Returns a profile object.
+     */
+    public Profile getProfile(String username1, String username2) {
+
+<span class="fc" id="L65">        return databaseProfile.getProfile(username1, username2);</span>
+
+    }
+
+
+    /**
+     * Setter.
+     *
+     * @param databaseProfile Object.
+     */
+    public static void setDatabaseProfile(DatabaseProfile databaseProfile) {
+<span class="fc" id="L76">        DatabaseProfileManager.databaseProfile = databaseProfile;</span>
+<span class="fc" id="L77">    }</span>
+
+    /**
+     * Updates energy survey.
+     *
+     * @param username Username.
+     * @param survey Survey to update.
+     * @return Returns boolean.
+     */
+    public boolean updateEnergySurvey(String username, EnergySurvey survey) {
+<span class="nc" id="L87">        return databaseProfile.updateEnergySurvey(username, survey);</span>
+    }
+
+    /**
+     * Updates energy survey.
+     *
+     * @param username Username.
+     * @param survey Survey to update.
+     * @return Returns boolean.
+     */
+    public boolean updateFoodSurvey(String username, FoodSurvey survey) {
+<span class="nc" id="L98">        return databaseProfile.updateFoodSurvey(username, survey);</span>
+    }
+
+    /**
+     * Updates energy survey.
+     *
+     * @param username Username.
+     * @param survey Survey to update.
+     * @return Returns boolean.
+     */
+    public boolean updateLifeStyleSurvey(String username, LifeStyleSurvey survey) {
+<span class="nc" id="L109">        return databaseProfile.updateLifeStyleSurvey(username, survey);</span>
+    }
+
+    /**
+     * Updates energy survey.
+     *
+     * @param username Username.
+     * @param survey Survey to update.
+     * @return Returns boolean.
+     */
+    public boolean updateTransportationSurvey(String username, TransportationSurvey survey) {
+<span class="nc" id="L120">        return databaseProfile.updateTransportation(username, survey);</span>
+    }
+
+    /**
+     * Updates scores.
+     *
+     * @param username Username.
+     * @param score Score to update.
+     * @return Returns boolean.
+     */
+    public boolean updateScore(String username, Score score) {
+<span class="nc" id="L131">        return databaseProfile.updateScore(username, score);</span>
+    }
+
+    /**
+     * Updates Achievements.
+     *
+     * @param username Username.
+     * @param achievement Achievement to update.
+     * @return Returns boolean.
+     */
+    public boolean updateAchievements(String username, Achievement achievement) {
+<span class="nc" id="L142">        return databaseProfile.updateAchievemnts(username, achievement);</span>
+    }
+
+    /**
+     * Gets the global rankings.
+     *
+     * @param attribute Attribute to compare users with.
+     * @return Returns RankingEnergy[].
+     */
+    public RankingEntry[] getGlobalRanking(String attribute) {
+<span class="nc" id="L152">        ArrayList&lt;RankingEntry&gt; ranking = databaseProfile.getGlobalRanking(attribute);</span>
+<span class="nc" id="L153">        return ranking.toArray(new RankingEntry[ranking.size()]);</span>
+    }
+
+    /**
+     * Gets the ranking of the user compared to friends.
+     *
+     * @param username Username.
+     * @param attribute Attribute to compare users with.
+     * @return Returns RankingEntry[].
+     */
+    public RankingEntry[] getFriendRanking(String username, String attribute) {
+
+<span class="nc" id="L165">        ArrayList&lt;RankingEntry&gt; ranking = databaseProfile.getFriendRanking(username,attribute);</span>
+<span class="nc" id="L166">        return ranking.toArray(new RankingEntry[ranking.size()]);</span>
+
+    }
+
+
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

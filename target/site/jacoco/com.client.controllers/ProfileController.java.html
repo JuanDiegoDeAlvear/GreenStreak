@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProfileController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Starter OOPProject-Template</a> &gt; <a href="index.source.html" class="el_package">com.client.controllers</a> &gt; <span class="el_source">ProfileController.java</span></div><h1>ProfileController.java</h1><pre class="source lang-java linenums">package com.client.controllers;
+
+import com.client.ServerCommunication;
+import com.client.logic.ConsumptionPost;
+import com.client.logic.FoodPost;
+import com.client.logic.PostCatalog;
+import com.client.logic.SuperPost;
+import com.client.logic.TransportationPost;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXCheckBox;
+import com.jfoenix.controls.JFXProgressBar;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import org.kordamp.ikonli.javafx.FontIcon;
+
+import java.awt.AWTException;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.util.Date;
+
+<span class="nc" id="L29">public class ProfileController {</span>
+
+    @FXML
+    private JFXButton settingsBtn;
+
+    @FXML
+    private ImageView profilePicture;
+
+    @FXML
+    private Label username;
+
+    @FXML
+    private Label score;
+
+    @FXML
+    private Label carbonFootprint;
+
+    @FXML
+    private Label ecoFootprint;
+
+    @FXML
+    private JFXProgressBar greenstreak;
+
+    @FXML
+    private VBox recentActivityBox;
+
+    @FXML
+    private VBox achievementsBox;
+
+    @FXML
+    private JFXButton foodSurveyTab;
+
+    @FXML
+    private JFXButton energySurveyTab;
+
+    @FXML
+    private JFXButton transportSurveyTab;
+
+    @FXML
+    private JFXButton lifestyleSurveyTab;
+
+    @FXML
+    private AnchorPane foodSurveyPane;
+
+    @FXML
+    private JFXButton foodEdit;
+
+    @FXML
+    private AnchorPane energySurveyPane;
+
+    @FXML
+    private JFXButton energyEdit;
+
+    @FXML
+    private AnchorPane transportSurveyPane;
+
+    @FXML
+    private JFXButton transportEdit;
+
+    @FXML
+    private AnchorPane lifestyleSurveyPane;
+
+    @FXML
+    private JFXButton lifestyleEdit;
+
+    @FXML
+    private Label foodOrganic;
+
+    @FXML
+    private Label foodDiet;
+
+    @FXML
+    private Label foodLocal;
+
+    @FXML
+    private Label foodWaste;
+
+    @FXML
+    private Label foodPrepackaged;
+
+    @FXML
+    private Label foodCompost;
+
+    @FXML
+    private Label energyHouseType;
+
+    @FXML
+    private Label energyRoommates;
+
+    @FXML
+    private JFXCheckBox energyGreenBoolean;
+
+    @FXML
+    private JFXCheckBox energyEfficientBoolean;
+
+    @FXML
+    private Label energyEstimatedUse;
+
+    @FXML
+    private Label transportFlightHours;
+
+    @FXML
+    private Label transportCar;
+
+    @FXML
+    private Label transportDistance;
+
+    @FXML
+    private Label transportMainMode;
+
+    @FXML
+    private Label lifestyleBigPurchase;
+
+    @FXML
+    private Label lifestyleWeeklyWaste;
+
+    @FXML
+    private Label lifestyleRecycle;
+
+    @FXML
+    private Label lifestyleAppliance;
+
+    @FXML
+    private Label lifestyleShowerTime;
+
+    @FXML
+    private AnchorPane editSurvey;
+
+    @FXML
+    private VBox recentPostsContainer;
+
+    @FXML
+    private AnchorPane badgesDrawer;
+
+    @FXML
+    private JFXButton viewBadges;
+
+    @FXML
+    private Label carbonSaved;
+
+    @FXML
+    private Label greenstreakVal;
+
+    private JFXButton selectedTab;
+    private AnchorPane selectedPane;
+
+    @FXML
+    void changeSurveyTab(ActionEvent event) {
+<span class="nc" id="L177">        FontIcon icon = (FontIcon) selectedTab.getGraphic();</span>
+<span class="nc" id="L178">        icon.setIconColor(Color.rgb(0, 0, 0, 1));</span>
+<span class="nc" id="L179">        selectedTab.setTextFill(Color.rgb(0, 0, 0));</span>
+<span class="nc bnc" id="L180" title="All 2 branches missed.">        if (event.getSource() == foodSurveyTab) {</span>
+<span class="nc bnc" id="L181" title="All 2 branches missed.">            if (!selectedTab.equals(foodSurveyTab)) {</span>
+<span class="nc" id="L182">                selectedPane.setVisible(false);</span>
+<span class="nc" id="L183">                selectedTab = foodSurveyTab;</span>
+<span class="nc" id="L184">                foodSurveyPane.setVisible(true);</span>
+<span class="nc" id="L185">                selectedPane = foodSurveyPane;</span>
+            }
+        }
+<span class="nc bnc" id="L188" title="All 2 branches missed.">        if (event.getSource() == energySurveyTab) {</span>
+<span class="nc bnc" id="L189" title="All 2 branches missed.">            if (!selectedTab.equals(energySurveyTab)) {</span>
+<span class="nc" id="L190">                selectedPane.setVisible(false);</span>
+<span class="nc" id="L191">                selectedTab = energySurveyTab;</span>
+<span class="nc" id="L192">                energySurveyPane.setVisible(true);</span>
+<span class="nc" id="L193">                selectedPane = energySurveyPane;</span>
+            }
+        }
+<span class="nc bnc" id="L196" title="All 2 branches missed.">        if (event.getSource() == transportSurveyTab) {</span>
+<span class="nc bnc" id="L197" title="All 2 branches missed.">            if (!selectedTab.equals(transportSurveyTab)) {</span>
+<span class="nc" id="L198">                selectedPane.setVisible(false);</span>
+<span class="nc" id="L199">                selectedTab = transportSurveyTab;</span>
+<span class="nc" id="L200">                transportSurveyPane.setVisible(true);</span>
+<span class="nc" id="L201">                selectedPane = transportSurveyPane;</span>
+            }
+        }
+<span class="nc bnc" id="L204" title="All 2 branches missed.">        if (event.getSource() == lifestyleSurveyTab) {</span>
+<span class="nc bnc" id="L205" title="All 2 branches missed.">            if (!selectedTab.equals(lifestyleSurveyTab)) {</span>
+<span class="nc" id="L206">                selectedPane.setVisible(false);</span>
+<span class="nc" id="L207">                selectedTab = lifestyleSurveyTab;</span>
+<span class="nc" id="L208">                lifestyleSurveyPane.setVisible(true);</span>
+<span class="nc" id="L209">                selectedPane = lifestyleSurveyPane;</span>
+            }
+        }
+<span class="nc" id="L212">        selectedTab.setTextFill(Color.rgb(39, 174, 96));</span>
+<span class="nc" id="L213">        FontIcon ic = (FontIcon) selectedTab.getGraphic();</span>
+<span class="nc" id="L214">        ic.setIconColor(Color.rgb(39, 174, 96, 1));</span>
+<span class="nc" id="L215">    }</span>
+
+    @FXML
+    void openSurveyEditor(ActionEvent event) {
+        String selected;
+<span class="nc bnc" id="L220" title="All 2 branches missed.">        if (event.getSource() == foodEdit) {</span>
+<span class="nc" id="L221">            selected = &quot;food&quot;;</span>
+<span class="nc bnc" id="L222" title="All 2 branches missed.">        } else if (event.getSource() == energyEdit) {</span>
+<span class="nc" id="L223">            selected = &quot;energy&quot;;</span>
+<span class="nc bnc" id="L224" title="All 2 branches missed.">        } else if (event.getSource() == transportEdit) {</span>
+<span class="nc" id="L225">            selected = &quot;transport&quot;;</span>
+<span class="nc bnc" id="L226" title="All 2 branches missed.">        } else if (event.getSource() == lifestyleEdit) {</span>
+<span class="nc" id="L227">            selected = &quot;lifestyle&quot;;</span>
+        } else {
+<span class="nc" id="L229">            selected = &quot;&quot;;</span>
+        }
+<span class="nc" id="L231">        FXMLLoader loader = new FXMLLoader(getClass().getResource(</span>
+                &quot;/fxml/surveyEditor.fxml&quot;));
+<span class="nc" id="L233">        SurveyEditorController sec = new SurveyEditorController(selected, editSurvey);</span>
+<span class="nc" id="L234">        loader.setController(sec);</span>
+        try {
+<span class="nc" id="L236">            Parent root = loader.load();</span>
+<span class="nc" id="L237">            editSurvey.setVisible(true);</span>
+<span class="nc" id="L238">            editSurvey.getChildren().addAll(root);</span>
+<span class="nc" id="L239">        } catch (IOException e) {</span>
+<span class="nc" id="L240">            e.printStackTrace();</span>
+<span class="nc" id="L241">        }</span>
+<span class="nc" id="L242">    }</span>
+
+    @FXML
+    void openBadgeDrawer(ActionEvent event) {
+<span class="nc bnc" id="L246" title="All 2 branches missed.">        if (!badgesDrawer.isVisible()) {</span>
+<span class="nc" id="L247">            FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;/fxml/badgedraw.fxml&quot;));</span>
+<span class="nc" id="L248">            BadgeDrawerController bdc = new BadgeDrawerController(badgesDrawer);</span>
+<span class="nc" id="L249">            loader.setController(bdc);</span>
+            try {
+<span class="nc" id="L251">                Node root = loader.load();</span>
+<span class="nc" id="L252">                badgesDrawer.getChildren().setAll(root);</span>
+
+<span class="nc" id="L254">            } catch (IOException e) {</span>
+<span class="nc" id="L255">                e.printStackTrace();</span>
+<span class="nc" id="L256">            }</span>
+<span class="nc" id="L257">            badgesDrawer.setVisible(true);</span>
+<span class="nc" id="L258">        } else {</span>
+<span class="nc" id="L259">            badgesDrawer.setVisible(false);</span>
+        }
+
+<span class="nc" id="L262">    }</span>
+
+    @FXML
+    void initialize() throws MalformedURLException, AWTException {
+<span class="nc" id="L266">        RankingsController.scoreCalc();</span>
+
+<span class="nc" id="L268">        selectedTab = foodSurveyTab;</span>
+<span class="nc" id="L269">        selectedPane = foodSurveyPane;</span>
+<span class="nc" id="L270">        FontIcon ic = (FontIcon) selectedTab.getGraphic();</span>
+<span class="nc" id="L271">        ic.setIconColor(Color.rgb(39, 174, 96, 1));</span>
+<span class="nc" id="L272">        selectedTab.setTextFill(Color.rgb(39, 174, 96));</span>
+
+<span class="nc" id="L274">        username.setText(LoginController.getusername());</span>
+<span class="nc" id="L275">        carbonFootprint.setText((int)LoginController.userprofile.getScore().getFootprint() + &quot;&quot;);</span>
+<span class="nc" id="L276">        ecoFootprint.setText((int)LoginController.userprofile.getScore().getFootprintEco() + &quot;&quot;);</span>
+<span class="nc" id="L277">        greenstreak.setSecondaryProgress(50);</span>
+<span class="nc" id="L278">        score.setText(LoginController.userprofile</span>
+<span class="nc" id="L279">                .getScore().getScore() + &quot;&quot;);</span>
+<span class="nc" id="L280">        carbonSaved.setText( (int)(LoginController</span>
+<span class="nc" id="L281">                .userprofile.getScore().getFootprint() - 16) * -1 + &quot;&quot;);</span>
+
+
+<span class="nc" id="L284">        foodOrganic.setText(LoginController.userprofile.getFoodProfile()</span>
+<span class="nc" id="L285">                .getAmountOrganicFood());</span>
+<span class="nc" id="L286">        foodDiet.setText(LoginController.userprofile.getFoodProfile()</span>
+<span class="nc" id="L287">                .getDietChoice());</span>
+<span class="nc" id="L288">        foodLocal.setText(LoginController.userprofile.getFoodProfile()</span>
+<span class="nc" id="L289">                .getAmountLocalFood());</span>
+<span class="nc" id="L290">        foodWaste.setText(LoginController.userprofile.getFoodProfile()</span>
+<span class="nc" id="L291">                .getAmountWastedFood());</span>
+<span class="nc" id="L292">        foodPrepackaged.setText(LoginController.userprofile.getFoodProfile()</span>
+<span class="nc" id="L293">                .getAmountFoodPackaged());</span>
+<span class="nc" id="L294">        foodCompost.setText(LoginController.userprofile.getFoodProfile()</span>
+<span class="nc" id="L295">                .getAmountFoodCompost());</span>
+
+
+<span class="nc" id="L298">        transportFlightHours.setText(LoginController.userprofile</span>
+<span class="nc" id="L299">                .getTransportationProfile().getAveHoursFly() + &quot; Hrs&quot;);</span>
+<span class="nc" id="L300">        transportCar.setText(LoginController.userprofile</span>
+<span class="nc" id="L301">                .getTransportationProfile().getTypeOfCar());</span>
+<span class="nc" id="L302">        transportMainMode.setText(LoginController.userprofile</span>
+<span class="nc" id="L303">                .getTransportationProfile().getMainModeTransport());</span>
+<span class="nc" id="L304">        transportDistance.setText(LoginController.userprofile</span>
+<span class="nc" id="L305">                .getTransportationProfile().getAveKmPerDay() + &quot; KM&quot;);</span>
+
+
+<span class="nc" id="L308">        energyHouseType.setText(LoginController.userprofile.getEnergyProfile()</span>
+<span class="nc" id="L309">                .getTypeHouse());</span>
+<span class="nc" id="L310">        energyEstimatedUse.setText(LoginController.userprofile.getEnergyProfile()</span>
+<span class="nc" id="L311">                .getAmountEnergy());</span>
+<span class="nc" id="L312">        energyRoommates.setText(LoginController.userprofile.getEnergyProfile()</span>
+<span class="nc" id="L313">                .getAmountRoommates() + &quot;&quot;);</span>
+<span class="nc" id="L314">        energyGreenBoolean.setDisable(LoginController.userprofile.getEnergyProfile()</span>
+<span class="nc" id="L315">                .getGreenEnergy());</span>
+<span class="nc" id="L316">        energyEfficientBoolean.setDisable(LoginController.userprofile.getEnergyProfile()</span>
+<span class="nc" id="L317">                .getEfficientLighting());</span>
+
+
+<span class="nc" id="L320">        lifestyleBigPurchase.setText(LoginController.userprofile.getLifeStyleProfile()</span>
+<span class="nc" id="L321">                .getHowOftenBigPurchase());</span>
+<span class="nc" id="L322">        lifestyleWeeklyWaste.setText(LoginController.userprofile.getLifeStyleProfile()</span>
+<span class="nc" id="L323">                .getWeeklyWaste());</span>
+<span class="nc" id="L324">        lifestyleRecycle.setText(LoginController.userprofile.getLifeStyleProfile()</span>
+<span class="nc" id="L325">                .getRecycle());</span>
+<span class="nc" id="L326">        lifestyleAppliance.setText(LoginController.userprofile.getLifeStyleProfile()</span>
+<span class="nc" id="L327">                .getApplianceUse());</span>
+<span class="nc" id="L328">        lifestyleShowerTime.setText(LoginController.userprofile.getLifeStyleProfile()</span>
+<span class="nc" id="L329">                .getAveShowerTime() + &quot;&quot;);</span>
+<span class="nc" id="L330">        energyGreenBoolean.selectedProperty().setValue(LoginController.userprofile</span>
+<span class="nc" id="L331">                .getEnergyProfile().getGreenEnergy());</span>
+<span class="nc" id="L332">        energyEfficientBoolean.selectedProperty().setValue(LoginController.userprofile</span>
+<span class="nc" id="L333">                .getEnergyProfile().getEfficientLighting());</span>
+
+<span class="nc" id="L335">        if (LoginController.userprofile.getScore().getScore() &gt; LoginController.userprofile</span>
+<span class="nc bnc" id="L336" title="All 2 branches missed.">                .getScore().getGreenstreak()) {</span>
+<span class="nc" id="L337">            LoginController.userprofile.getScore()</span>
+<span class="nc" id="L338">                    .setGreenstreak(LoginController.userprofile.getScore().getScore() * 2);</span>
+        }
+<span class="nc" id="L340">        if (LoginController.userprofile.getScore().getScore() == LoginController</span>
+<span class="nc bnc" id="L341" title="All 2 branches missed.">                .userprofile.getScore().getGreenstreak()) {</span>
+<span class="nc" id="L342">            LoginController.userprofile.getScore().setScore(LoginController</span>
+<span class="nc" id="L343">                    .userprofile.getScore().getScore() + (LoginController</span>
+<span class="nc" id="L344">                    .userprofile.getScore().getGreenstreak() / 4));</span>
+        }
+
+<span class="nc" id="L347">        RankingsController.scoreCalc();</span>
+<span class="nc" id="L348">        LoginController.userprofile.getAchievement().checklowEco();</span>
+<span class="nc" id="L349">        LoginController.userprofile.getAchievement().carblsixach();</span>
+<span class="nc" id="L350">        int score = LoginController.userprofile.getScore().getScore();</span>
+<span class="nc" id="L351">        int level = (score / 1000) + 1;</span>
+<span class="nc" id="L352">        System.out.println(level + &quot;This is the level&quot;);</span>
+<span class="nc" id="L353">        System.out.println(score - (level - 1) * 1000);</span>
+<span class="nc" id="L354">        System.out.println((score - (level - 1) * 1000) / ((double) 1000));</span>
+<span class="nc" id="L355">        greenstreak.setProgress((score - (level - 1) * 1000) / ((double) 1000));</span>
+
+        //greenstreak.setProgress(Streak.progress((double) LoginController.userprofile.getScore()
+        //.getGreenstreak(), (double) LoginController.userprofile.getScore().getScore()));
+<span class="nc" id="L359">        greenstreakVal.setText(&quot;Level:&quot; + level);</span>
+<span class="nc" id="L360">        loadRecentPosts();</span>
+<span class="nc" id="L361">    }</span>
+
+    /**
+     * Load first 3 posts in recent activity of the profile recent
+     * activity panel.
+     */
+    public void loadRecentPosts() {
+<span class="nc" id="L368">        PostCatalog posts = PostCatalog.sortByDate(ServerCommunication</span>
+<span class="nc" id="L369">                .recievepostarray(LoginController.getusername()));</span>
+
+<span class="nc bnc" id="L371" title="All 2 branches missed.">        int num = (3 &lt;= posts.size()) ? 3 : posts.size();</span>
+<span class="nc bnc" id="L372" title="All 2 branches missed.">        for (int i = 0; i &lt; num; i++) {</span>
+<span class="nc" id="L373">            SuperPost poster = posts.get(i);</span>
+            String type;
+            String value;
+            String postclass;
+<span class="nc bnc" id="L377" title="All 2 branches missed.">            if (poster.getPostClass().equals(&quot;transportation&quot;)) {</span>
+<span class="nc" id="L378">                TransportationPost post = (TransportationPost) poster;</span>
+<span class="nc" id="L379">                type = post.getType();</span>
+<span class="nc" id="L380">                double distance = post.getKilometer();</span>
+<span class="nc" id="L381">                value = Math.floor(distance * 100) / 100 + &quot; km&quot;;</span>
+<span class="nc" id="L382">                postclass = &quot;transport&quot;;</span>
+<span class="nc bnc" id="L383" title="All 2 branches missed.">            } else if (poster.getPostClass().equals(&quot;food&quot;)) {</span>
+<span class="nc" id="L384">                FoodPost post = (FoodPost) poster;</span>
+<span class="nc" id="L385">                type = post.getMeal();</span>
+<span class="nc" id="L386">                value = post.getType();</span>
+<span class="nc" id="L387">                postclass = &quot;food&quot;;</span>
+<span class="nc bnc" id="L388" title="All 2 branches missed.">            } else if (poster.getPostClass().equals(&quot;ConsumptionPost&quot;)) {</span>
+<span class="nc" id="L389">                ConsumptionPost post = (ConsumptionPost) poster;</span>
+<span class="nc" id="L390">                type = post.getConsume();</span>
+<span class="nc" id="L391">                postclass = &quot;consumption&quot;;</span>
+<span class="nc bnc" id="L392" title="All 2 branches missed.">                if (post.getState()) {</span>
+<span class="nc" id="L393">                    value = &quot;Yes&quot;;</span>
+                } else {
+<span class="nc" id="L395">                    value = &quot;No&quot;;</span>
+                }
+<span class="nc" id="L397">            } else {</span>
+<span class="nc" id="L398">                postclass = &quot;error&quot;;</span>
+<span class="nc" id="L399">                type = &quot;Error&quot;;</span>
+<span class="nc" id="L400">                value = &quot;Error&quot;;</span>
+            }
+<span class="nc" id="L402">            Date date = poster.getDate();</span>
+            try {
+<span class="nc" id="L404">                FXMLLoader loader =</span>
+<span class="nc" id="L405">                        new FXMLLoader(getClass().getResource(&quot;/fxml/recentpost.fxml&quot;));</span>
+<span class="nc" id="L406">                SinglePostController spc = new SinglePostController(type, value, postclass, date);</span>
+<span class="nc" id="L407">                loader.setController(spc);</span>
+<span class="nc" id="L408">                loader.setRoot(recentPostsContainer);</span>
+<span class="nc" id="L409">                loader.load();</span>
+<span class="nc" id="L410">            } catch (IOException e) {</span>
+<span class="nc" id="L411">                System.out.println(&quot;Error here&quot;);</span>
+<span class="nc" id="L412">                e.printStackTrace();</span>
+<span class="nc" id="L413">            }</span>
+        }
+<span class="nc" id="L415">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

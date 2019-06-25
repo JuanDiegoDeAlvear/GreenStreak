@@ -1,0 +1,657 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Calculations.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Starter OOPProject-Template</a> &gt; <a href="index.source.html" class="el_package">com.client.logic</a> &gt; <span class="el_source">Calculations.java</span></div><h1>Calculations.java</h1><pre class="source lang-java linenums">package com.client.logic;
+
+<span class="nc" id="L3">public abstract class Calculations {</span>
+
+    /**
+     * Total carbon calculation.
+     *
+     * @return transport + food + energy
+     */
+    public static double totalCarbon(FoodSurvey food, TransportationSurvey transport,
+                                     EnergySurvey energy) {
+
+<span class="fc" id="L13">        return transportTotal(transport) + foodTotal(food) + energy(energy);</span>
+
+    }
+
+    /**
+     * Total footprint calculation.
+     *
+     * @return transport + food + energy + life
+     */
+    public static double totalEco(FoodSurvey food, TransportationSurvey transport,
+                                  EnergySurvey energy, LifeStyleSurvey life) {
+<span class="fc" id="L24">        return footPrintFood(food) + footPrintTransport(transport)</span>
+                +
+<span class="fc" id="L26">                footPrintEnergy(energy) + footPrintLife(life);</span>
+
+    }
+
+    /**
+     * Calculation of carbon emission based on food compost.
+     *
+     * @return double TotalCarbon
+     */
+    public static double foodCompost(FoodSurvey user) {
+<span class="fc" id="L36">        double totalCarbon = 0;</span>
+<span class="fc bfc" id="L37" title="All 5 branches covered.">        switch (user.amountFoodCompost) {</span>
+            case &quot;None&quot;:
+                //CO2 emissions for composting measured in tonnes of carbon.
+<span class="fc" id="L40">                double noneCompost = 0.25;</span>
+<span class="fc" id="L41">                totalCarbon = totalCarbon + noneCompost;</span>
+<span class="fc" id="L42">                break;</span>
+            case &quot;About a quarter&quot;:
+<span class="fc" id="L44">                double quarterCompost = 0.1875;</span>
+<span class="fc" id="L45">                totalCarbon = totalCarbon + quarterCompost;</span>
+<span class="fc" id="L46">                break;</span>
+            case &quot;Half&quot;:
+<span class="fc" id="L48">                double halfCompost = 0.125;</span>
+<span class="fc" id="L49">                totalCarbon = totalCarbon + halfCompost;</span>
+<span class="fc" id="L50">                break;</span>
+            case &quot;All food waste&quot;:
+<span class="fc" id="L52">                double allCompost = 0;</span>
+<span class="fc" id="L53">                totalCarbon = totalCarbon + allCompost;</span>
+<span class="fc" id="L54">                break;</span>
+
+            default:
+<span class="fc" id="L57">                totalCarbon = 0;</span>
+                break;
+
+        }
+
+<span class="fc" id="L62">        return totalCarbon;</span>
+    }
+
+    /**
+     * Calculation of carbon emission based on diet.
+     *
+     * @return double TotalCarbon
+     */
+    public static double foodDiet(FoodSurvey user) {
+<span class="fc" id="L71">        double totalCarbon = 0;</span>
+<span class="pc bpc" id="L72" title="1 of 6 branches missed.">        switch (user.dietChoice) {</span>
+            case &quot;Vegan&quot;:
+                //Emissions for diet
+<span class="fc" id="L75">                double vegan = 0;</span>
+<span class="fc" id="L76">                totalCarbon = totalCarbon + vegan;</span>
+<span class="fc" id="L77">                break;</span>
+            case &quot;Vegetarian&quot;:
+<span class="fc" id="L79">                double vegetable = 0.1;</span>
+<span class="fc" id="L80">                totalCarbon = totalCarbon + vegetable;</span>
+<span class="fc" id="L81">                break;</span>
+            case &quot;Low meat and dairy&quot;:
+<span class="fc" id="L83">                double lessAvgMeat = 0.25;</span>
+<span class="fc" id="L84">                totalCarbon = totalCarbon + lessAvgMeat;</span>
+<span class="fc" id="L85">                break;</span>
+            case &quot;Average meat and dairy&quot;:
+<span class="fc" id="L87">                double averageMeat = 0.4;</span>
+<span class="fc" id="L88">                totalCarbon = totalCarbon + averageMeat;</span>
+
+<span class="fc" id="L90">                break;</span>
+            case &quot;Heavy meat and dairy&quot;:
+<span class="fc" id="L92">                double alotMeat = 0.6;</span>
+<span class="fc" id="L93">                totalCarbon = totalCarbon + alotMeat;</span>
+<span class="fc" id="L94">                break;</span>
+
+            default:
+<span class="nc" id="L97">                totalCarbon = 0;</span>
+                break;
+
+        }
+
+<span class="fc" id="L102">        return totalCarbon;</span>
+    }
+
+    /**
+     * Carbon emission based on food locality.
+     *
+     * @return double Carbon total
+     */
+    public static double foodLocal(FoodSurvey user) {
+<span class="fc" id="L111">        double totalCarbon = 0;</span>
+<span class="pc bpc" id="L112" title="1 of 5 branches missed.">        switch (user.amountLocalFood) {</span>
+            case &quot;Almost all&quot;:
+                //Emissions for local food
+<span class="fc" id="L115">                double mostLocal = 0.1;</span>
+<span class="fc" id="L116">                totalCarbon = totalCarbon + mostLocal;</span>
+<span class="fc" id="L117">                break;</span>
+            case &quot;Above average&quot;:
+<span class="fc" id="L119">                double aboveLocal = 0.2;</span>
+<span class="fc" id="L120">                totalCarbon = totalCarbon + aboveLocal;</span>
+<span class="fc" id="L121">                break;</span>
+            case &quot;Average&quot;:
+<span class="fc" id="L123">                double avgLocal = 0.3;</span>
+<span class="fc" id="L124">                totalCarbon = totalCarbon + avgLocal;</span>
+<span class="fc" id="L125">                break;</span>
+            case &quot;Very little&quot;:
+<span class="fc" id="L127">                double littleLocal = 0.5;</span>
+<span class="fc" id="L128">                totalCarbon = totalCarbon + littleLocal;</span>
+<span class="fc" id="L129">                break;</span>
+
+            default:
+<span class="nc" id="L132">                totalCarbon = 0;</span>
+                break;
+        }
+<span class="fc" id="L135">        return totalCarbon;</span>
+    }
+
+    /**
+     * Carbon Emission based on waste.
+     *
+     * @return double
+     */
+    public static double foodTotal(FoodSurvey user) {
+        double totalCarbon;
+<span class="fc bfc" id="L145" title="All 5 branches covered.">        switch (user.amountWastedFood) {</span>
+            case &quot;Above average&quot;:
+                //Emissions for waste, multiplier for whole food section.
+<span class="fc" id="L148">                double aboveWaste = 1.1;</span>
+<span class="fc" id="L149">                totalCarbon = (foodCompost(user) + foodLocal(user) + foodDiet(user)</span>
+<span class="fc" id="L150">                        + foodOrganic(user) + foodPack(user)) * aboveWaste;</span>
+
+<span class="fc" id="L152">                break;</span>
+            case &quot;Average&quot;:
+<span class="fc" id="L154">                double avgWaste = 1;</span>
+<span class="fc" id="L155">                totalCarbon = (foodCompost(user) + foodLocal(user) + foodDiet(user)</span>
+<span class="fc" id="L156">                        + foodOrganic(user) + foodPack(user)) * avgWaste;</span>
+
+<span class="fc" id="L158">                break;</span>
+            case &quot;Below average&quot;:
+<span class="fc" id="L160">                double belowAvgWaste = 0.9;</span>
+<span class="fc" id="L161">                totalCarbon = (foodCompost(user) + foodLocal(user) + foodDiet(user)</span>
+<span class="fc" id="L162">                        + foodOrganic(user) + foodPack(user)) * belowAvgWaste;</span>
+
+<span class="fc" id="L164">                break;</span>
+            case &quot;Very little&quot;:
+<span class="fc" id="L166">                double littleWaste = 0.8;</span>
+<span class="fc" id="L167">                totalCarbon = (foodCompost(user) + foodLocal(user) + foodDiet(user)</span>
+<span class="fc" id="L168">                        + foodOrganic(user) + foodPack(user)) * littleWaste;</span>
+<span class="fc" id="L169">                break;</span>
+
+            default:
+<span class="fc" id="L172">                totalCarbon = 0;</span>
+                break;
+
+        }
+<span class="fc" id="L176">        return totalCarbon;</span>
+    }
+
+    /**
+     * Carbon based on food packaging.
+     *
+     * @return double
+     */
+    public static double foodPack(FoodSurvey user) {
+<span class="fc" id="L185">        double totalCarbon = 0;</span>
+<span class="pc bpc" id="L186" title="1 of 5 branches missed.">        switch (user.amountFoodPackaged) {</span>
+            case &quot;Above average&quot;:
+                //Emissions for packaging
+<span class="fc" id="L189">                double alotPackaging = 0.6;</span>
+<span class="fc" id="L190">                totalCarbon = totalCarbon + alotPackaging;</span>
+<span class="fc" id="L191">                break;</span>
+            case &quot;Average&quot;:
+<span class="fc" id="L193">                double avgPackaging = 0.4;</span>
+<span class="fc" id="L194">                totalCarbon = totalCarbon + avgPackaging;</span>
+<span class="fc" id="L195">                break;</span>
+            case &quot;Below average&quot;:
+<span class="fc" id="L197">                double lessPackaging = 0.2;</span>
+<span class="fc" id="L198">                totalCarbon = totalCarbon + lessPackaging;</span>
+<span class="fc" id="L199">                break;</span>
+            case &quot;Very little&quot;:
+<span class="fc" id="L201">                double littlePackaging = 0.05;</span>
+<span class="fc" id="L202">                totalCarbon = totalCarbon + littlePackaging;</span>
+<span class="fc" id="L203">                break;</span>
+
+            default:
+<span class="nc" id="L206">                totalCarbon = 0;</span>
+                break;
+
+        }
+<span class="fc" id="L210">        return totalCarbon;</span>
+
+    }
+
+    /**
+     * Carbon based on amount of organic food.
+     *
+     * @return double
+     */
+    public static double foodOrganic(FoodSurvey user) {
+<span class="fc" id="L220">        double totalCarbon = 0;</span>
+<span class="pc bpc" id="L221" title="1 of 5 branches missed.">        switch (user.amountOrganicFood) {</span>
+            case &quot;All&quot;:
+                //Emissions for organic food
+<span class="fc" id="L224">                double allOrganic = 0;</span>
+<span class="fc" id="L225">                totalCarbon = totalCarbon + allOrganic;</span>
+<span class="fc" id="L226">                break;</span>
+            case &quot;Most&quot;:
+<span class="fc" id="L228">                double mostOrganic = 0.2;</span>
+<span class="fc" id="L229">                totalCarbon = totalCarbon + mostOrganic;</span>
+<span class="fc" id="L230">                break;</span>
+            case &quot;Some&quot;:
+<span class="fc" id="L232">                double someOrganic = 0.5;</span>
+<span class="fc" id="L233">                totalCarbon = totalCarbon + someOrganic;</span>
+<span class="fc" id="L234">                break;</span>
+            case &quot;None&quot;:
+<span class="fc" id="L236">                double noneOrganic = 0.7;</span>
+<span class="fc" id="L237">                totalCarbon = totalCarbon + noneOrganic;</span>
+<span class="fc" id="L238">                break;</span>
+            default:
+<span class="nc" id="L240">                totalCarbon = 0;</span>
+                break;
+        }
+<span class="fc" id="L243">        return totalCarbon;</span>
+    }
+
+    /**
+     * Method calculates carbon emissions due to air travel.
+     *
+     * @return double
+     */
+    public static double transportFly(TransportationSurvey user) {
+        double carbon;
+        // 0.25 tonnes of CO2 per hour of flight.
+<span class="fc" id="L254">        double flightHour = 0.25;</span>
+<span class="fc" id="L255">        carbon = user.getAveHoursFly() * flightHour;</span>
+
+<span class="fc" id="L257">        return carbon;</span>
+    }
+
+    /**
+     * Method calculates total carbon emission due to transport.
+     *
+     * @return double
+     */
+    public static double transportTotal(TransportationSurvey user) {
+<span class="fc" id="L266">        double carbon = 0;</span>
+        //Data for the transport section
+        // CO2 released per kilometer traveled by car.
+        // How many kilometers can cars of different sizes go per litre of fuel.
+<span class="fc" id="L270">        double coLiter = 0.0024;</span>
+<span class="fc bfc" id="L271" title="All 2 branches covered.">        if (user.getMainModeTransport().equals(&quot;Car&quot;)) {</span>
+<span class="fc" id="L272">            carbon = carCarbon(user);</span>
+        }
+<span class="fc bfc" id="L274" title="All 2 branches covered.">        if (user.getMainModeTransport().equals(&quot;Public transport&quot;)) {</span>
+<span class="fc" id="L275">            double publicTransport = 35;</span>
+<span class="fc" id="L276">            carbon = ((user.getAveKmPerDay() * 365) / publicTransport) * coLiter;</span>
+        }
+<span class="fc bfc" id="L278" title="All 2 branches covered.">        if (user.getMainModeTransport().equals(&quot;Walking/Biking&quot;)) {</span>
+<span class="fc" id="L279">            carbon = 0;</span>
+        }
+<span class="fc bfc" id="L281" title="All 2 branches covered.">        if (user.getMainModeTransport().equals(&quot;Motorcycle/Moped&quot;)) {</span>
+<span class="fc" id="L282">            double motorbike = 30;</span>
+<span class="fc" id="L283">            carbon = ((user.getAveKmPerDay() * 365) / motorbike) * coLiter;</span>
+        }
+<span class="pc bpc" id="L285" title="1 of 4 branches missed.">        if (!user.getTypeOfCar().equals(&quot;No Car&quot;) &amp;&amp; !user.getMainModeTransport().equals(&quot;Car&quot;)) {</span>
+<span class="fc" id="L286">            carbon = carbon + 0.2;</span>
+
+        }
+<span class="fc" id="L289">        return carbon + transportFly(user);</span>
+
+    }
+
+    /**
+     * Stuff.
+     *
+     * @param user transportation survey.
+     * @return double
+     */
+    public static double carCarbon(TransportationSurvey user) {
+<span class="fc" id="L300">        double carbon = 0;</span>
+<span class="fc" id="L301">        double coLiter = 0.0024;</span>
+<span class="pc bpc" id="L302" title="2 of 6 branches missed.">        switch (user.getTypeOfCar()) {</span>
+            case &quot;Small car&quot;:
+<span class="fc" id="L304">                int smallCar = 18;</span>
+<span class="fc" id="L305">                carbon = ((user.getAveKmPerDay() * 365.0) / smallCar) * coLiter;</span>
+
+<span class="fc" id="L307">                break;</span>
+            case &quot;Medium car&quot;:
+<span class="fc" id="L309">                int medCar = 15;</span>
+<span class="fc" id="L310">                carbon = ((user.getAveKmPerDay() * 365.0) / medCar) * coLiter;</span>
+
+<span class="fc" id="L312">                break;</span>
+            case &quot;Large car&quot;:
+<span class="fc" id="L314">                int bigCar = 10;</span>
+<span class="fc" id="L315">                carbon = ((user.getAveKmPerDay() * 365.0) / bigCar) * coLiter;</span>
+
+<span class="fc" id="L317">                break;</span>
+            case &quot;Electric car&quot;:
+<span class="fc" id="L319">                int electricCar = 34;</span>
+<span class="fc" id="L320">                carbon = ((user.getAveKmPerDay() * 365.0) / electricCar) * coLiter;</span>
+
+<span class="fc" id="L322">                break;</span>
+            case &quot;No car&quot;:
+<span class="nc" id="L324">                carbon = 0;</span>
+<span class="nc" id="L325">                break;</span>
+
+            default:
+<span class="nc" id="L328">                return 0;</span>
+
+        }
+<span class="fc" id="L331">        return carbon;</span>
+    }
+
+    /**
+     * Carbon based on energy usage.
+     *
+     * @return double
+     */
+    public static double energy(EnergySurvey user) {
+<span class="fc" id="L340">        double carbon = 0;</span>
+<span class="fc" id="L341">        double greenEnergy = 0.2;//Multipliers for GreenStreak energy and efficient lighting</span>
+<span class="fc" id="L342">        double efficientLight = 0.85;</span>
+<span class="fc bfc" id="L343" title="All 2 branches covered.">        if (user.typeHouse.equals(&quot;Apartment&quot;)) {</span>
+            //Types of houses and kWh for each
+<span class="fc" id="L345">            double apartment = 3000;</span>
+<span class="pc bpc" id="L346" title="1 of 2 branches missed.">            if (user.efficientLighting) {</span>
+<span class="fc" id="L347">                carbon = apartment * efficientLight;</span>
+            }
+<span class="pc bpc" id="L349" title="1 of 2 branches missed.">            if (user.greenEnergy) {</span>
+<span class="fc" id="L350">                carbon = carbon * greenEnergy;</span>
+            } else {
+<span class="nc" id="L352">                carbon = apartment;</span>
+            }
+        }
+<span class="fc bfc" id="L355" title="All 2 branches covered.">        if (user.typeHouse.equals(&quot;Small house&quot;)) {</span>
+<span class="fc" id="L356">            double smallHouse = 3500;</span>
+<span class="pc bpc" id="L357" title="1 of 2 branches missed.">            if (user.efficientLighting) {</span>
+<span class="nc" id="L358">                carbon = smallHouse * efficientLight;</span>
+            }
+<span class="pc bpc" id="L360" title="1 of 2 branches missed.">            if (user.greenEnergy) {</span>
+<span class="nc" id="L361">                carbon = carbon * greenEnergy;</span>
+            } else {
+<span class="fc" id="L363">                carbon = smallHouse;</span>
+            }
+
+<span class="fc" id="L366">        } else {</span>
+<span class="fc" id="L367">            carbon = mediumLarge(user);</span>
+        }
+<span class="fc" id="L369">        double electricity = 0.00034;</span>
+<span class="fc" id="L370">        return (carbon * electricity) / user.getAmountRoommates();</span>
+    }
+
+    /**
+     * .
+     *
+     * @param user stuff
+     * @return double
+     */
+    public static double mediumLarge(EnergySurvey user) {
+<span class="fc" id="L380">        double carbon = 0;</span>
+<span class="fc" id="L381">        double greenEnergy = 0.2;//Multipliers for GreenStreak energy and efficient lighting</span>
+<span class="fc" id="L382">        double efficientLight = 0.85;</span>
+<span class="fc bfc" id="L383" title="All 2 branches covered.">        if (user.typeHouse.equals(&quot;Medium house&quot;)) {</span>
+<span class="fc" id="L384">            double medHouse = 4800;</span>
+<span class="pc bpc" id="L385" title="1 of 2 branches missed.">            if (user.efficientLighting) {</span>
+<span class="fc" id="L386">                carbon = medHouse * efficientLight;</span>
+            }
+<span class="pc bpc" id="L388" title="1 of 2 branches missed.">            if (user.greenEnergy) {</span>
+<span class="fc" id="L389">                carbon = carbon * greenEnergy;</span>
+            } else {
+<span class="nc" id="L391">                carbon = medHouse;</span>
+            }
+        }
+<span class="fc bfc" id="L394" title="All 2 branches covered.">        if (user.typeHouse.equals(&quot;Large house&quot;)) {</span>
+<span class="fc" id="L395">            double largeHouse = 7000;</span>
+<span class="pc bpc" id="L396" title="1 of 2 branches missed.">            if (user.efficientLighting) {</span>
+<span class="fc" id="L397">                carbon = largeHouse * efficientLight;</span>
+            }
+<span class="pc bpc" id="L399" title="1 of 2 branches missed.">            if (user.greenEnergy) {</span>
+<span class="fc" id="L400">                carbon = carbon * greenEnergy;</span>
+            } else {
+<span class="nc" id="L402">                carbon = largeHouse;</span>
+            }
+        }
+<span class="fc" id="L405">        return carbon;</span>
+
+    }
+
+
+    /**
+     * Footprint based on diet choice.
+     *
+     * @return double footprint
+     */
+    public static double footPrintFood(FoodSurvey food) {
+<span class="fc" id="L416">        double foot = 0;</span>
+<span class="pc bpc" id="L417" title="1 of 6 branches missed.">        switch (food.dietChoice) {</span>
+            case &quot;Vegan&quot;:
+<span class="fc" id="L419">                foot = foot + 0.07;</span>
+<span class="fc" id="L420">                break;</span>
+            case &quot;Vegetarian&quot;:
+<span class="fc" id="L422">                foot = foot + 0.15;</span>
+<span class="fc" id="L423">                break;</span>
+            case &quot;Low meat and dairy&quot;:
+<span class="fc" id="L425">                foot = foot + 0.3;</span>
+<span class="fc" id="L426">                break;</span>
+            case &quot;Average meat and dairy&quot;:
+<span class="fc" id="L428">                foot = foot + 0.4;</span>
+<span class="fc" id="L429">                break;</span>
+            case &quot;Heavy meat and dairy&quot;:
+<span class="nc" id="L431">                foot = foot + 0.5;</span>
+<span class="nc" id="L432">                break;</span>
+            default:
+<span class="fc" id="L434">                return 0;</span>
+        }
+<span class="pc bpc" id="L436" title="1 of 5 branches missed.">        switch (food.amountOrganicFood) {</span>
+            case &quot;All&quot;:
+<span class="fc" id="L438">                foot = foot + 0.05;</span>
+<span class="fc" id="L439">                break;</span>
+            case &quot;Most&quot;:
+<span class="fc" id="L441">                foot = foot + 0.15;</span>
+<span class="fc" id="L442">                break;</span>
+            case &quot;Some&quot;:
+<span class="fc" id="L444">                foot = foot + 0.2;</span>
+<span class="fc" id="L445">                break;</span>
+            case &quot;None&quot;:
+<span class="fc" id="L447">                foot = foot + 0.3;</span>
+<span class="fc" id="L448">                break;</span>
+            default:
+<span class="nc" id="L450">                foot = 0;</span>
+                break;
+        }
+<span class="fc" id="L453">        return foot;</span>
+    }
+
+    /**
+     * Footprint based on transport.
+     *
+     * @return Footprint
+     */
+    public static double footPrintTransport(TransportationSurvey transport) {
+<span class="fc" id="L462">        double foot = 0;</span>
+<span class="fc bfc" id="L463" title="All 2 branches covered.">        if (transport.getMainModeTransport().equals(&quot;Car&quot;)) {</span>
+<span class="fc" id="L464">            foot = carFoot(transport);</span>
+
+        } else {
+<span class="fc bfc" id="L467" title="All 4 branches covered.">            switch (transport.getMainModeTransport()) {</span>
+                case &quot;Public transport&quot;:
+<span class="fc" id="L469">                    foot = (transport.getAveKmPerDay() * 365.0) / 12000;</span>
+<span class="fc" id="L470">                    break;</span>
+                case &quot;Walking/Biking&quot;:
+<span class="fc" id="L472">                    foot = 0;</span>
+<span class="fc" id="L473">                    break;</span>
+                case &quot;Motorcycle/Moped&quot;:
+<span class="fc" id="L475">                    foot = (transport.getAveKmPerDay() * 365.0) / 11500;</span>
+<span class="fc" id="L476">                    break;</span>
+                default:
+<span class="fc" id="L478">                    foot = 0;</span>
+                    break;
+            }
+        }
+
+
+<span class="pc bpc" id="L484" title="1 of 2 branches missed.">        if (!transport.getTypeOfCar().equals(&quot;No car&quot;)</span>
+<span class="pc bpc" id="L485" title="1 of 2 branches missed.">                &amp;&amp; !transport.getMainModeTransport().equals(&quot;car&quot;)) {</span>
+
+<span class="fc" id="L487">            foot = foot + 0.1;</span>
+        }
+
+<span class="fc" id="L490">        return foot + (transport.getAveHoursFly() * 0.1);</span>
+    }
+
+    /**
+     * Stuff.
+     *
+     * @param transport stuff
+     * @return double
+     */
+    public static double carFoot(TransportationSurvey transport) {
+<span class="fc" id="L500">        double foot = 0;</span>
+<span class="pc bpc" id="L501" title="2 of 6 branches missed.">        switch (transport.getTypeOfCar()) {</span>
+            case &quot;Small car&quot;:
+<span class="fc" id="L503">                foot = (transport.getAveKmPerDay() * 365.0) / 10000;</span>
+<span class="fc" id="L504">                break;</span>
+            case &quot;Medium car&quot;:
+<span class="fc" id="L506">                foot = (transport.getAveKmPerDay() * 365.0) / 9000;</span>
+<span class="fc" id="L507">                break;</span>
+            case &quot;Large car&quot;:
+<span class="fc" id="L509">                foot = (transport.getAveKmPerDay() * 365.0) / 8000;</span>
+<span class="fc" id="L510">                break;</span>
+            case &quot;Electric car&quot;:
+<span class="fc" id="L512">                foot = (transport.getAveKmPerDay() * 365.0) / 12000;</span>
+<span class="fc" id="L513">                break;</span>
+            case &quot;No car&quot;:
+<span class="nc" id="L515">                break;</span>
+            default:
+<span class="nc" id="L517">                foot = 0;</span>
+                break;
+        }
+<span class="fc" id="L520">        return foot;</span>
+    }
+
+    /**
+     * Footprint based on energy usage.
+     *
+     * @return footprint
+     */
+    public static double footPrintEnergy(EnergySurvey energy) {
+<span class="fc" id="L529">        double foot = 0;</span>
+<span class="fc bfc" id="L530" title="All 4 branches covered.">        switch (energy.amountEnergy) {</span>
+            case &quot;Below average&quot;:
+<span class="fc" id="L532">                foot = foot + 0.8;</span>
+<span class="fc" id="L533">                break;</span>
+            case &quot;Average&quot;:
+<span class="fc" id="L535">                foot = foot + 0.5;</span>
+<span class="fc" id="L536">                break;</span>
+            case &quot;Above average&quot;:
+<span class="fc" id="L538">                foot = foot + 0.25;</span>
+<span class="fc" id="L539">                break;</span>
+
+            default:
+<span class="fc" id="L542">                foot = 0;</span>
+                break;
+        }
+<span class="fc bfc" id="L545" title="All 2 branches covered.">        if (energy.greenEnergy) {</span>
+<span class="fc" id="L546">            foot = foot + 0.07;</span>
+        } else {
+<span class="fc" id="L548">            foot = foot + 0.5;</span>
+        }
+<span class="fc" id="L550">        return foot;</span>
+    }
+
+    /**
+     * Footprint based on lifestyle choices.
+     *
+     * @return footprint
+     */
+    public static double footPrintLife(LifeStyleSurvey life) {
+<span class="fc" id="L559">        double foot = 0;</span>
+<span class="fc bfc" id="L560" title="All 5 branches covered.">        switch (life.howOftenBigPurchase) {</span>
+            case &quot;More than 5&quot;:
+<span class="fc" id="L562">                foot = foot + 2;</span>
+<span class="fc" id="L563">                break;</span>
+            case &quot;Around 2 - 4&quot;:
+<span class="fc" id="L565">                foot = foot + 1.5;</span>
+<span class="fc" id="L566">                break;</span>
+            case &quot;Maybe once&quot;:
+<span class="fc" id="L568">                foot = foot + 0.5;</span>
+<span class="fc" id="L569">                break;</span>
+            case &quot;Very rarely&quot;:
+<span class="fc" id="L571">                foot = foot + 0.1;</span>
+<span class="fc" id="L572">                break;</span>
+            default:
+<span class="fc" id="L574">                foot = 0;</span>
+                break;
+        }
+<span class="pc bpc" id="L577" title="1 of 6 branches missed.">        switch (life.weeklyWaste) {</span>
+            case &quot;Less than 15kg&quot;:
+<span class="fc" id="L579">                foot = foot + 0.1;</span>
+<span class="fc" id="L580">                break;</span>
+            case &quot;15kg - 30kg&quot;:
+<span class="fc" id="L582">                foot = foot + 0.3;</span>
+<span class="fc" id="L583">                break;</span>
+            case &quot;30kg - 45kg&quot;:
+<span class="fc" id="L585">                foot = foot + 0.75;</span>
+<span class="fc" id="L586">                break;</span>
+            case &quot;45kg - 60kg&quot;:
+<span class="fc" id="L588">                foot = foot + 1.5;</span>
+<span class="fc" id="L589">                break;</span>
+            case &quot;More than 60kg&quot;:
+<span class="nc" id="L591">                foot = foot + 3;</span>
+<span class="nc" id="L592">                break;</span>
+            default:
+<span class="fc" id="L594">                foot = 0;</span>
+                break;
+
+        }
+<span class="fc" id="L598">        foot = foot + footAppRec(life);</span>
+
+<span class="fc" id="L600">        return foot + (life.aveShowerTime * 0.01);</span>
+
+    }
+
+    /**
+     * .
+     *
+     * @param life stuuf
+     * @return double
+     */
+    public static double footAppRec(LifeStyleSurvey life) {
+<span class="fc" id="L611">        double foot = 0;</span>
+<span class="fc bfc" id="L612" title="All 5 branches covered.">        switch (life.recycle) {</span>
+            case &quot;Glass&quot;:
+<span class="fc" id="L614">                foot = foot - 0.1;</span>
+<span class="fc" id="L615">                break;</span>
+            case &quot;Paper&quot;:
+<span class="fc" id="L617">                foot = foot - 0.2;</span>
+<span class="fc" id="L618">                break;</span>
+            case &quot;Plastic&quot;:
+<span class="fc" id="L620">                foot = foot - 0.3;</span>
+<span class="fc" id="L621">                break;</span>
+            case &quot;Metal&quot;:
+<span class="fc" id="L623">                foot = foot - 0.4;</span>
+<span class="fc" id="L624">                break;</span>
+
+            default:
+<span class="fc" id="L627">                foot = 0;</span>
+                break;
+
+        }
+
+<span class="fc bfc" id="L632" title="All 5 branches covered.">        switch (life.applianceUse) {</span>
+            case &quot;10x a week&quot;:
+<span class="fc" id="L634">                foot = foot + 1;</span>
+<span class="fc" id="L635">                break;</span>
+            case &quot;5 - 10x a week&quot;:
+<span class="fc" id="L637">                foot = foot + 0.5;</span>
+<span class="fc" id="L638">                break;</span>
+            case &quot;1 - 5x a week&quot;:
+<span class="fc" id="L640">                foot = foot + 0.3;</span>
+<span class="fc" id="L641">                break;</span>
+            case &quot;Not applicable&quot;:
+<span class="fc" id="L643">                foot = foot + 0;</span>
+<span class="fc" id="L644">                break;</span>
+
+            default:
+<span class="fc" id="L647">                foot = 0;</span>
+                break;
+        }
+<span class="fc" id="L650">        return foot;</span>
+    }
+
+}
+
+
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

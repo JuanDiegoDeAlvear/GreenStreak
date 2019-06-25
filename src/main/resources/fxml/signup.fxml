@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #f0f0f0;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.client.controllers.SignupController">
+    <children>
+        <VBox prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #34495e;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="400.0">
+                    <children>
+                        <Label prefHeight="50.0" prefWidth="195.0" text="Green Streak" textFill="#2ecc71">
+                            <font>
+                                <Font name="Eras Medium ITC" size="34.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+                <HBox alignment="TOP_CENTER" prefHeight="64.0" prefWidth="400.0">
+                    <children>
+                        <Label text="Create an Account" textFill="WHITE">
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+        <Pane fx:id="userInfoPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="125.0">
+            <children>
+                <VBox alignment="CENTER" prefHeight="450.0" prefWidth="300.0" spacing="20.0">
+                    <children>
+                        <Label text="Account Details:">
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets left="10.0" top="10.0" />
+                            </VBox.margin>
+                        </Label>
+                        <JFXTextField fx:id="username" focusColor="#218c74" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#checkValidUsername" prefHeight="42.0" prefWidth="180.0" promptText="Username" unFocusColor="#bfbdbd">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </JFXTextField>
+                        <JFXPasswordField fx:id="password" focusColor="#218c74" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="42.0" prefWidth="180.0" promptText="Password" unFocusColor="#bfbdbd">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </JFXPasswordField>
+                        <JFXPasswordField fx:id="confirmPassword" focusColor="#218c74" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#checkPasswordMatch" prefHeight="42.0" prefWidth="180.0" promptText="Confirm Password" unFocusColor="#bfbdbd">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </JFXPasswordField>
+                        <JFXTextField fx:id="email" focusColor="#218c74" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#checkValidEmail" prefHeight="42.0" prefWidth="180.0" promptText="Email" unFocusColor="#bfbdbd">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </JFXTextField>
+                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="41.0" prefWidth="180.0" spacing="20.0">
+                            <children>
+                                <JFXButton fx:id="login" onAction="#switchToLoginScreen" style="-fx-background-color: #f0f0f0;" text="Login" textFill="#218c74">
+                                    <HBox.margin>
+                                        <Insets />
+                                    </HBox.margin>
+                                    <padding>
+                                        <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
+                                    </padding>
+                                </JFXButton>
+                                <JFXButton fx:id="nextBtn" onAction="#nextPage" style="-fx-background-color: #218c74;" text="Next" textFill="WHITE">
+                                    <padding>
+                                        <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
+                                    </padding>
+                                </JFXButton>
+                            </children>
+                        </HBox>
+                        <Label fx:id="msgLabel" text="*False input messages go here" textFill="#d00000" />
+                    </children>
+                </VBox>
+            </children>
+        </Pane>
+        <Pane fx:id="foodPane" layoutX="60.0" layoutY="135.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" visible="false" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="125.0">
+            <children>
+                <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="450.0" prefWidth="300.0">
+                    <content>
+                        <VBox alignment="TOP_CENTER" prefHeight="450.0" prefWidth="300.0" spacing="15.0" style="-fx-background-color: #ffffff;">
+                            <children>
+                                <Label contentDisplay="RIGHT" text="Carbon Footprint Survey">
+                                    <font>
+                                        <Font size="15.0" />
+                                    </font>
+                                    <VBox.margin>
+                                        <Insets left="10.0" top="10.0" />
+                                    </VBox.margin>
+                                    <graphic>
+                                        <Label alignment="CENTER_RIGHT" style="-fx-background-color: #2ecc71;" text="Food" textFill="WHITE">
+                                            <padding>
+                                                <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                                            </padding>
+                                        </Label>
+                                    </graphic>
+                                </Label>
+                                <Label text="How much of your food is organic?" />
+                                <JFXComboBox fx:id="amountOrganicFood" focusColor="#218c74" promptText="Choose one" />
+                                <Label text="What best describes your diet?" />
+                                <JFXComboBox fx:id="dietChoice" focusColor="#218c74" promptText="Choose one" />
+                                <Label text="How much of your food is local (max 250 km away)?" />
+                                <JFXComboBox fx:id="amountLocalFood" focusColor="#218c74" promptText="Choose one" />
+                                <Label prefHeight="17.0" prefWidth="198.0" text="How much food do you throw away?" />
+                                <JFXComboBox fx:id="amountWastedFood" focusColor="#218c74" promptText="Choose one (Average is 1/5th)" />
+                                <Label text="What amount of your food is pre-packaged?" />
+                                <JFXComboBox fx:id="amountFoodPackaged" focusColor="#218c74" promptText="Choose one (Average is 1/2) " />
+                                <Label text="What amount of food waste do you compost?" />
+                                <JFXComboBox fx:id="amountFoodCompost" focusColor="#218c74" promptText="Choose one" />
+                                <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="41.0" prefWidth="180.0" spacing="20.0">
+                                    <children>
+                                        <JFXButton onAction="#switchToLoginScreen" style="-fx-background-color: #f0f0f0;" text="Login" textFill="#218c74">
+                                            <HBox.margin>
+                                                <Insets />
+                                            </HBox.margin>
+                                            <padding>
+                                                <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
+                                            </padding>
+                                        </JFXButton>
+                                        <JFXButton fx:id="nextBtnFood" onAction="#nextPage" style="-fx-background-color: #218c74;" text="Next" textFill="WHITE">
+                                            <padding>
+                                                <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
+                                            </padding>
+                                        </JFXButton>
+                                    </children>
+                                </HBox>
+                                <Label fx:id="msgLabelFood" text="*False input messages go here" textFill="#d00000" />
+                            </children>
+                        </VBox>
+                    </content>
+                </ScrollPane>
+            </children>
+        </Pane>
+        <Pane fx:id="transportationPane" layoutX="60.0" layoutY="135.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" visible="false" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="125.0">
+            <children>
+                <VBox alignment="CENTER" prefHeight="450.0" prefWidth="300.0" spacing="15.0" style="-fx-background-color: #ffffff;">
+                    <children>
+                        <Label contentDisplay="RIGHT" text="Carbon Footprint Survey">
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets left="10.0" top="10.0" />
+                            </VBox.margin>
+                            <graphic>
+                                <Label alignment="CENTER_RIGHT" style="-fx-background-color: #2ecc71;" text="Transportation" textFill="WHITE">
+                                    <padding>
+                                        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                                    </padding>
+                                </Label>
+                            </graphic>
+                        </Label>
+                        <Label text="How many hours on average do you fly a year?" />
+                        <JFXTextField fx:id="aveHoursFly" focusColor="#218c74" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" promptText="Enter estimated hours" unFocusColor="#f0f0f0" />
+                        <Label text="Do you own a car?" />
+                        <JFXComboBox fx:id="typeOfCar" focusColor="#218c74" promptText="Choose one" unFocusColor="#d0d0d0" />
+                        <Label text="On average how far do you travel a day?" />
+                        <JFXTextField fx:id="aveKmPerDay" focusColor="#218c74" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" promptText="Enter estimated km..." unFocusColor="#d0d0d0" />
+                        <Label prefHeight="17.0" prefWidth="233.0" text="What is your main mode of transportation?" />
+                        <JFXComboBox fx:id="mainModeTransport" focusColor="#218c74" promptText="Choose one" unFocusColor="#d0d0d0" />
+                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="41.0" prefWidth="180.0" spacing="20.0">
+                            <children>
+                                <JFXButton onAction="#switchToLoginScreen" style="-fx-background-color: #f0f0f0;" text="Login" textFill="#218c74">
+                                    <HBox.margin>
+                                        <Insets />
+                                    </HBox.margin>
+                                    <padding>
+                                        <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
+                                    </padding>
+                                </JFXButton>
+                                <JFXButton fx:id="nextBtnTransport" onAction="#nextPage" style="-fx-background-color: #218c74;" text="Next" textFill="WHITE">
+                                    <padding>
+                                        <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
+                                    </padding>
+                                </JFXButton>
+                            </children>
+                        </HBox>
+                        <Label fx:id="msgLabelTransportation" text="*False input messages go here" textFill="#d00000" />
+                    </children>
+                </VBox>
+            </children>
+        </Pane>
+        <Pane fx:id="energyPane" layoutX="60.0" layoutY="135.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" visible="false" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="125.0">
+            <children>
+                <VBox alignment="CENTER" prefHeight="450.0" prefWidth="300.0" spacing="15.0" style="-fx-background-color: #ffffff;">
+                    <children>
+                        <Label contentDisplay="RIGHT" text="Carbon Footprint Survey">
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets left="10.0" top="10.0" />
+                            </VBox.margin>
+                            <graphic>
+                                <Label alignment="CENTER_RIGHT" style="-fx-background-color: #2ecc71;" text="Energy" textFill="WHITE">
+                                    <padding>
+                                        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                                    </padding>
+                                </Label>
+                            </graphic>
+                        </Label>
+                        <Label text="What type of house do you live in?" />
+                        <JFXComboBox fx:id="typeHouse" focusColor="#218c74" promptText="Choose one" unFocusColor="#d0d0d0" />
+                        <Label text="How many people share your residence" />
+                        <JFXTextField fx:id="amountRoomates" focusColor="#218c74" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" promptText="Enter amount of people" unFocusColor="#f0f0f0" />
+                        <Label contentDisplay="RIGHT" text="Do you use green energy?">
+                            <graphic>
+                                <JFXCheckBox fx:id="greenEnergy" text=" " />
+                            </graphic>
+                        </Label>
+                        <Label contentDisplay="RIGHT" text="Energy efficient lighting?">
+                            <graphic>
+                                <JFXCheckBox fx:id="efficientLighting" text=" " />
+                            </graphic>
+                        </Label>
+                        <Label text="How much energy do you think you use? &#10;       Average, no big appliances etc" />
+                        <JFXComboBox fx:id="amountEnergy" focusColor="#218c74" promptText="Choose one" unFocusColor="#d0d0d0" />
+                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="41.0" prefWidth="180.0" spacing="20.0">
+                            <children>
+                                <JFXButton onAction="#switchToLoginScreen" style="-fx-background-color: #f0f0f0;" text="Login" textFill="#218c74">
+                                    <HBox.margin>
+                                        <Insets />
+                                    </HBox.margin>
+                                    <padding>
+                                        <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
+                                    </padding>
+                                </JFXButton>
+                                <JFXButton fx:id="nextBtnEnergy" onAction="#nextPage" style="-fx-background-color: #218c74;" text="Next" textFill="WHITE">
+                                    <padding>
+                                        <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
+                                    </padding>
+                                </JFXButton>
+                            </children>
+                        </HBox>
+                        <Label fx:id="msgLabelEnergy" text="*False input messages go here" textFill="#d00000" />
+                    </children>
+                </VBox>
+            </children>
+        </Pane>
+        <Pane fx:id="lifestylePane" layoutX="60.0" layoutY="135.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" visible="false" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="125.0">
+            <children>
+                <ScrollPane hbarPolicy="NEVER" prefHeight="450.0" prefWidth="300.0">
+                    <content>
+                        <VBox alignment="CENTER" fillWidth="false" maxHeight="-Infinity" prefHeight="450.0" prefWidth="300.0" spacing="12.0" style="-fx-background-color: #ffffff;">
+                            <children>
+                                <Label contentDisplay="RIGHT" text="Carbon Footprint Survey">
+                                    <font>
+                                        <Font size="15.0" />
+                                    </font>
+                                    <VBox.margin>
+                                        <Insets left="10.0" top="10.0" />
+                                    </VBox.margin>
+                                    <graphic>
+                                        <Label alignment="CENTER_RIGHT" style="-fx-background-color: #2ecc71;" text="Lifestyle" textFill="WHITE">
+                                            <padding>
+                                                <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                                            </padding>
+                                        </Label>
+                                    </graphic>
+                                </Label>
+                                <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="36.0" prefWidth="242.0" text="How often do you make big purchases such as laptop, phone, furniture etc a year?" wrapText="true" />
+                                <JFXComboBox fx:id="howOftenBigPurchase" focusColor="#218c74" promptText="Choose one" unFocusColor="#d0d0d0" />
+                                <Label text="How much waste do you produce a week?&#10;On average a person produces  7kg a week." />
+                                <JFXComboBox fx:id="weeklyWaste" focusColor="#218c74" promptText="Choose one" unFocusColor="#d0d0d0" />
+                                <Label contentDisplay="RIGHT" text="Which of these you recycle?" />
+                                <JFXComboBox fx:id="recycle" focusColor="#218c74" promptText="Choose one" unFocusColor="#d0d0d0" />
+                                <Label contentDisplay="RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="36.0" prefWidth="227.0" text="How often do you use appliances such as dishwashers or washing machines a week?" wrapText="true" />
+                                <JFXComboBox fx:id="applianceUse" focusColor="#218c74" promptText="Choose one" unFocusColor="#d0d0d0" />
+                                <Label text="How long are your showers?" />
+                                <JFXTextField fx:id="aveShowerTime" focusColor="#218c74" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" promptText="Enter average min." unFocusColor="#d0d0d0" />
+                                <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="41.0" prefWidth="180.0" spacing="20.0">
+                                    <children>
+                                        <JFXButton onAction="#switchToLoginScreen" style="-fx-background-color: #f0f0f0;" text="Login" textFill="#218c74">
+                                            <HBox.margin>
+                                                <Insets />
+                                            </HBox.margin>
+                                            <padding>
+                                                <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
+                                            </padding>
+                                        </JFXButton>
+                                        <JFXButton fx:id="createAccountBtn" onAction="#submit" style="-fx-background-color: #218c74;" text="Signup" textFill="WHITE">
+                                            <padding>
+                                                <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
+                                            </padding>
+                                        </JFXButton>
+                                    </children>
+                                </HBox>
+                                <Label fx:id="msgLabelLife" text="*False input messages go here" textFill="#d00000" />
+                            </children>
+                        </VBox>
+                    </content>
+                </ScrollPane>
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>

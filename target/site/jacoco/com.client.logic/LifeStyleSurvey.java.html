@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LifeStyleSurvey.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Starter OOPProject-Template</a> &gt; <a href="index.source.html" class="el_package">com.client.logic</a> &gt; <span class="el_source">LifeStyleSurvey.java</span></div><h1>LifeStyleSurvey.java</h1><pre class="source lang-java linenums">package com.client.logic;
+
+public class LifeStyleSurvey extends Survey {
+
+    String howOftenBigPurchase;
+    String weeklyWaste;
+    String recycle;
+    String applianceUse;
+    int aveShowerTime;
+
+    /**
+     * Empty constructor.
+     */
+<span class="fc" id="L14">    public LifeStyleSurvey() {</span>
+<span class="fc" id="L15">        this.howOftenBigPurchase = null;</span>
+<span class="fc" id="L16">        this.weeklyWaste = null;</span>
+<span class="fc" id="L17">        this.recycle = null;</span>
+<span class="fc" id="L18">        this.applianceUse = null;</span>
+<span class="fc" id="L19">        this.aveShowerTime = 0;</span>
+<span class="fc" id="L20">    }</span>
+
+    /**
+     * Constructor.
+     */
+    public LifeStyleSurvey(String howOftenBigPurchase, String weeklyWaste, String recycle,
+<span class="fc" id="L26">                           String applianceUse, int aveShowerTime) {</span>
+<span class="fc" id="L27">        this.howOftenBigPurchase = howOftenBigPurchase;</span>
+<span class="fc" id="L28">        this.weeklyWaste = weeklyWaste;</span>
+<span class="fc" id="L29">        this.recycle = recycle;</span>
+<span class="fc" id="L30">        this.applianceUse = applianceUse;</span>
+<span class="fc" id="L31">        this.aveShowerTime = aveShowerTime;</span>
+<span class="fc" id="L32">    }</span>
+
+    public String getHowOftenBigPurchase() {
+<span class="fc" id="L35">        return howOftenBigPurchase;</span>
+    }
+
+    public void setHowOftenBigPurchase(String howOftenBigPurchase) {
+<span class="fc" id="L39">        this.howOftenBigPurchase = howOftenBigPurchase;</span>
+<span class="fc" id="L40">    }</span>
+
+    public String getWeeklyWaste() {
+<span class="fc" id="L43">        return weeklyWaste;</span>
+    }
+
+    public void setWeeklyWaste(String weeklyWaste) {
+<span class="fc" id="L47">        this.weeklyWaste = weeklyWaste;</span>
+<span class="fc" id="L48">    }</span>
+
+    public String getRecycle() {
+<span class="fc" id="L51">        return recycle;</span>
+    }
+
+    public void setRecycle(String recycle) {
+<span class="fc" id="L55">        this.recycle = recycle;</span>
+<span class="fc" id="L56">    }</span>
+
+    public String getApplianceUse() {
+<span class="fc" id="L59">        return applianceUse;</span>
+    }
+
+    public void setApplianceUse(String applianceUse) {
+<span class="fc" id="L63">        this.applianceUse = applianceUse;</span>
+<span class="fc" id="L64">    }</span>
+
+    public int getAveShowerTime() {
+<span class="fc" id="L67">        return aveShowerTime;</span>
+    }
+
+    public void setAveShowerTime(int aveShowerTime) {
+<span class="fc" id="L71">        this.aveShowerTime = aveShowerTime;</span>
+<span class="fc" id="L72">    }</span>
+
+    @Override
+    public boolean equals(Object obj) {
+
+<span class="fc bfc" id="L77" title="All 2 branches covered.">        if (this == obj) {</span>
+<span class="fc" id="L78">            return true;</span>
+        }
+<span class="fc bfc" id="L80" title="All 2 branches covered.">        if (!(obj instanceof LifeStyleSurvey)) {</span>
+<span class="fc" id="L81">            return false;</span>
+        }
+
+<span class="fc" id="L84">        LifeStyleSurvey that = (LifeStyleSurvey) obj;</span>
+
+<span class="fc" id="L86">        checkHalf(that);</span>
+
+
+<span class="pc bpc" id="L89" title="1 of 4 branches missed.">        if (getRecycle() != null ? !getRecycle().equals(that.getRecycle()) : that</span>
+<span class="nc bnc" id="L90" title="All 2 branches missed.">                .getRecycle() != null) {</span>
+<span class="fc" id="L91">            return false;</span>
+        }
+<span class="pc bpc" id="L93" title="1 of 2 branches missed.">        return getApplianceUse() != null ? !getApplianceUse()</span>
+<span class="pc bpc" id="L94" title="3 of 4 branches missed.">                .equals(that.getApplianceUse()) : that.getApplianceUse() != null;</span>
+    }
+
+    private boolean checkHalf(LifeStyleSurvey that) {
+<span class="fc bfc" id="L98" title="All 2 branches covered.">        if (getAveShowerTime() != that.getAveShowerTime()) {</span>
+<span class="fc" id="L99">            return false;</span>
+        }
+<span class="pc bpc" id="L101" title="1 of 2 branches missed.">        if (getHowOftenBigPurchase() != null ? !getHowOftenBigPurchase()</span>
+<span class="pc bpc" id="L102" title="2 of 4 branches missed.">                .equals(that.getHowOftenBigPurchase()) : that.getHowOftenBigPurchase() != null) {</span>
+<span class="fc" id="L103">            return false;</span>
+        }
+
+<span class="pc bpc" id="L106" title="1 of 2 branches missed.">        return getWeeklyWaste() != null ? getWeeklyWaste()</span>
+<span class="pc bnc" id="L107" title="All 2 branches missed.">                .equals(that.getWeeklyWaste()) : that.getWeeklyWaste() == null;</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="fc" id="L112">        return &quot;LifeStyleSurvey{&quot;</span>
+                + &quot;howOftenBigPurchase='&quot;
+                + howOftenBigPurchase + '\'' + &quot;, weeklyWaste='&quot;
+                + weeklyWaste + '\'' + &quot;, recycle='&quot; + recycle + '\''
+                + &quot;, applianceUse='&quot; + applianceUse + '\'' + &quot;, aveShowerTime=&quot;
+                + aveShowerTime + '}';
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

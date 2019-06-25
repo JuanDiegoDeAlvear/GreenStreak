@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SuperPost.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Starter OOPProject-Template</a> &gt; <a href="index.source.html" class="el_package">com.client.logic</a> &gt; <span class="el_source">SuperPost.java</span></div><h1>SuperPost.java</h1><pre class="source lang-java linenums">package com.client.logic;
+
+import java.util.Date;
+import java.util.Objects;
+
+public class SuperPost {
+
+    String username;
+    Date date;
+    String postClass;
+    int id;
+
+    /**
+     * Constructor.
+     *
+     * @param username  set username using String
+     * @param date      set date using Date
+     * @param postClass set name with string
+     */
+<span class="fc" id="L20">    public SuperPost(String username, Date date, String postClass, int id) {</span>
+<span class="fc" id="L21">        this.username = username;</span>
+<span class="fc" id="L22">        this.date = date;</span>
+<span class="fc" id="L23">        this.postClass = postClass;</span>
+<span class="fc" id="L24">        this.id = id;</span>
+<span class="fc" id="L25">    }</span>
+
+    /**
+     * Empty Constructor.
+     */
+<span class="nc" id="L30">    public SuperPost() {</span>
+<span class="nc" id="L31">        this.username = null;</span>
+<span class="nc" id="L32">        this.date = null;</span>
+<span class="nc" id="L33">        this.postClass = null;</span>
+<span class="nc" id="L34">    }</span>
+
+
+    public String getUsername() {
+<span class="fc" id="L38">        return username;</span>
+    }
+
+    public void setUsername(String username) {
+<span class="fc" id="L42">        this.username = username;</span>
+<span class="fc" id="L43">    }</span>
+
+    public Date getDate() {
+<span class="fc" id="L46">        return date;</span>
+    }
+
+    public void setDate(Date date) {
+<span class="fc" id="L50">        this.date = date;</span>
+<span class="fc" id="L51">    }</span>
+
+    public String getPostClass() {
+<span class="fc" id="L54">        return this.postClass;</span>
+    }
+
+    public void setPostClass(String postClass) {
+<span class="fc" id="L58">        this.postClass = postClass;</span>
+<span class="fc" id="L59">    }</span>
+
+    public int getId() {
+<span class="fc" id="L62">        return id;</span>
+    }
+
+    public void setId(int id) {
+<span class="fc" id="L66">        this.id = id;</span>
+<span class="fc" id="L67">    }</span>
+
+    @Override
+    public boolean equals(Object obj) {
+<span class="pc bpc" id="L71" title="1 of 2 branches missed.">        if (this == obj) {</span>
+<span class="nc" id="L72">            return true;</span>
+        }
+<span class="pc bpc" id="L74" title="1 of 2 branches missed.">        if (!(obj instanceof SuperPost)) {</span>
+<span class="nc" id="L75">            return false;</span>
+        }
+<span class="fc" id="L77">        SuperPost superPost = (SuperPost) obj;</span>
+<span class="pc bpc" id="L78" title="1 of 2 branches missed.">        return Objects.equals(getUsername(), superPost.getUsername())</span>
+<span class="pc bpc" id="L79" title="1 of 2 branches missed.">                &amp;&amp; superPost.getId() == this.getId()</span>
+<span class="pc bpc" id="L80" title="1 of 2 branches missed.">                &amp;&amp; Objects.equals(getDate(), superPost.getDate())</span>
+<span class="pc bpc" id="L81" title="1 of 2 branches missed.">                &amp;&amp; Objects.equals(getPostClass(), superPost.getPostClass());</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

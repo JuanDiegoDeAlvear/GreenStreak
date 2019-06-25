@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DB_Adapter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Starter OOPProject-Template</a> &gt; <a href="index.source.html" class="el_package">com.server.database</a> &gt; <span class="el_source">DB_Adapter.java</span></div><h1>DB_Adapter.java</h1><pre class="source lang-java linenums">package com.server.database;
+
+import java.sql.*;
+import java.util.Scanner;
+
+public class DB_Adapter {
+
+    /* 01 ------------------------ Variables ------------------------ */
+
+<span class="fc" id="L10">    private static DB_Adapter dbAdapter_instance = null;</span>
+
+<span class="nc" id="L12">    private final String jdbURL = &quot;jdbc:postgresql://localhost:5432/GreenStreak&quot;;</span>
+<span class="nc" id="L13">    private final String username = &quot;postgres&quot;;</span>
+
+    /* 02 -------------------- database variables ------------------- */
+
+<span class="nc" id="L17">    Connection conn = null;</span>
+<span class="nc" id="L18">    Statement stnt = null;</span>
+<span class="nc" id="L19">    ResultSet rs = null;</span>
+
+    /*-----------------------  Getters and Setters -------------------*/
+    public Connection getConn() {
+<span class="nc" id="L23">        return conn;</span>
+    }
+
+    public void setConn(Connection conn) {
+<span class="nc" id="L27">        this.conn = conn;</span>
+<span class="nc" id="L28">    }</span>
+
+
+<span class="nc" id="L31">    private DB_Adapter() {</span>
+
+        //Connect to the database
+<span class="nc" id="L34">        Scanner input = new Scanner(System.in);</span>
+<span class="nc" id="L35">        System.out.println(&quot;Enter the database password: &quot;);</span>
+<span class="nc" id="L36">        String password = input.nextLine();</span>
+
+        try {
+            //Connect to the database
+<span class="nc" id="L40">            conn = DriverManager.getConnection(jdbURL, username, password);</span>
+
+            //Print success
+<span class="nc" id="L43">            System.out.println(&quot;database connection stablished&quot;);</span>
+
+<span class="nc" id="L45">        } catch (SQLException e) {</span>
+
+<span class="nc" id="L47">            e.printStackTrace();</span>
+<span class="nc" id="L48">        }</span>
+<span class="nc" id="L49">    }</span>
+
+    /* 03 ------------------------ Constructor ---------------------- */
+
+    public  static DB_Adapter getInstance(){
+<span class="nc bnc" id="L54" title="All 2 branches missed.">        if (dbAdapter_instance == null) {</span>
+<span class="nc" id="L55">            dbAdapter_instance = new DB_Adapter();</span>
+        }
+<span class="nc" id="L57">        return dbAdapter_instance;</span>
+    }
+
+    /**.
+     * method to disconnect from the database com.server
+     */
+    public void disconnect() {
+
+        try {
+
+<span class="nc bnc" id="L67" title="All 2 branches missed.">            if (stnt != null) {</span>
+<span class="nc" id="L68">                stnt.close();</span>
+            }
+
+<span class="nc bnc" id="L71" title="All 2 branches missed.">            if (rs != null) {</span>
+<span class="nc" id="L72">                rs.close();</span>
+            }
+
+<span class="nc bnc" id="L75" title="All 2 branches missed.">            if (conn != null) {</span>
+<span class="nc" id="L76">                conn.close();</span>
+            }
+
+<span class="nc" id="L79">            System.out.println(&quot;database connection closed&quot;);</span>
+
+<span class="nc" id="L81">        } catch (SQLException e) {</span>
+<span class="nc" id="L82">            e.printStackTrace();</span>
+<span class="nc" id="L83">        }</span>
+
+<span class="nc" id="L85">    }</span>
+
+    //All necessary basic sql commands
+
+
+    /**.
+     * The current method is a model of a querying method
+     */
+    public ResultSet Query(String query) {
+
+        try {
+
+<span class="nc" id="L97">            stnt = conn.createStatement();</span>
+<span class="nc" id="L98">            System.out.println(&quot;Connected to PostgreSQL database!&quot;);</span>
+<span class="nc" id="L99">            System.out.println(&quot;Reading records...&quot;);</span>
+<span class="nc" id="L100">            ResultSet resultSet = stnt.executeQuery(query);</span>
+
+<span class="nc" id="L102">            return resultSet;</span>
+
+<span class="nc" id="L104">        } catch (SQLException e) {</span>
+
+<span class="nc" id="L106">            e.printStackTrace();</span>
+<span class="nc" id="L107">            return null;</span>
+
+        }
+    }
+
+    public ResultSet Query(PreparedStatement st) throws SQLException {
+<span class="nc" id="L113">        return st.executeQuery();</span>
+    }
+
+    public ResultSet Update(PreparedStatement st) throws SQLException {
+<span class="nc" id="L117">        return st.executeQuery();</span>
+    }
+
+
+    //
+    //    public Profile getProfile(String username){
+    //        //query for values
+    //        return new Profile(result.username, result.age, result.hasCar)
+    //    }
+    //
+    //    /**
+    //     * Hacer un metodo query para datamanager class
+    //     */
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

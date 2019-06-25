@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SignupController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Starter OOPProject-Template</a> &gt; <a href="index.source.html" class="el_package">com.client.controllers</a> &gt; <span class="el_source">SignupController.java</span></div><h1>SignupController.java</h1><pre class="source lang-java linenums">package com.client.controllers;
+
+import com.client.Main;
+import com.client.ServerCommunication;
+import com.client.logic.EnergySurvey;
+import com.client.logic.FoodSurvey;
+import com.client.logic.LifeStyleSurvey;
+import com.client.logic.SignUpUser;
+import com.client.logic.TransportationSurvey;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXCheckBox;
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.Region;
+import javafx.stage.Stage;
+
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.regex.Pattern;
+
+<span class="nc" id="L35">public class SignupController {</span>
+    @FXML
+    private Pane userInfoPane;
+
+    @FXML
+    private JFXTextField username;
+
+    @FXML
+    private JFXPasswordField password;
+    @FXML
+    private JFXPasswordField confirmPassword;
+
+    @FXML
+    private JFXTextField email;
+
+    @FXML
+    private JFXButton login;
+
+    @FXML
+    private JFXButton nextBtn;
+
+    @FXML
+    private Label msgLabel;
+
+    @FXML
+    private Pane foodPane;
+
+    @FXML
+    private JFXComboBox&lt;String&gt; amountOrganicFood;
+
+    @FXML
+    private JFXComboBox&lt;String&gt; dietChoice;
+
+    @FXML
+    private JFXComboBox&lt;String&gt; amountLocalFood;
+
+    @FXML
+    private JFXComboBox&lt;String&gt; amountWastedFood;
+
+    @FXML
+    private JFXComboBox&lt;String&gt; amountFoodPackaged;
+
+    @FXML
+    private JFXComboBox&lt;String&gt; amountFoodCompost;
+
+    @FXML
+    private JFXButton nextBtnFood;
+
+    @FXML
+    private Label msgLabelFood;
+
+    @FXML
+    private Pane transportationPane;
+
+    @FXML
+    private JFXTextField aveHoursFly;
+
+    @FXML
+    private JFXComboBox&lt;String&gt; typeOfCar;
+
+    @FXML
+    private JFXTextField aveKmPerDay;
+
+    @FXML
+    private JFXComboBox&lt;String&gt; mainModeTransport;
+
+    @FXML
+    private JFXButton nextBtnTransport;
+
+    @FXML
+    private Label msgLabelTransportation;
+
+    @FXML
+    private Pane energyPane;
+
+    @FXML
+    private JFXComboBox&lt;String&gt; typeHouse;
+
+    @FXML
+    private JFXTextField amountRoomates;
+
+    @FXML
+    private JFXCheckBox greenEnergy;
+
+    @FXML
+    private JFXCheckBox efficientLighting;
+
+    @FXML
+    private JFXComboBox&lt;String&gt; amountEnergy;
+
+    @FXML
+    private JFXButton nextBtnEnergy;
+
+    @FXML
+    private Label msgLabelEnergy;
+
+    @FXML
+    private Pane lifestylePane;
+
+    @FXML
+    private JFXComboBox&lt;String&gt; howOftenBigPurchase;
+
+    @FXML
+    private JFXComboBox&lt;String&gt; weeklyWaste;
+
+    @FXML
+    private JFXComboBox&lt;String&gt; recycle;
+
+    @FXML
+    private JFXComboBox&lt;String&gt; applianceUse;
+
+    @FXML
+    private JFXTextField aveShowerTime;
+
+    @FXML
+    private JFXButton createAccountBtn;
+
+    @FXML
+    private Label msgLabelLife;
+
+<span class="nc" id="L155">    private SignUpUser signupuser = new SignUpUser();</span>
+
+    private Queue&lt;Pane&gt; pages;
+    private Pane currentPane;
+
+    /**
+     * pops us an alert for Authentication error.
+     *
+     * @param statment sets statment as String
+     */
+    public static void alert(String statment) {
+<span class="nc" id="L166">        Alert alert = new Alert(Alert.AlertType.ERROR, statment, ButtonType.OK);</span>
+<span class="nc" id="L167">        alert.setTitle(&quot;Authentication Error&quot;);</span>
+<span class="nc" id="L168">        alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);</span>
+<span class="nc" id="L169">        alert.setHeaderText(null);</span>
+<span class="nc" id="L170">        alert.showAndWait();</span>
+<span class="nc" id="L171">    }</span>
+
+    //if passwords match returns true
+    @FXML
+    boolean checkPasswordMatch() {
+<span class="nc bnc" id="L176" title="All 2 branches missed.">        if (password.getText().equals(&quot;&quot;)) {</span>
+<span class="nc" id="L177">            LoginController.alert(&quot;Add Password&quot;);</span>
+<span class="nc" id="L178">            return false;</span>
+        }
+<span class="nc bnc" id="L180" title="All 2 branches missed.">        if (!password.getText().equals(confirmPassword.getText())) {</span>
+<span class="nc" id="L181">            msgLabel.setText(&quot;Passwords don't match!&quot;);</span>
+<span class="nc" id="L182">            return false;</span>
+        }
+<span class="nc bnc" id="L184" title="All 2 branches missed.">        if (password.getLength() &lt; 8) {</span>
+<span class="nc" id="L185">            msgLabel.setText(&quot;Password should be more than 8 characters&quot;);</span>
+<span class="nc" id="L186">            return false;</span>
+        }
+<span class="nc" id="L188">        msgLabel.setText(&quot;&quot;);</span>
+<span class="nc" id="L189">        return true;</span>
+    }
+
+    //Send to server to check
+    @FXML
+    boolean checkValidEmail() {
+        try {
+<span class="nc" id="L196">            InternetAddress emailAddr = new InternetAddress(email.getText());</span>
+<span class="nc" id="L197">            emailAddr.validate();</span>
+<span class="nc" id="L198">            msgLabel.setText(&quot;&quot;);</span>
+<span class="nc" id="L199">        } catch (AddressException ex) {</span>
+<span class="nc" id="L200">            System.out.println(&quot;Wrong Email &quot;);</span>
+<span class="nc" id="L201">            msgLabel.setText(&quot;Please enter a valid email&quot;);</span>
+<span class="nc" id="L202">            return false;</span>
+<span class="nc" id="L203">        }</span>
+<span class="nc bnc" id="L204" title="All 2 branches missed.">        if (ServerCommunication.emailExists(email.getText())) {</span>
+<span class="nc" id="L205">            msgLabel.setText(&quot;email exists&quot;);</span>
+<span class="nc" id="L206">            return false;</span>
+        }
+<span class="nc" id="L208">        return true;</span>
+    }
+
+    //send to server to check
+    @FXML
+    boolean checkValidUsername() {
+
+<span class="nc" id="L215">        String userName = username.getText();</span>
+<span class="nc" id="L216">        Pattern pattern = Pattern.compile(&quot;[A-Za-z0-9_]+&quot;);</span>
+
+<span class="nc bnc" id="L218" title="All 2 branches missed.">        if (userName == null) {</span>
+<span class="nc" id="L219">            msgLabel.setText(&quot;Username cannot be empty&quot;);</span>
+<span class="nc" id="L220">            return false;</span>
+        }
+<span class="nc bnc" id="L222" title="All 2 branches missed.">        if (!pattern.matcher(userName).matches()) {</span>
+<span class="nc" id="L223">            msgLabel.setText(&quot;Please enter a valid username&quot;);</span>
+<span class="nc" id="L224">            return false;</span>
+        }
+<span class="nc bnc" id="L226" title="All 2 branches missed.">        if (userName.length() &lt; 5) {</span>
+<span class="nc" id="L227">            msgLabel.setText(&quot;Username should be more than 5 characters&quot;);</span>
+<span class="nc" id="L228">            return false;</span>
+
+        }
+<span class="nc bnc" id="L231" title="All 2 branches missed.">        if (ServerCommunication.usernameExists(userName)) {</span>
+<span class="nc" id="L232">            msgLabel.setText(&quot; Username is taken try another one  &quot;);</span>
+<span class="nc" id="L233">            return false;</span>
+        }
+<span class="nc" id="L235">        msgLabel.setText(&quot;&quot;);</span>
+<span class="nc" id="L236">        return true;</span>
+    }
+
+    @FXML
+    void nextPage(ActionEvent event) {
+
+<span class="nc bnc" id="L242" title="All 4 branches missed.">        if (currentPane.equals(userInfoPane) &amp;&amp; checkUserPane()) {</span>
+<span class="nc" id="L243">            getNextPaneHelp();</span>
+<span class="nc" id="L244">            signupuser.setUsername(username.getText());</span>
+<span class="nc" id="L245">            signupuser.setEmail(email.getText());</span>
+<span class="nc" id="L246">            signupuser.setPassword(password.getText());</span>
+
+<span class="nc bnc" id="L248" title="All 4 branches missed.">        } else if (currentPane.equals(foodPane) &amp;&amp; checkFoodPane()) {</span>
+<span class="nc" id="L249">            signupuser.setFoodProfile(foodSurveyCreator());</span>
+<span class="nc" id="L250">            getNextPaneHelp();</span>
+
+<span class="nc bnc" id="L252" title="All 4 branches missed.">        } else if (currentPane.equals(transportationPane) &amp;&amp; checkTransportationPane()) {</span>
+<span class="nc" id="L253">            signupuser.setTransportationProfile(transportSurveyCreator());</span>
+<span class="nc" id="L254">            getNextPaneHelp();</span>
+<span class="nc bnc" id="L255" title="All 4 branches missed.">        } else if (currentPane.equals(energyPane) &amp;&amp; checkEnergyPane()) {</span>
+<span class="nc" id="L256">            signupuser.setEnergyProfile(energySurveyCreator());</span>
+<span class="nc" id="L257">            getNextPaneHelp();</span>
+<span class="nc bnc" id="L258" title="All 2 branches missed.">        } else if (currentPane.equals(lifestylePane)) {</span>
+<span class="nc" id="L259">            getNextPaneHelp();</span>
+
+        } else {
+<span class="nc" id="L262">            LoginController.alert(&quot;Something is missing&quot;);</span>
+        }
+
+
+<span class="nc" id="L266">    }</span>
+
+    private void getNextPaneHelp() {
+<span class="nc" id="L269">        currentPane.setVisible(false);</span>
+<span class="nc" id="L270">        currentPane = pages.poll();</span>
+<span class="nc bnc" id="L271" title="All 2 branches missed.">        if (currentPane != null) {</span>
+
+<span class="nc" id="L273">            currentPane.setVisible(true);</span>
+        }
+<span class="nc" id="L275">    }</span>
+
+    @FXML
+    void submit(ActionEvent event) throws IOException {
+<span class="nc bnc" id="L279" title="All 2 branches missed.">        if (checkLifestylePane()) {</span>
+<span class="nc" id="L280">            signupuser.setLifeStyleProfile(lifeStyleSurveyCreator());</span>
+<span class="nc" id="L281">            System.out.println(signupuser.getFoodProfile().getDietChoice());</span>
+<span class="nc" id="L282">            System.out.println(signupuser.getFoodProfile().getAmountLocalFood());</span>
+<span class="nc" id="L283">            System.out.println(signupuser.getLifeStyleProfile().getAveShowerTime());</span>
+
+<span class="nc bnc" id="L285" title="All 2 branches missed.">            if (ServerCommunication.sendsignupuser(signupuser)) {</span>
+<span class="nc" id="L286">                switchToLoginScreen(event);</span>
+            } else {
+<span class="nc" id="L288">                LoginController.alert(&quot;Connection error&quot;);</span>
+            }
+        } else {
+<span class="nc" id="L291">            LoginController.alert(&quot;AGAIN missed something&quot;);</span>
+        }
+
+
+<span class="nc" id="L295">    }</span>
+
+    @FXML
+    void switchToLoginScreen(ActionEvent event) throws IOException {
+<span class="nc" id="L299">        Parent root = FXMLLoader.load(getClass().getResource(&quot;/fxml/login.fxml&quot;));</span>
+<span class="nc" id="L300">        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow(); //grab the stage</span>
+<span class="nc" id="L301">        Scene scene = new Scene(root);</span>
+<span class="nc" id="L302">        stage.setScene(scene);</span>
+<span class="nc" id="L303">        Main.setCurrentScene(scene);</span>
+<span class="nc" id="L304">    }</span>
+
+    @FXML
+    void initialize() {
+<span class="nc" id="L308">        pages = new LinkedList&lt;&gt;();</span>
+        //created a queue to hold the various different pages of the survey
+<span class="nc" id="L310">        pages.add(foodPane);</span>
+<span class="nc" id="L311">        pages.add(transportationPane);</span>
+<span class="nc" id="L312">        pages.add(energyPane);</span>
+<span class="nc" id="L313">        pages.add(lifestylePane);</span>
+
+<span class="nc" id="L315">        currentPane = userInfoPane; //set the current pane to the default</span>
+
+<span class="nc" id="L317">        msgLabel.setText(&quot;&quot;);</span>
+<span class="nc" id="L318">        msgLabelEnergy.setText(&quot;&quot;);</span>
+<span class="nc" id="L319">        msgLabelFood.setText(&quot;&quot;);</span>
+<span class="nc" id="L320">        msgLabelLife.setText(&quot;&quot;);</span>
+<span class="nc" id="L321">        msgLabelTransportation.setText(&quot;&quot;);</span>
+
+<span class="nc" id="L323">        amountOrganicFood.getItems().add(&quot;All&quot;);</span>
+<span class="nc" id="L324">        amountOrganicFood.getItems().add(&quot;Most&quot;);</span>
+<span class="nc" id="L325">        amountOrganicFood.getItems().add(&quot;Some&quot;);</span>
+<span class="nc" id="L326">        amountOrganicFood.getItems().add(&quot;None&quot;);</span>
+
+<span class="nc" id="L328">        dietChoice.getItems().add(&quot;Vegan&quot;);</span>
+<span class="nc" id="L329">        dietChoice.getItems().add(&quot;Vegetarian&quot;);</span>
+<span class="nc" id="L330">        dietChoice.getItems().add(&quot;Low meat and dairy&quot;);</span>
+<span class="nc" id="L331">        dietChoice.getItems().add(&quot;Average meat and dairy&quot;);</span>
+<span class="nc" id="L332">        dietChoice.getItems().add(&quot;Heavy meat and dairy&quot;);</span>
+
+<span class="nc" id="L334">        amountLocalFood.getItems().add(&quot;Almost all&quot;);</span>
+<span class="nc" id="L335">        amountLocalFood.getItems().add(&quot;Above average&quot;);</span>
+<span class="nc" id="L336">        amountLocalFood.getItems().add(&quot;Average&quot;);</span>
+<span class="nc" id="L337">        amountLocalFood.getItems().add(&quot;Very little&quot;);</span>
+
+<span class="nc" id="L339">        amountWastedFood.getItems().add(&quot;Above average&quot;);</span>
+<span class="nc" id="L340">        amountWastedFood.getItems().add(&quot;Average&quot;);</span>
+<span class="nc" id="L341">        amountWastedFood.getItems().add(&quot;Below average&quot;);</span>
+<span class="nc" id="L342">        amountWastedFood.getItems().add(&quot;Very little&quot;);</span>
+
+<span class="nc" id="L344">        amountFoodPackaged.getItems().add(&quot;Above average&quot;);</span>
+<span class="nc" id="L345">        amountFoodPackaged.getItems().add(&quot;Average&quot;);</span>
+<span class="nc" id="L346">        amountFoodPackaged.getItems().add(&quot;Below average&quot;);</span>
+<span class="nc" id="L347">        amountFoodPackaged.getItems().add(&quot;Very little&quot;);</span>
+
+<span class="nc" id="L349">        amountFoodCompost.getItems().add(&quot;None&quot;);</span>
+<span class="nc" id="L350">        amountFoodCompost.getItems().add(&quot;About a quarter&quot;);</span>
+<span class="nc" id="L351">        amountFoodCompost.getItems().add(&quot;Half&quot;);</span>
+<span class="nc" id="L352">        amountFoodCompost.getItems().add(&quot;All food waste&quot;);</span>
+
+<span class="nc" id="L354">        typeOfCar.getItems().add(&quot;Small car&quot;);</span>
+<span class="nc" id="L355">        typeOfCar.getItems().add(&quot;Medium car&quot;);</span>
+<span class="nc" id="L356">        typeOfCar.getItems().add(&quot;Large car&quot;);</span>
+<span class="nc" id="L357">        typeOfCar.getItems().add(&quot;Electric&quot;);</span>
+<span class="nc" id="L358">        typeOfCar.getItems().add(&quot;No car&quot;);</span>
+
+<span class="nc" id="L360">        mainModeTransport.getItems().add(&quot;Public transport&quot;);</span>
+<span class="nc" id="L361">        mainModeTransport.getItems().add(&quot;Car&quot;);</span>
+<span class="nc" id="L362">        mainModeTransport.getItems().add(&quot;Walking/Biking&quot;);</span>
+<span class="nc" id="L363">        mainModeTransport.getItems().add(&quot;Motorcycle/Moped&quot;);</span>
+
+<span class="nc" id="L365">        typeHouse.getItems().add(&quot;Apartment&quot;);</span>
+<span class="nc" id="L366">        typeHouse.getItems().add(&quot;Small house&quot;);</span>
+<span class="nc" id="L367">        typeHouse.getItems().add(&quot;Medium house&quot;);</span>
+<span class="nc" id="L368">        typeHouse.getItems().add(&quot;Large house&quot;);</span>
+
+<span class="nc" id="L370">        amountEnergy.getItems().add(&quot;Below average&quot;);</span>
+<span class="nc" id="L371">        amountEnergy.getItems().add(&quot;Average&quot;);</span>
+<span class="nc" id="L372">        amountEnergy.getItems().add(&quot;Above average&quot;);</span>
+
+<span class="nc" id="L374">        howOftenBigPurchase.getItems().add(&quot;More than 5&quot;);</span>
+<span class="nc" id="L375">        howOftenBigPurchase.getItems().add(&quot;Around 2 - 4&quot;);</span>
+<span class="nc" id="L376">        howOftenBigPurchase.getItems().add(&quot;Maybe once&quot;);</span>
+<span class="nc" id="L377">        howOftenBigPurchase.getItems().add(&quot;Very rarely&quot;);</span>
+
+<span class="nc" id="L379">        weeklyWaste.getItems().add(&quot;Less than 15kg&quot;);</span>
+<span class="nc" id="L380">        weeklyWaste.getItems().add(&quot;15kg - 30kg&quot;);</span>
+<span class="nc" id="L381">        weeklyWaste.getItems().add(&quot;30kg - 45kg&quot;);</span>
+<span class="nc" id="L382">        weeklyWaste.getItems().add(&quot;45kg - 60kg&quot;);</span>
+<span class="nc" id="L383">        weeklyWaste.getItems().add(&quot;More than 60kg&quot;);</span>
+
+<span class="nc" id="L385">        recycle.getItems().add(&quot;Glass&quot;);</span>
+<span class="nc" id="L386">        recycle.getItems().add(&quot;Paper&quot;);</span>
+<span class="nc" id="L387">        recycle.getItems().add(&quot;Plastic&quot;);</span>
+<span class="nc" id="L388">        recycle.getItems().add(&quot;Metal&quot;);</span>
+
+<span class="nc" id="L390">        applianceUse.getItems().add(&quot;10x a week&quot;);</span>
+<span class="nc" id="L391">        applianceUse.getItems().add(&quot;5 - 10x a week&quot;);</span>
+<span class="nc" id="L392">        applianceUse.getItems().add(&quot;1 - 5x a week&quot;);</span>
+<span class="nc" id="L393">        applianceUse.getItems().add(&quot;Not applicable&quot;);</span>
+<span class="nc" id="L394">    }</span>
+
+    /**
+     * Stuff.
+     *
+     * @return stuff
+     */
+    private boolean checkUserPane() {
+<span class="nc bnc" id="L402" title="All 6 branches missed.">        return checkValidUsername() &amp;&amp; checkPasswordMatch() &amp;&amp; checkValidEmail();</span>
+    }
+
+    private boolean checkFoodPane() {
+<span class="nc bnc" id="L406" title="All 4 branches missed.">        return amountOrganicFood.getValue() != null &amp;&amp; dietChoice.getValue() != null</span>
+<span class="nc bnc" id="L407" title="All 2 branches missed.">                &amp;&amp; amountLocalFood.getValue() != null</span>
+<span class="nc bnc" id="L408" title="All 2 branches missed.">                &amp;&amp; amountWastedFood.getValue() != null</span>
+<span class="nc bnc" id="L409" title="All 2 branches missed.">                &amp;&amp; amountFoodPackaged.getValue() != null</span>
+<span class="nc bnc" id="L410" title="All 2 branches missed.">                &amp;&amp; amountFoodCompost.getValue() != null;</span>
+    }
+
+    private boolean checkTransportationPane() {
+<span class="nc bnc" id="L414" title="All 4 branches missed.">        return !aveHoursFly.getText().equals(&quot;&quot;) &amp;&amp; typeOfCar.getValue() != null</span>
+<span class="nc bnc" id="L415" title="All 2 branches missed.">                &amp;&amp; mainModeTransport.getValue() != null</span>
+<span class="nc bnc" id="L416" title="All 2 branches missed.">                &amp;&amp; !aveKmPerDay.getText().equals(&quot;&quot;);</span>
+
+    }
+
+    private boolean checkLifestylePane() {
+<span class="nc bnc" id="L421" title="All 4 branches missed.">        return applianceUse.getValue() != null &amp;&amp; howOftenBigPurchase.getValue() != null</span>
+<span class="nc bnc" id="L422" title="All 2 branches missed.">                &amp;&amp; recycle.getValue() != null</span>
+<span class="nc bnc" id="L423" title="All 2 branches missed.">                &amp;&amp; !aveShowerTime.getText().equals(&quot;&quot;);</span>
+
+    }
+
+    private boolean checkEnergyPane() {
+
+<span class="nc bnc" id="L429" title="All 4 branches missed.">        return !amountRoomates.getText().equals(&quot;&quot;) &amp;&amp; typeHouse.getValue() != null</span>
+<span class="nc bnc" id="L430" title="All 2 branches missed.">                &amp;&amp; amountEnergy.getValue() != null;</span>
+
+    }
+
+    /**
+     * Create FoodSurvey  from user input.
+     *
+     * @return FoodSurvey
+     */
+    public FoodSurvey foodSurveyCreator() {
+<span class="nc" id="L440">        FoodSurvey fsurvey = new FoodSurvey();</span>
+<span class="nc" id="L441">        fsurvey.setAmountOrganicFood(amountOrganicFood.getValue());</span>
+<span class="nc" id="L442">        fsurvey.setDietChoice(dietChoice.getValue());</span>
+<span class="nc" id="L443">        fsurvey.setAmountLocalFood(amountLocalFood.getValue());</span>
+<span class="nc" id="L444">        fsurvey.setAmountWastedFood(amountWastedFood.getValue());</span>
+<span class="nc" id="L445">        fsurvey.setAmountFoodPackaged(amountFoodPackaged.getValue());</span>
+<span class="nc" id="L446">        fsurvey.setAmountFoodCompost(amountFoodCompost.getValue());</span>
+<span class="nc" id="L447">        return fsurvey;</span>
+
+    }
+
+    /**
+     * Create LifeSurvey  from user input.
+     *
+     * @return LifeSurvey
+     */
+    public LifeStyleSurvey lifeStyleSurveyCreator() {
+<span class="nc" id="L457">        LifeStyleSurvey lifesurvey = new LifeStyleSurvey();</span>
+<span class="nc" id="L458">        lifesurvey.setApplianceUse(applianceUse.getValue());</span>
+<span class="nc" id="L459">        lifesurvey.setAveShowerTime(Integer.parseInt(aveShowerTime.getText()));</span>
+<span class="nc" id="L460">        lifesurvey.setHowOftenBigPurchase(howOftenBigPurchase.getValue());</span>
+<span class="nc" id="L461">        lifesurvey.setWeeklyWaste(weeklyWaste.getValue());</span>
+<span class="nc" id="L462">        lifesurvey.setRecycle(recycle.getValue());</span>
+<span class="nc" id="L463">        return lifesurvey;</span>
+
+    }
+
+    /**
+     * Create energy survey from user input.
+     *
+     * @return Energy Survey
+     */
+    public EnergySurvey energySurveyCreator() {
+<span class="nc" id="L473">        EnergySurvey esurvey = new EnergySurvey();</span>
+<span class="nc" id="L474">        esurvey.setTypeHouse(typeHouse.getValue());</span>
+<span class="nc" id="L475">        esurvey.setAmountRoommates(Integer.parseInt(amountRoomates.getText()));</span>
+<span class="nc" id="L476">        esurvey.setAmountEnergy(amountEnergy.getValue());</span>
+<span class="nc" id="L477">        esurvey.setGreenEnergy(greenEnergy.isSelected());</span>
+<span class="nc" id="L478">        esurvey.setEfficientLighting(efficientLighting.isSelected());</span>
+<span class="nc" id="L479">        return esurvey;</span>
+    }
+
+    /**
+     * Create transportation survey from user input.
+     *
+     * @return Transportation Survey
+     */
+    public TransportationSurvey transportSurveyCreator() {
+<span class="nc" id="L488">        TransportationSurvey tsurvey = new TransportationSurvey();</span>
+<span class="nc" id="L489">        tsurvey.setAveHoursFly(Integer.parseInt(aveHoursFly.getText()));</span>
+<span class="nc" id="L490">        tsurvey.setTypeOfCar(typeOfCar.getValue());</span>
+<span class="nc" id="L491">        tsurvey.setAveKmPerDay(Integer.parseInt(aveKmPerDay.getText()));</span>
+<span class="nc" id="L492">        tsurvey.setMainModeTransport(mainModeTransport.getValue());</span>
+<span class="nc" id="L493">        return tsurvey;</span>
+    }
+
+}
+
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

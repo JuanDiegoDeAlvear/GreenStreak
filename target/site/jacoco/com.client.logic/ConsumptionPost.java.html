@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ConsumptionPost.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Starter OOPProject-Template</a> &gt; <a href="index.source.html" class="el_package">com.client.logic</a> &gt; <span class="el_source">ConsumptionPost.java</span></div><h1>ConsumptionPost.java</h1><pre class="source lang-java linenums">package com.client.logic;
+
+public class ConsumptionPost extends SuperPost {
+    private String consume;
+    private boolean state;
+
+
+    /**
+     * Empty Constructor.
+     */
+    public ConsumptionPost() {
+<span class="fc" id="L12">        super(null, null, &quot;ConsumptionPost&quot;, 0);</span>
+<span class="fc" id="L13">        this.consume = null;</span>
+<span class="fc" id="L14">        this.state = false;</span>
+<span class="fc" id="L15">    }</span>
+
+    /**
+     * Constructor.
+     *
+     * @param consume sets consume with a String
+     * @param state   sets state with a boolean
+     */
+    public ConsumptionPost(String consume, boolean state) {
+<span class="fc" id="L24">        super(null, null, &quot;ConsumptionPost&quot;, 0);</span>
+<span class="fc" id="L25">        this.state = state;</span>
+<span class="fc" id="L26">        this.consume = consume;</span>
+
+<span class="fc" id="L28">    }</span>
+
+    public void setPostClass(String postClass) {
+<span class="fc" id="L31">        this.postClass = postClass;</span>
+<span class="fc" id="L32">    }</span>
+
+    public String getConsume() {
+<span class="fc" id="L35">        return consume;</span>
+    }
+
+    public void setConsume(String consume) {
+<span class="fc" id="L39">        this.consume = consume;</span>
+<span class="fc" id="L40">    }</span>
+
+    public boolean getState() {
+<span class="fc" id="L43">        return state;</span>
+    }
+
+    public void setState(boolean state) {
+<span class="fc" id="L47">        this.state = state;</span>
+<span class="fc" id="L48">    }</span>
+
+    @Override
+    public boolean equals(Object obj) {
+<span class="pc bpc" id="L52" title="1 of 2 branches missed.">        if (this == obj) {</span>
+<span class="nc" id="L53">            return true;</span>
+        }
+<span class="pc bpc" id="L55" title="1 of 2 branches missed.">        if (!(obj instanceof ConsumptionPost)) {</span>
+<span class="nc" id="L56">            return false;</span>
+        }
+<span class="pc bpc" id="L58" title="1 of 2 branches missed.">        if (!super.equals(obj)) {</span>
+<span class="nc" id="L59">            return false;</span>
+        }
+
+<span class="fc" id="L62">        ConsumptionPost that = (ConsumptionPost) obj;</span>
+
+<span class="pc bpc" id="L64" title="1 of 2 branches missed.">        if (getState() != that.getState()) {</span>
+<span class="nc" id="L65">            return false;</span>
+        }
+<span class="pc bpc" id="L67" title="1 of 2 branches missed.">        return getConsume() != null ? getConsume()</span>
+<span class="pc bnc" id="L68" title="All 2 branches missed.">                .equals(that.getConsume()) : that.getConsume() == null;</span>
+    }
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

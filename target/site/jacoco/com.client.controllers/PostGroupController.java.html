@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PostGroupController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Starter OOPProject-Template</a> &gt; <a href="index.source.html" class="el_package">com.client.controllers</a> &gt; <span class="el_source">PostGroupController.java</span></div><h1>PostGroupController.java</h1><pre class="source lang-java linenums">package com.client.controllers;
+
+import com.client.logic.ConsumptionPost;
+import com.client.logic.FoodPost;
+import com.client.logic.SuperPost;
+import com.client.logic.TransportationPost;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
+
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+
+public class PostGroupController {
+
+    ArrayList&lt;SuperPost&gt; posts;
+    Date date;
+    String user;
+    @FXML
+    private Label postDate;
+    @FXML
+    private Label username;
+    @FXML
+    private VBox postsContainer;
+
+    /**
+     * Constructor.
+     *
+     * @param date     sets date using Date
+     * @param username sets username using String
+     */
+<span class="nc" id="L35">    public PostGroupController(Date date, String username) {</span>
+<span class="nc" id="L36">        this.date = date;</span>
+<span class="nc" id="L37">        this.user = username;</span>
+<span class="nc" id="L38">        this.posts = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L39">    }</span>
+
+    public void add(SuperPost poster) {
+<span class="nc" id="L42">        posts.add(poster);</span>
+<span class="nc" id="L43">    }</span>
+
+    @FXML
+    void initialize() {
+<span class="nc" id="L47">        postDate.setText(dateFormat(date));</span>
+<span class="nc" id="L48">        username.setText(user);</span>
+<span class="nc bnc" id="L49" title="All 2 branches missed.">        for (int i = 0; i &lt; posts.size(); i++) {</span>
+<span class="nc" id="L50">            SuperPost poster = posts.get(i);</span>
+            String type;
+            String value;
+            String postclass;
+<span class="nc bnc" id="L54" title="All 2 branches missed.">            if (poster.getPostClass().equals(&quot;transportation&quot;)) {</span>
+<span class="nc" id="L55">                TransportationPost post = (TransportationPost) poster;</span>
+<span class="nc" id="L56">                type = post.getType();</span>
+<span class="nc" id="L57">                double distance = post.getKilometer();</span>
+<span class="nc" id="L58">                value = Math.floor(distance * 100) / 100 + &quot; km&quot;;</span>
+<span class="nc" id="L59">                postclass = &quot;transport&quot;;</span>
+<span class="nc bnc" id="L60" title="All 2 branches missed.">            } else if (poster.getPostClass().equals(&quot;food&quot;)) {</span>
+<span class="nc" id="L61">                FoodPost post = (FoodPost) poster;</span>
+<span class="nc" id="L62">                type = post.getMeal();</span>
+<span class="nc" id="L63">                value = post.getType();</span>
+<span class="nc" id="L64">                postclass = &quot;food&quot;;</span>
+<span class="nc bnc" id="L65" title="All 2 branches missed.">            } else if (poster.getPostClass().equals(&quot;ConsumptionPost&quot;)) {</span>
+<span class="nc" id="L66">                ConsumptionPost post = (ConsumptionPost) poster;</span>
+<span class="nc" id="L67">                type = post.getConsume();</span>
+<span class="nc" id="L68">                postclass = &quot;consumption&quot;;</span>
+<span class="nc bnc" id="L69" title="All 2 branches missed.">                if (post.getState()) {</span>
+<span class="nc" id="L70">                    value = &quot;Yes&quot;;</span>
+                } else {
+<span class="nc" id="L72">                    value = &quot;No&quot;;</span>
+                }
+<span class="nc" id="L74">            } else {</span>
+<span class="nc" id="L75">                postclass = &quot;error&quot;;</span>
+<span class="nc" id="L76">                type = &quot;Error&quot;;</span>
+<span class="nc" id="L77">                value = &quot;Error&quot;;</span>
+            }
+<span class="nc" id="L79">            Date date = poster.getDate();</span>
+            try {
+<span class="nc" id="L81">                FXMLLoader loader =</span>
+<span class="nc" id="L82">                        new FXMLLoader(getClass().getResource(&quot;/fxml/post.fxml&quot;));</span>
+<span class="nc" id="L83">                SinglePostController spc = new SinglePostController(type, value, postclass, date);</span>
+<span class="nc" id="L84">                loader.setController(spc);</span>
+<span class="nc" id="L85">                loader.setRoot(postsContainer);</span>
+<span class="nc" id="L86">                loader.load();</span>
+<span class="nc" id="L87">            } catch (IOException e) {</span>
+<span class="nc" id="L88">                System.out.println(&quot;Error here&quot;);</span>
+<span class="nc" id="L89">                e.printStackTrace();</span>
+<span class="nc" id="L90">            }</span>
+        }
+<span class="nc" id="L92">    }</span>
+
+    /**
+     * chnages style of the da to simple.
+     *
+     * @param da sets date using Date
+     * @return Sting as
+     */
+    public String dateFormat(Date da) {
+<span class="nc" id="L101">        SimpleDateFormat sdf = new SimpleDateFormat(&quot;EEE, d MMM yyyy&quot;);</span>
+<span class="nc" id="L102">        String date = sdf.format(da);</span>
+<span class="nc" id="L103">        return date;</span>
+    }
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

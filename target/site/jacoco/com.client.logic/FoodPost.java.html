@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FoodPost.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Starter OOPProject-Template</a> &gt; <a href="index.source.html" class="el_package">com.client.logic</a> &gt; <span class="el_source">FoodPost.java</span></div><h1>FoodPost.java</h1><pre class="source lang-java linenums">package com.client.logic;
+
+public class FoodPost extends SuperPost {
+
+
+    private String meal;
+    private String type;
+
+
+    /**
+     * Constructor.
+     *
+     * @param meal sets m from a String
+     * @param type sets t from a String
+     */
+    //set new Date intializer
+    public FoodPost(String meal, String type) {
+<span class="fc" id="L18">        super(null, null, &quot;food&quot;, 0);</span>
+<span class="fc" id="L19">        this.meal = meal;</span>
+<span class="fc" id="L20">        this.type = type;</span>
+
+<span class="fc" id="L22">    }</span>
+
+    /**
+     * Empty Constructor.
+     */
+    public FoodPost() {
+<span class="fc" id="L28">        super(null, null, &quot;food&quot;, 0);</span>
+<span class="fc" id="L29">        this.meal = null;</span>
+<span class="fc" id="L30">        this.type = null;</span>
+<span class="fc" id="L31">    }</span>
+
+
+    public String getMeal() {
+<span class="fc" id="L35">        return meal;</span>
+    }
+
+    public void setMeal(String meal) {
+<span class="fc" id="L39">        this.meal = meal;</span>
+<span class="fc" id="L40">    }</span>
+
+    public String getType() {
+<span class="fc" id="L43">        return type;</span>
+    }
+
+    public void setType(String type) {
+<span class="fc" id="L47">        this.type = type;</span>
+<span class="fc" id="L48">    }</span>
+
+    @Override
+    public boolean equals(Object obj) {
+<span class="pc bpc" id="L52" title="1 of 2 branches missed.">        if (this == obj) {</span>
+<span class="nc" id="L53">            return true;</span>
+        }
+<span class="pc bpc" id="L55" title="1 of 2 branches missed.">        if (!(obj instanceof FoodPost)) {</span>
+<span class="nc" id="L56">            return false;</span>
+        }
+<span class="pc bpc" id="L58" title="1 of 2 branches missed.">        if (!super.equals(obj)) {</span>
+<span class="nc" id="L59">            return false;</span>
+        }
+
+<span class="fc" id="L62">        FoodPost foodPost = (FoodPost) obj;</span>
+
+<span class="pc bpc" id="L64" title="1 of 2 branches missed.">        if (getMeal() != null ? !getMeal()</span>
+<span class="pc bpc" id="L65" title="3 of 4 branches missed.">                .equals(foodPost.getMeal()) : foodPost.getMeal() != null) {</span>
+<span class="nc" id="L66">            return false;</span>
+        }
+<span class="pc bpc" id="L68" title="1 of 2 branches missed.">        return getType() != null ? getType()</span>
+<span class="pc bnc" id="L69" title="All 2 branches missed.">                .equals(foodPost.getType()) : foodPost.getType() == null;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

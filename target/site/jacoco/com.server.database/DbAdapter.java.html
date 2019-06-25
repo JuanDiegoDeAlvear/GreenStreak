@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DbAdapter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Starter OOPProject-Template</a> &gt; <a href="index.source.html" class="el_package">com.server.database</a> &gt; <span class="el_source">DbAdapter.java</span></div><h1>DbAdapter.java</h1><pre class="source lang-java linenums">package com.server.database;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Scanner;
+
+public class DbAdapter {
+
+    /* 01 -------------------- database variables ------------------- */
+
+<span class="fc" id="L15">    private static DbAdapter dbAdapter_instance = null;</span>
+
+<span class="nc" id="L17">    Connection conn = null;</span>
+<span class="nc" id="L18">    ResultSet rs = null;</span>
+<span class="nc" id="L19">    Statement stnt = null;</span>
+
+    /* 02 ------------------------ Variables ------------------------ */
+
+<span class="nc" id="L23">    private final String jdburl = &quot;jdbc:postgresql://localhost:5432/GreenStreak&quot;;</span>
+<span class="nc" id="L24">    private final String username = &quot;postgres&quot;;</span>
+
+
+
+    /* 03 ------------------------ Constructor ---------------------- */
+
+    /**
+     * Constructor.
+     */
+<span class="nc" id="L33">    private DbAdapter() {</span>
+
+        //Connect to the database
+<span class="nc" id="L36">        Scanner input = new Scanner(System.in);</span>
+<span class="nc" id="L37">        System.out.println(&quot;Enter the database password: &quot;);</span>
+<span class="nc" id="L38">        String password = input.nextLine();</span>
+
+        try {
+            //Connect to the database
+<span class="nc" id="L42">            conn = DriverManager.getConnection(jdburl, username, password);</span>
+
+            //Print success
+<span class="nc" id="L45">            System.out.println(&quot;database connection stablished&quot;);</span>
+
+<span class="nc" id="L47">        } catch (SQLException e) {</span>
+
+<span class="nc" id="L49">            e.printStackTrace();</span>
+<span class="nc" id="L50">        }</span>
+<span class="nc" id="L51">    }</span>
+
+
+
+
+    /*-----------------------  Getters and Setters -------------------*/
+    public Connection getConn() {
+<span class="nc" id="L58">        return conn;</span>
+    }
+
+    public void setConn(Connection conn) {
+<span class="nc" id="L62">        this.conn = conn;</span>
+<span class="nc" id="L63">    }</span>
+
+
+    /**
+     * Getter.
+     *
+     * @return Returns an instance.
+     */
+    public  static DbAdapter getInstance() {
+<span class="pc bpc" id="L72" title="1 of 2 branches missed.">        if (dbAdapter_instance == null) {</span>
+<span class="nc" id="L73">            dbAdapter_instance = new DbAdapter();</span>
+        }
+<span class="fc" id="L75">        return dbAdapter_instance;</span>
+    }
+
+    public static void setDbAdapter_instance(DbAdapter dbAdapterinstance) {
+<span class="fc" id="L79">        DbAdapter.dbAdapter_instance = dbAdapterinstance;</span>
+<span class="fc" id="L80">    }</span>
+
+    /**.
+     * method to disconnect from the database com.server
+     */
+    public void disconnect() {
+
+        try {
+
+<span class="nc bnc" id="L89" title="All 2 branches missed.">            if (stnt != null) {</span>
+<span class="nc" id="L90">                stnt.close();</span>
+            }
+
+<span class="nc bnc" id="L93" title="All 2 branches missed.">            if (rs != null) {</span>
+<span class="nc" id="L94">                rs.close();</span>
+            }
+
+<span class="nc bnc" id="L97" title="All 2 branches missed.">            if (conn != null) {</span>
+<span class="nc" id="L98">                conn.close();</span>
+            }
+
+<span class="nc" id="L101">            System.out.println(&quot;database connection closed&quot;);</span>
+
+<span class="nc" id="L103">        } catch (SQLException e) {</span>
+<span class="nc" id="L104">            e.printStackTrace();</span>
+<span class="nc" id="L105">        }</span>
+
+<span class="nc" id="L107">    }</span>
+
+    //All necessary basic sql commands
+
+
+    /**.
+     * The current method is a model of a querying method.
+     *
+     * @param query  as a String
+     * @return resultset
+     */
+    public ResultSet query(String query) {
+
+        try {
+
+<span class="nc" id="L122">            PreparedStatement stnt = conn.prepareStatement(query);</span>
+<span class="nc" id="L123">            System.out.println(&quot;Connected to PostgreSQL database!&quot;);</span>
+<span class="nc" id="L124">            System.out.println(&quot;Reading records...&quot;);</span>
+<span class="nc" id="L125">            ResultSet resultSet = stnt.executeQuery();</span>
+
+<span class="nc" id="L127">            return resultSet;</span>
+
+<span class="nc" id="L129">        } catch (SQLException e) {</span>
+
+<span class="nc" id="L131">            e.printStackTrace();</span>
+<span class="nc" id="L132">            return null;</span>
+
+        }
+    }
+
+    /**
+     * Method queries database.
+     *
+     * @param st as a prepared statement.
+     * @return  resultSet.
+     * @throws SQLException Throws an sql exception.
+     */
+    public ResultSet query(PreparedStatement st) throws SQLException {
+<span class="nc" id="L145">        return st.executeQuery();</span>
+    }
+
+    //    /**
+    //     * change name of method.
+    //     *
+    //     * @param st as prepared statment.
+    //     * @return  int.
+    //     * @throws SQLException Throws an exception.
+    //     */
+    //    public int Update(PreparedStatement st) throws SQLException {
+    //        return st.executeUpdate();
+    //    }
+
+
+    //
+    //    public Profile getProfile(String username){
+    //        //query for values
+    //        return new Profile(result.username, result.age, result.hasCar)
+    //    }
+    //
+    //    /**
+    //     * Hacer un metodo query para datamanager class
+    //     */
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

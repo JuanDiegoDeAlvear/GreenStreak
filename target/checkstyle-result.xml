@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="7.2">
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\client\clientendpoints\AuthenticationEndpoints.java">
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\client\clientendpoints\FriendEndpoints.java">
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\client\clientendpoints\PostEndpoints.java">
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\client\clientendpoints\ProfileEndpoints.java">
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\client\clientendpoints\ScoreEndpoints.java">
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\client\controllers\AppFrameController.java">
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\client\controllers\BadgeDrawerController.java">
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\client\controllers\DashboardController.java">
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\client\controllers\FeedController.java">
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\client\controllers\FriendsCompareController.java">
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\client\controllers\FriendsController.java">
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\client\controllers\GoalsController.java">
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\client\controllers\LoginController.java">
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\client\controllers\PostCreatorController.java">
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\client\controllers\PostGroupController.java">
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\client\controllers\ProfileController.java">
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\client\controllers\RankingsController.java">
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\client\controllers\SignupController.java">
+<error line="30" severity="warning" message="Wrong lexicographical order for &apos;java.io.IOException&apos; import. Should be before &apos;javax.mail.internet.InternetAddress&apos;." source="com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck"/>
+<error line="31" severity="warning" message="Wrong lexicographical order for &apos;java.util.LinkedList&apos; import. Should be before &apos;javax.mail.internet.InternetAddress&apos;." source="com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck"/>
+<error line="32" severity="warning" message="Wrong lexicographical order for &apos;java.util.Queue&apos; import. Should be before &apos;javax.mail.internet.InternetAddress&apos;." source="com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck"/>
+<error line="33" severity="warning" message="Wrong lexicographical order for &apos;java.util.regex.Pattern&apos; import. Should be before &apos;javax.mail.internet.InternetAddress&apos;." source="com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck"/>
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\client\controllers\SinglePostController.java">
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\client\controllers\SurveyEditorController.java">
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\client\controllers\UserFriendController.java">
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\client\logic\Achievement.java">
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\client\logic\Calculations.java">
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\client\logic\ConsumptionPost.java">
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\client\logic\EnergySurvey.java">
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\client\logic\FoodPost.java">
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\client\logic\FoodSurvey.java">
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\client\logic\FriendRelationship.java">
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\client\logic\LifeStyleSurvey.java">
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\client\logic\PostCatalog.java">
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\client\logic\Profile.java">
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\client\logic\RankingEntry.java">
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\client\logic\Score.java">
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\client\logic\ScoreCalc.java">
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\client\logic\SignUpUser.java">
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\client\logic\Streak.java">
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\client\logic\SuperPost.java">
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\client\logic\Survey.java">
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\client\logic\TransportationPost.java">
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\client\logic\TransportationSurvey.java">
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\client\logic\User.java">
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\client\Main.java">
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\client\ServerCommunication.java">
+<error line="25" severity="warning" message="Import statement for &apos;com.google.common.hash.Hashing&apos; is in the wrong order. Should be in the &apos;SPECIAL_IMPORTS&apos; group, expecting group &apos;STANDARD_JAVA_PACKAGE&apos; on this line." source="com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck"/>
+<error line="32" severity="warning" message="Import statement for &apos;com.server.debug.DebugTools.debug&apos; is in the wrong order. Should be in the &apos;STATIC&apos; group, expecting not assigned imports on this line." source="com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck"/>
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\server\database\DatabaseManager.java">
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\server\database\DatabaseProfile.java">
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\server\database\DatabaseProfileManager.java">
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\server\database\DbAdapter.java">
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\server\database\DbFriendship.java">
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\server\database\DbImplement.java">
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\server\database\FriendDatabaseManager.java">
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\server\debug\DebugTools.java">
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\server\endpoints\AuthenticationEndpoints.java">
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\server\endpoints\FriendEndpoints.java">
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\server\endpoints\PostEndpoints.java">
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\server\endpoints\ProfileEndpoints.java">
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\server\endpoints\ScoreEndpoints.java">
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\server\spring\AuthenticationController.java">
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\server\spring\FriendController.java">
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\server\spring\GreenStreakServer.java">
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\server\spring\PostController.java">
+<error line="8" severity="warning" message="Import statement for &apos;com.server.debug.DebugTools.debug&apos; is in the wrong order. Should be in the &apos;STATIC&apos; group, expecting not assigned imports on this line." source="com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck"/>
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\server\spring\ProfileController.java">
+<error line="12" severity="warning" message="Import statement for &apos;com.server.debug.DebugTools.debug&apos; is in the wrong order. Should be in the &apos;STATIC&apos; group, expecting group &apos;STANDARD_JAVA_PACKAGE&apos; on this line." source="com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck"/>
+</file>
+<file name="C:\Users\Juan Diego\Documents\Delft\Computer Science\1st Year\3rd Quarter\OPP\src\main\java\com\server\spring\ScoreController.java">
+</file>
+</checkstyle>

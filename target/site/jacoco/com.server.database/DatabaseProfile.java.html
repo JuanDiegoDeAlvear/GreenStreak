@@ -1,0 +1,861 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DatabaseProfile.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Starter OOPProject-Template</a> &gt; <a href="index.source.html" class="el_package">com.server.database</a> &gt; <span class="el_source">DatabaseProfile.java</span></div><h1>DatabaseProfile.java</h1><pre class="source lang-java linenums">package com.server.database;
+
+import com.client.logic.Achievement;
+import com.client.logic.EnergySurvey;
+import com.client.logic.FoodSurvey;
+import com.client.logic.LifeStyleSurvey;
+import com.client.logic.Profile;
+import com.client.logic.RankingEntry;
+import com.client.logic.Score;
+import com.client.logic.TransportationSurvey;
+import org.jetbrains.annotations.NotNull;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+
+
+/**
+ * This is a singleton class.
+ */
+public class DatabaseProfile {
+
+
+    /**
+     * Initialize.
+     */
+<span class="fc" id="L30">    private static DatabaseProfile databaseProfileInstance = null;</span>
+
+    /**
+     * Instance.
+     */
+    private DbAdapter dbAdapter;
+
+    /**
+     * Constructor.
+     *
+     * @param dbAdapter This is teh instance.
+     */
+<span class="fc" id="L42">    private DatabaseProfile(DbAdapter dbAdapter) {</span>
+<span class="fc" id="L43">        this.dbAdapter = dbAdapter;</span>
+
+<span class="fc" id="L45">    }</span>
+
+    /**
+     * Getter.
+     *
+     * @return The method will return an instance of an object.
+     */
+    public static DatabaseProfile getInstance() {
+<span class="fc bfc" id="L53" title="All 2 branches covered.">        if (databaseProfileInstance == null) {</span>
+<span class="fc" id="L54">            databaseProfileInstance = new DatabaseProfile(DbAdapter.getInstance());</span>
+        }
+<span class="fc" id="L56">        return databaseProfileInstance;</span>
+    }
+
+    /**
+     * Getter.
+     *
+     * @param dbAdapter This is the dbAdapterInstance.
+     * @return Returns the instance.
+     */
+    public static DatabaseProfile getInstance(DbAdapter dbAdapter) {
+<span class="pc bpc" id="L66" title="1 of 2 branches missed.">        if (databaseProfileInstance == null) {</span>
+<span class="nc" id="L67">            databaseProfileInstance = new DatabaseProfile(dbAdapter);</span>
+        }
+<span class="fc" id="L69">        databaseProfileInstance.setDbAdapter(dbAdapter);</span>
+<span class="fc" id="L70">        return databaseProfileInstance;</span>
+    }
+
+
+    public void setDbAdapter(DbAdapter dbAdapter) {
+<span class="fc" id="L75">        this.dbAdapter = dbAdapter;</span>
+<span class="fc" id="L76">    }</span>
+
+    /**
+     * Setter.
+     *
+     * @param databaseProfileInstance DatabaseProfileInstance.
+     */
+    public static void setDatabaseProfileInstance(DatabaseProfile databaseProfileInstance) {
+<span class="fc" id="L84">        DatabaseProfile.databaseProfileInstance = databaseProfileInstance;</span>
+<span class="fc" id="L85">    }</span>
+
+
+
+    /**
+     * Gets the transportation survey of the desired user
+     *
+     * @param username Username of the user whose information we want.
+     * @return Returns the survey.
+     */
+    public TransportationSurvey getTransportationSurvey(String username) {
+
+<span class="fc" id="L97">        String query = &quot;SELECT * FROM transportation WHERE username = \'&quot;  +  username  +  &quot;\'&quot;;</span>
+
+        try {
+
+<span class="fc" id="L101">            ResultSet data = dbAdapter.getInstance().query(query);</span>
+
+<span class="fc" id="L103">            TransportationSurvey result = new TransportationSurvey();</span>
+
+<span class="pc bpc" id="L105" title="1 of 2 branches missed.">            if (data.next()) {</span>
+
+<span class="fc" id="L107">                result.setAveHoursFly((int) data.getDouble(&quot;aveHoursFly&quot;));</span>
+<span class="fc" id="L108">                result.setAveKmPerDay((int) data.getDouble(&quot;aveKmPerDay&quot;));</span>
+<span class="fc" id="L109">                result.setMainModeTransport(data.getString(&quot;mainModeTransport&quot;));</span>
+<span class="fc" id="L110">                result.setTypeOfCar(data.getString(&quot;typeOfCar&quot;));</span>
+
+<span class="fc" id="L112">                return result;</span>
+
+            }
+
+<span class="nc" id="L116">            return null;</span>
+
+<span class="nc" id="L118">        } catch (SQLException e) {</span>
+
+<span class="nc" id="L120">            e.printStackTrace();</span>
+<span class="nc" id="L121">            return null;</span>
+
+        }
+    }
+
+    /**
+     * This method will return a foodSurvey.
+     *
+     * @param username This is the user's username.
+     * @return The method will return a foodSurvey.
+     */
+    public FoodSurvey getFoodSurvey(String username) {
+
+<span class="fc" id="L134">        String query = &quot;SELECT * FROM food WHERE username = \'&quot;  +  username  +  &quot;\'&quot;;</span>
+
+        try {
+
+<span class="fc" id="L138">            ResultSet data = dbAdapter.getInstance().query(query);</span>
+
+<span class="fc" id="L140">            FoodSurvey result = new FoodSurvey();</span>
+
+<span class="pc bpc" id="L142" title="1 of 2 branches missed.">            if (data.next()) {</span>
+
+<span class="fc" id="L144">                result.setAmountOrganicFood(data.getString(&quot;organic&quot;));</span>
+<span class="fc" id="L145">                result.setAmountLocalFood(data.getString(&quot;area&quot;));</span>
+<span class="fc" id="L146">                result.setAmountWastedFood(data.getString(&quot;wasted&quot;));</span>
+<span class="fc" id="L147">                result.setAmountFoodCompost(data.getString(&quot;compost&quot;));</span>
+<span class="fc" id="L148">                result.setAmountFoodPackaged(data.getString(&quot;packaged&quot;));</span>
+<span class="fc" id="L149">                result.setDietChoice(data.getString(&quot;diet_choice&quot;));</span>
+
+
+<span class="fc" id="L152">                return result;</span>
+            }
+
+<span class="nc" id="L155">            return null;</span>
+
+<span class="nc" id="L157">        } catch (SQLException e) {</span>
+
+<span class="nc" id="L159">            e.printStackTrace();</span>
+<span class="nc" id="L160">            return null;</span>
+
+        }
+
+    }
+
+    /**
+     * This method will return the energySurvey.
+     *
+     * @param username This is the user's username.
+     * @return The method will return an energySurvey.
+     */
+    public EnergySurvey getEnergySurvey(String username) {
+
+<span class="fc" id="L174">        String query = &quot;SELECT * FROM energy WHERE username = \'&quot;  +  username  +  &quot;\'&quot;;</span>
+
+        try {
+
+<span class="fc" id="L178">            ResultSet data = dbAdapter.getInstance().query(query);</span>
+
+
+<span class="fc" id="L181">            EnergySurvey result = new EnergySurvey();</span>
+
+<span class="pc bpc" id="L183" title="1 of 2 branches missed.">            if (data.next()) {</span>
+
+<span class="fc" id="L185">                result.setTypeHouse(data.getString(&quot;typeHouse&quot;));</span>
+<span class="fc" id="L186">                result.setAmountRoommates(data.getInt(&quot;amountRoomates&quot;));</span>
+<span class="fc" id="L187">                result.setGreenEnergy(data.getBoolean(&quot;greenEnergy&quot;));</span>
+<span class="fc" id="L188">                result.setEfficientLighting(data.getBoolean(&quot;efficientLighting&quot;));</span>
+<span class="fc" id="L189">                result.setAmountEnergy(data.getString(&quot;amountEnergy&quot;));</span>
+
+<span class="fc" id="L191">                return result;</span>
+            }
+
+<span class="nc" id="L194">            return null;</span>
+
+<span class="nc" id="L196">        } catch (SQLException e) {</span>
+
+<span class="nc" id="L198">            e.printStackTrace();</span>
+<span class="nc" id="L199">            return null;</span>
+
+        }
+
+    }
+
+    /**
+     * This method will return the lifeStyle survey.
+     *
+     * @param username This is the user's username.
+     * @return The method will return the lifestyle survey.
+     */
+    public LifeStyleSurvey getLifeStyleSurvey(String username) {
+
+<span class="nc" id="L213">        String query = &quot;SELECT * FROM lifestyle WHERE username = \'&quot;  +  username  +  &quot;\'&quot;;</span>
+
+        try {
+
+<span class="nc" id="L217">            ResultSet data = dbAdapter.getInstance().query(query);</span>
+
+<span class="nc" id="L219">            LifeStyleSurvey result = new LifeStyleSurvey();</span>
+
+<span class="nc bnc" id="L221" title="All 2 branches missed.">            if (data.next()) {</span>
+
+<span class="nc" id="L223">                result.setHowOftenBigPurchase(data.getString(&quot;howOftenBigPurchase&quot;));</span>
+<span class="nc" id="L224">                result.setWeeklyWaste(data.getString(&quot;weeklyWaste&quot;));</span>
+<span class="nc" id="L225">                result.setRecycle(data.getString(&quot;recycle&quot;));</span>
+<span class="nc" id="L226">                result.setApplianceUse(data.getString(&quot;applianceUse&quot;));</span>
+<span class="nc" id="L227">                result.setAveShowerTime(data.getInt(&quot;aveShowerTime&quot;));</span>
+
+<span class="nc" id="L229">                return result;</span>
+            }
+
+<span class="nc" id="L232">            return null;</span>
+
+<span class="nc" id="L234">        } catch (SQLException e) {</span>
+
+<span class="nc" id="L236">            e.printStackTrace();</span>
+<span class="nc" id="L237">            return null;</span>
+
+        }
+
+    }
+
+
+    /**
+     * This method will return the value of the carbon footprint of the user.
+     *
+     * @param username This is the name of the user.
+     * @return Returns the value of the carbon footprint. -1 if no footprint data
+     */
+    public double getCarbonFootprint(String username) {
+
+<span class="fc" id="L252">        String query = &quot;SELECT footprint &quot;</span>
+                      +  &quot;FROM scores &quot;
+                      +  &quot;WHERE username = \'&quot;  +  username  +  &quot;\'&quot;;
+
+
+        try {
+
+<span class="fc" id="L259">            ResultSet data = dbAdapter.getInstance().query(query);</span>
+
+<span class="pc bpc" id="L261" title="1 of 2 branches missed.">            if (data.next()) {</span>
+<span class="fc" id="L262">                return data.getDouble(&quot;footprint&quot;);</span>
+            }
+
+<span class="nc" id="L265">            return -1;</span>
+
+<span class="nc" id="L267">        } catch (SQLException e) {</span>
+
+<span class="nc" id="L269">            e.printStackTrace();</span>
+<span class="nc" id="L270">            return -1;</span>
+
+        }
+
+    }
+
+    /**
+     * This method will return the val of the eco footprint of the user.
+     *
+     * @param username This is the username of that user.
+     * @return The method will return a double value for the footprint.
+     */
+    public double getFootprintEco(String username) {
+
+<span class="fc" id="L284">        String query = &quot;SELECT ecofootprint &quot;</span>
+                      +  &quot;FROM scores &quot;
+                      +  &quot;WHERE username = \'&quot;  +  username  +  &quot;\'&quot;;
+
+        try {
+
+<span class="fc" id="L290">            ResultSet data = dbAdapter.getInstance().query(query);</span>
+
+<span class="pc bpc" id="L292" title="1 of 2 branches missed.">            if (data.next()) {</span>
+<span class="fc" id="L293">                return data.getDouble(&quot;ecofootprint&quot;);</span>
+            }
+
+<span class="nc" id="L296">            return -1;</span>
+
+<span class="nc" id="L298">        } catch (SQLException e) {</span>
+
+<span class="nc" id="L300">            e.printStackTrace();</span>
+<span class="nc" id="L301">            return -1;</span>
+
+        }
+
+    }
+
+    /**
+     * This method will return the user's score.
+     *
+     * @param username This is the username of the user.
+     * @return The method will return an int value of the score.
+     */
+    public int getScore(String username) {
+
+<span class="nc" id="L315">        String query = &quot;SELECT score &quot;</span>
+                      +  &quot;FROM scores &quot;
+                      +  &quot;WHERE username = \'&quot;  +  username  +  &quot;\'&quot;;
+
+        try {
+
+<span class="nc" id="L321">            ResultSet data = dbAdapter.getInstance().query(query);</span>
+
+<span class="nc bnc" id="L323" title="All 2 branches missed.">            if (data.next()) {</span>
+<span class="nc" id="L324">                return data.getInt(&quot;score&quot;);</span>
+            }
+
+<span class="nc" id="L327">            return -1;</span>
+
+<span class="nc" id="L329">        } catch (SQLException e) {</span>
+
+<span class="nc" id="L331">            e.printStackTrace();</span>
+<span class="nc" id="L332">            return -1;</span>
+
+        }
+
+    }
+
+    /**
+     * This method Will return the greenStreak value.
+     *
+     * @param username This is the username of that user.
+     * @return This method will return an integer value.
+     */
+    public int getGreenStreak(String username) {
+
+<span class="fc" id="L346">        String query = &quot;SELECT greenstreak &quot;</span>
+                      +  &quot;FROM scores &quot;
+                      +  &quot;WHERE username = \'&quot;  +  username  +  &quot;\'&quot;;
+
+        try {
+
+<span class="fc" id="L352">            ResultSet data = dbAdapter.getInstance().query(query);</span>
+
+<span class="pc bpc" id="L354" title="1 of 2 branches missed.">            if (data.next()) {</span>
+<span class="fc" id="L355">                return data.getInt(&quot;greenstreak&quot;);</span>
+            }
+
+<span class="nc" id="L358">            return -1;</span>
+
+<span class="nc" id="L360">        } catch (SQLException e) {</span>
+
+<span class="nc" id="L362">            e.printStackTrace();</span>
+<span class="nc" id="L363">            return -1;</span>
+
+        }
+
+    }
+
+    /**
+     * This method will return the information regarding the achievements info from the user.
+     *
+     * @param username This is the username of the user whose information we are displaying.
+     * @return The method will return an achievement instance.
+     */
+    public Achievement getAchievements(String username) {
+
+<span class="fc" id="L377">        String query = &quot;SELECT * FROM achievements WHERE username =\'&quot;  +  username  +  &quot;\'&quot;;</span>
+
+        try {
+
+<span class="fc" id="L381">            ResultSet data = dbAdapter.getInstance().query(query);</span>
+
+
+<span class="pc bpc" id="L384" title="1 of 2 branches missed.">            if (data.next()) {</span>
+
+<span class="fc" id="L386">                Achievement result = new Achievement();</span>
+
+<span class="fc" id="L388">                result.setFirstPost(data.getBoolean(&quot;firstPost&quot;));</span>
+<span class="fc" id="L389">                result.setFirstFriend(data.getBoolean(&quot;firstFriend&quot;));</span>
+<span class="fc" id="L390">                result.setHundKm(data.getBoolean(&quot;hundkm&quot;));</span>
+<span class="fc" id="L391">                result.setFiveDaysr(data.getBoolean(&quot;fiveDayRecycle&quot;));</span>
+<span class="fc" id="L392">                result.setToprank(data.getBoolean(&quot;topRank&quot;));</span>
+<span class="fc" id="L393">                result.setLowEco(data.getBoolean(&quot;lowEco&quot;));</span>
+<span class="fc" id="L394">                result.setFivedaysv(data.getBoolean(&quot;fiveDaysv&quot;));</span>
+<span class="fc" id="L395">                result.setCarblsix(data.getBoolean(&quot;carblSix&quot;));</span>
+<span class="fc" id="L396">                result.setLocal(data.getBoolean(&quot;locaL&quot;));</span>
+<span class="fc" id="L397">                result.setLoggedin(data.getBoolean(&quot;loggeD&quot;));</span>
+
+<span class="fc" id="L399">                return result;</span>
+            }
+
+<span class="nc" id="L402">            return null;</span>
+<span class="nc" id="L403">        } catch (SQLException e) {</span>
+
+<span class="nc" id="L405">            e.printStackTrace();</span>
+<span class="nc" id="L406">            return null;</span>
+
+        }
+
+    }
+
+    /*
+    ------------------------------------------------------------------------------------------------
+
+                                                  GETTING PROFILE METHODS
+
+    ------------------------------------------------------------------------------------------------
+     */
+
+
+    /**
+     *This method will return a profile object.
+     *
+     * @param username1 Username of user1.
+     * @param username2 Username of user2.
+     * @return Returns profile instance.
+     */
+    public Profile getProfile(@NotNull String username1, String username2) {
+
+
+<span class="nc bnc" id="L431" title="All 2 branches missed.">        if (username1.equals(username2) || FriendDatabaseManager.getInstance()</span>
+<span class="nc bnc" id="L432" title="All 2 branches missed.">                .getStatus(username1,username2) == 1) {</span>
+
+<span class="nc" id="L434">            Profile profile = new Profile();</span>
+
+<span class="nc" id="L436">            EnergySurvey energyProfile = DatabaseProfile.getInstance().getEnergySurvey(username2);</span>
+            TransportationSurvey transportationSurvey =
+<span class="nc" id="L438">                    DatabaseProfile.getInstance().getTransportationSurvey(username2);</span>
+<span class="nc" id="L439">            FoodSurvey foodSurvey = DatabaseProfile.getInstance().getFoodSurvey(username2);</span>
+            LifeStyleSurvey lifeStyleSurvey =
+<span class="nc" id="L441">                    DatabaseProfile.getInstance().getLifeStyleSurvey(username2);</span>
+
+
+<span class="nc" id="L444">            profile.setEnergyProfile(energyProfile);</span>
+<span class="nc" id="L445">            profile.setTransportationProfile(transportationSurvey);</span>
+<span class="nc" id="L446">            profile.setFoodProfile(foodSurvey);</span>
+<span class="nc" id="L447">            profile.setLifeStyleProfile(lifeStyleSurvey);</span>
+
+
+<span class="nc" id="L450">            profile.setScore(getScores(username1));</span>
+<span class="nc" id="L451">            profile.setName(username1);</span>
+
+            String[] friendList =
+<span class="nc" id="L454">                    FriendDatabaseManager.getInstance().getUsersByStatus(username1, 1);</span>
+<span class="nc" id="L455">            profile.setFriendList(new ArrayList(Arrays.asList(friendList)));</span>
+
+<span class="nc" id="L457">            profile.setAchievement(getAchievements(username1));</span>
+
+<span class="nc" id="L459">            return profile;</span>
+        } else {
+<span class="nc" id="L461">            System.out.println(&quot;Profile request denied&quot;);</span>
+<span class="nc" id="L462">            return null;</span>
+        }
+
+
+    }
+
+    /**
+     * This method will get the scores information from the user.
+     *
+     * @param username This is the users username.
+     * @return The method will return a score object.
+     */
+    public  Score getScores(String username) {
+
+<span class="nc" id="L476">        Score score = new Score();</span>
+
+<span class="nc" id="L478">        score.setScore(getScore(username));</span>
+<span class="nc" id="L479">        score.setGreenstreak(getGreenStreak(username));</span>
+<span class="nc" id="L480">        score.setFootprint(getCarbonFootprint(username));</span>
+<span class="nc" id="L481">        score.setFootprintEco(getFootprintEco(username));</span>
+
+<span class="nc" id="L483">        return score;</span>
+
+
+    }
+
+
+
+    /*
+    -----------------------------------------------------------------------------------------------
+
+                                        UPDATE METHODS
+
+    -----------------------------------------------------------------------------------------------
+     */
+
+
+    /**
+     * This method will store the energySurvey information into the database.
+     *
+     * @param username This is the username of the user whose survey we are storing.
+     * @param survey   This is the survey that we are trying to store.
+     * @return This method will return a boolean value.
+     */
+    public boolean updateEnergySurvey(String username, @NotNull EnergySurvey survey) {
+
+<span class="nc" id="L508">        String query = &quot;UPDATE energy &quot;</span>
+                +  &quot;SET \&quot;typeHouse\&quot; = ?, \&quot;amountRoomates\&quot; = ?,&quot;
+                + &quot; \&quot;greenEnergy\&quot; = ?, \&quot;efficientLighting\&quot;&quot;
+                + &quot; = ?, username = ?, \&quot;amountEnergy\&quot; =? &quot;
+                +  &quot;WHERE username = \'&quot;  +  username  +  &quot;\'&quot;;
+
+        try {
+
+<span class="nc" id="L516">            PreparedStatement st = dbAdapter.conn.prepareStatement(query);</span>
+
+<span class="nc" id="L518">            st.setString(1, survey.getTypeHouse());</span>
+<span class="nc" id="L519">            st.setInt(2, survey.getAmountRoommates());</span>
+<span class="nc" id="L520">            st.setBoolean(3, survey.getGreenEnergy());</span>
+<span class="nc" id="L521">            st.setBoolean(4, survey.getEfficientLighting());</span>
+<span class="nc" id="L522">            st.setString(5, username);</span>
+<span class="nc" id="L523">            st.setString(6, survey.getAmountEnergy());</span>
+
+
+<span class="nc" id="L526">            st.executeUpdate();</span>
+<span class="nc" id="L527">            st.close();</span>
+
+<span class="nc" id="L529">            return true;</span>
+
+
+<span class="nc" id="L532">        } catch (SQLException e) {</span>
+
+<span class="nc" id="L534">            e.printStackTrace();</span>
+<span class="nc" id="L535">            return false;</span>
+
+        }
+
+    }
+
+    /**
+     * This method will store the foodSurvey into the database.
+     *
+     * @param username This is the user's name.
+     * @param survey   This is the survey we store.
+     * @return The method will return a boolean value.
+     */
+    public boolean updateFoodSurvey(String username, @NotNull FoodSurvey survey) {
+
+<span class="nc" id="L550">        String query = &quot;UPDATE food &quot;</span>
+                +  &quot;SET \&quot;organic\&quot; = ?, \&quot;area\&quot; = ?, \&quot;wasted\&quot; = ?,&quot;
+                + &quot; \&quot;packaged\&quot; = ?,\&quot;compost\&quot; = ?, \&quot;diet_choice\&quot; =?, \&quot;username\&quot; = ? &quot;
+                +  &quot;WHERE username = \'&quot;  +  username  +  &quot;\'&quot;;
+
+        try {
+
+<span class="nc" id="L557">            PreparedStatement st = dbAdapter.conn.prepareStatement(query);</span>
+
+<span class="nc" id="L559">            st.setString(1, survey.getAmountOrganicFood());</span>
+<span class="nc" id="L560">            st.setString(2, survey.getAmountLocalFood());</span>
+<span class="nc" id="L561">            st.setString(3, survey.getAmountWastedFood());</span>
+<span class="nc" id="L562">            st.setString(4, survey.getAmountFoodPackaged());</span>
+<span class="nc" id="L563">            st.setString(5, survey.getAmountFoodCompost());</span>
+<span class="nc" id="L564">            st.setString(6, survey.getDietChoice());</span>
+<span class="nc" id="L565">            st.setString(7, username);</span>
+
+<span class="nc" id="L567">            st.executeUpdate();</span>
+<span class="nc" id="L568">            st.close();</span>
+
+<span class="nc" id="L570">            return true;</span>
+
+<span class="nc" id="L572">        } catch (SQLException e) {</span>
+
+<span class="nc" id="L574">            e.printStackTrace();</span>
+<span class="nc" id="L575">            return false;</span>
+
+        }
+
+    }
+
+
+    /**
+     * This method will store the lifestyle survey.
+     *
+     * @param username This is the user's username.
+     * @param survey   This is the survey we are trying to store.
+     * @return This method will return a boolean value.
+     */
+    public boolean updateLifeStyleSurvey(String username, @NotNull LifeStyleSurvey survey) {
+
+<span class="nc" id="L591">        String query = &quot;UPDATE lifestyle&quot;</span>
+                + &quot;SET \&quot;howOftenBigPurchase\&quot; = ?, \&quot;weeklyWaste\&quot; = ?, \&quot;recycle\&quot; = ?, &quot;
+                + &quot; \&quot;applianceUse\&quot; = ?, \&quot;aveShowerTime\&quot; = ?, \&quot;username\&quot; = ? &quot;
+                + &quot;WHERE username = \'&quot;  +  username  +  &quot;\'&quot;;
+
+        try {
+
+<span class="nc" id="L598">            PreparedStatement st = dbAdapter.conn.prepareStatement(query);</span>
+
+<span class="nc" id="L600">            st.setString(1, survey.getHowOftenBigPurchase());</span>
+<span class="nc" id="L601">            st.setString(2, survey.getWeeklyWaste());</span>
+<span class="nc" id="L602">            st.setString(3, survey.getRecycle());</span>
+<span class="nc" id="L603">            st.setString(4, survey.getApplianceUse());</span>
+<span class="nc" id="L604">            st.setInt(5, survey.getAveShowerTime());</span>
+<span class="nc" id="L605">            st.setString(6, username);</span>
+
+<span class="nc" id="L607">            st.executeUpdate();</span>
+<span class="nc" id="L608">            st.close();</span>
+
+<span class="nc" id="L610">            return true;</span>
+
+<span class="nc" id="L612">        } catch (SQLException e) {</span>
+
+<span class="nc" id="L614">            e.printStackTrace();</span>
+<span class="nc" id="L615">            return false;</span>
+
+        }
+    }
+
+    /**
+     * This method will store the transportation post.
+     *
+     * @param username The user's username.
+     * @param survey   The survey we are trying to store.
+     * @return This method will return a boolean value.
+     */
+    public boolean updateTransportation(String username, @NotNull TransportationSurvey survey) {
+
+<span class="nc" id="L629">        String query = &quot;UPDATE transportation &quot;</span>
+                +  &quot;SET \&quot;aveHoursFly\&quot; = ?, \&quot;aveKmPerDay\&quot; = ?,&quot;
+                + &quot; \&quot;typeOfCar\&quot; = ?, \&quot;mainModeTransport\&quot; = ?, \&quot;username\&quot; = ? &quot;
+                +  &quot;WHERE username = \'&quot;  +  username  +  &quot;\'&quot;;
+
+        try {
+
+<span class="nc" id="L636">            PreparedStatement st = dbAdapter.conn.prepareStatement(query);</span>
+
+<span class="nc" id="L638">            st.setDouble(1, survey.getAveHoursFly());</span>
+<span class="nc" id="L639">            st.setDouble(2, survey.getAveKmPerDay());</span>
+<span class="nc" id="L640">            st.setString(3, survey.getTypeOfCar());</span>
+<span class="nc" id="L641">            st.setString(4, survey.getMainModeTransport());</span>
+<span class="nc" id="L642">            st.setString(5, username);</span>
+
+<span class="nc" id="L644">            st.executeUpdate();</span>
+<span class="nc" id="L645">            st.close();</span>
+
+<span class="nc" id="L647">            return true;</span>
+
+
+<span class="nc" id="L650">        } catch (SQLException e) {</span>
+
+<span class="nc" id="L652">            e.printStackTrace();</span>
+<span class="nc" id="L653">            return false;</span>
+
+        }
+    }
+
+    /**
+     * This method will store the achievement information for the user.
+     *
+     * @param username    The username of the user.
+     * @param achievement The achievement information of the user.
+     * @return The method will return a boolean value.
+     */
+    public boolean updateAchievemnts(String username, @NotNull Achievement achievement) {
+
+<span class="nc" id="L667">        String query = &quot;UPDATE achievements SET \&quot;firstPost\&quot; = ?,&quot;</span>
+                + &quot; \&quot;firstFriend\&quot; = ?, \&quot;hundkm\&quot; = ?, &quot;
+                + &quot;\&quot;fiveDayRecycle\&quot; = ?, \&quot;topRank\&quot; = ?, \&quot;lowEco\&quot; = ?,&quot;
+                + &quot; \&quot;username\&quot; = ?, \&quot;fiveDaysv\&quot; = ?, \&quot;carblSix\&quot; = ?,&quot;
+                + &quot; \&quot;locaL\&quot; = ?, \&quot;loggeD\&quot; = ?&quot;
+                + &quot;WHERE username = \'&quot;  +  username  +  &quot;\'&quot;;
+
+        try {
+
+<span class="nc" id="L676">            PreparedStatement st = dbAdapter.getConn().prepareStatement(query);</span>
+
+<span class="nc" id="L678">            st.setBoolean(1, achievement.isFirstPost());</span>
+<span class="nc" id="L679">            st.setBoolean(2, achievement.isFirstFriend());</span>
+<span class="nc" id="L680">            st.setBoolean(3, achievement.isHundKm());</span>
+<span class="nc" id="L681">            st.setBoolean(4, achievement.isFiveDaysr());</span>
+<span class="nc" id="L682">            st.setBoolean(5, achievement.isToprank());</span>
+<span class="nc" id="L683">            st.setBoolean(6, achievement.isLowEco());</span>
+<span class="nc" id="L684">            st.setString(7, username);</span>
+<span class="nc" id="L685">            st.setBoolean(8, achievement.isFivedaysv());</span>
+<span class="nc" id="L686">            st.setBoolean(9, achievement.isCarblsix());</span>
+<span class="nc" id="L687">            st.setBoolean(10, achievement.isLocal());</span>
+<span class="nc" id="L688">            st.setBoolean(11, achievement.isLoggedin());</span>
+
+<span class="nc" id="L690">            st.executeUpdate();</span>
+<span class="nc" id="L691">            st.close();</span>
+
+<span class="nc" id="L693">            return true;</span>
+
+<span class="nc" id="L695">        } catch (SQLException e) {</span>
+
+<span class="nc" id="L697">            e.printStackTrace();</span>
+<span class="nc" id="L698">            return false;</span>
+
+        }
+    }
+
+    /**
+     * This method will update the score information of the user.
+     *
+     * @param username This is the username of the user.
+     * @param score    This is the score object that contains the updated information.
+     * @return The method will return a boolean value.
+     */
+    public boolean updateScore(String username, @NotNull Score score) {
+
+<span class="nc" id="L712">        String query = &quot;UPDATE scores &quot;</span>
+                 +  &quot;SET greenstreak = ?, score = ?, footprint = ?, ecofootprint = ?, username = ?&quot;
+                 +  &quot;WHERE username = \'&quot;  +  username  +  &quot;\'&quot;;
+
+        try {
+
+<span class="nc" id="L718">            PreparedStatement st = dbAdapter.getConn().prepareStatement(query);</span>
+
+<span class="nc" id="L720">            st.setInt(1, score.getGreenstreak());</span>
+<span class="nc" id="L721">            st.setInt(2, score.getScore());</span>
+<span class="nc" id="L722">            st.setDouble(3, score.getFootprint());</span>
+<span class="nc" id="L723">            st.setDouble(4, score.getFootprintEco());</span>
+<span class="nc" id="L724">            st.setString(5,username);</span>
+
+<span class="nc" id="L726">            st.executeUpdate();</span>
+<span class="nc" id="L727">            st.close();</span>
+
+<span class="nc" id="L729">            return true;</span>
+
+
+<span class="nc" id="L732">        } catch (SQLException e) {</span>
+
+<span class="nc" id="L734">            e.printStackTrace();</span>
+<span class="nc" id="L735">            return false;</span>
+
+        }
+    }
+
+    /*
+    -----------------------------------------------------------------------------------------------
+
+                                        INSERTION METHODS
+
+    -----------------------------------------------------------------------------------------------
+     */
+
+    /**
+     * This method will store the achievement information for the user.
+     *
+     * @param username    The username of the user.
+     * @param achievement The achievement information of the user.
+     * @return The method will return a boolean value.
+     */
+    public boolean insertAchievemnts(String username, @NotNull Achievement achievement) {
+
+<span class="nc" id="L757">        String query = &quot;INSERT INTO achievements (\&quot;firstPost\&quot;, &quot;</span>
+                + &quot;\&quot;firstFriend\&quot;, \&quot;hundkm\&quot;, \&quot;fiveDayRecycle\&quot;, \&quot;topRank\&quot;, \&quot;lowEco\&quot;,&quot;
+                +  &quot; username, \&quot;fiveDaysv\&quot;, \&quot;carblSix\&quot;, \&quot;locaL\&quot;, \&quot;loggeD\&quot;) &quot;
+                +  &quot;VALUES(?,?,?,?,?,?,?,?,?,?,?)&quot;;
+
+        try {
+
+<span class="nc" id="L764">            PreparedStatement st = dbAdapter.getConn().prepareStatement(query);</span>
+
+<span class="nc" id="L766">            st.setBoolean(1, achievement.isFirstPost());</span>
+<span class="nc" id="L767">            st.setBoolean(2, achievement.isFirstFriend());</span>
+<span class="nc" id="L768">            st.setBoolean(3, achievement.isHundKm());</span>
+<span class="nc" id="L769">            st.setBoolean(4, achievement.isFiveDaysr());</span>
+<span class="nc" id="L770">            st.setBoolean(5, achievement.isToprank());</span>
+<span class="nc" id="L771">            st.setBoolean(6, achievement.isLowEco());</span>
+<span class="nc" id="L772">            st.setString(7, username);</span>
+<span class="nc" id="L773">            st.setBoolean(8, achievement.isFivedaysv());</span>
+<span class="nc" id="L774">            st.setBoolean(9, achievement.isCarblsix());</span>
+<span class="nc" id="L775">            st.setBoolean(10, achievement.isLocal());</span>
+<span class="nc" id="L776">            st.setBoolean(11, achievement.isLoggedin());</span>
+
+
+<span class="nc" id="L779">            st.executeUpdate();</span>
+<span class="nc" id="L780">            st.close();</span>
+
+<span class="nc" id="L782">            return true;</span>
+
+<span class="nc" id="L784">        } catch (SQLException e) {</span>
+
+<span class="nc" id="L786">            e.printStackTrace();</span>
+<span class="nc" id="L787">            return false;</span>
+
+        }
+    }
+
+    /**
+     * This method ill return a global ranking object.
+     *
+     * @param attribute This is the attribute where we are basing the ranking.
+     * @return The method will return an arrayList.
+     */
+    public ArrayList&lt;RankingEntry&gt; getGlobalRanking(String attribute) {
+
+<span class="nc" id="L800">        ArrayList&lt;RankingEntry&gt; result = new ArrayList&lt;&gt;();</span>
+
+<span class="nc" id="L802">        String query = &quot;SELECT * FROM scores ORDER BY &quot;  +  attribute  +  &quot; DESC LIMIT 10&quot;;</span>
+
+        try {
+<span class="nc" id="L805">            ResultSet data = dbAdapter.query(query);</span>
+
+<span class="nc bnc" id="L807" title="All 2 branches missed.">            while (data.next()) {</span>
+<span class="nc" id="L808">                String username = data.getString(&quot;username&quot;);</span>
+<span class="nc" id="L809">                int score = data.getInt(attribute);</span>
+<span class="nc" id="L810">                result.add(new RankingEntry(username,score));</span>
+<span class="nc" id="L811">            }</span>
+
+<span class="nc" id="L813">        } catch (SQLException e) {</span>
+<span class="nc" id="L814">            e.printStackTrace();</span>
+<span class="nc" id="L815">            return null;</span>
+<span class="nc" id="L816">        }</span>
+
+<span class="nc" id="L818">        return result;</span>
+    }
+
+    /**
+     * This method will get the ranking of the friends.
+     *
+     * @param username This is the friend's username.
+     * @param attribute This is the attribute we want to compare.
+     * @return The method will return an arrayList of objects.
+     */
+    public ArrayList&lt;RankingEntry&gt; getFriendRanking(String username, String attribute) {
+<span class="nc" id="L829">        ArrayList&lt;RankingEntry&gt; result = new ArrayList&lt;&gt;();</span>
+
+<span class="nc" id="L831">        String query = &quot;SELECT *\n&quot;</span>
+                + &quot;FROM scores\n&quot;
+                + &quot;WHERE (username) IN (SELECT \&quot;firstUsername\&quot;\n&quot;
+                + &quot;                       FROM friendship \n&quot;
+                + &quot;                       WHERE (\&quot;firstUsername\&quot;= \'&quot; + username + &quot;\'\n&quot;
+                + &quot;                               OR \&quot;secondUsername\&quot; = \'&quot; + username + &quot;\')\n&quot;
+                + &quot;                               AND status = 1)\n&quot;
+                + &quot;               OR (username) IN (SELECT \&quot;secondUsername\&quot;\n&quot;
+                + &quot;                               FROM friendship \n&quot;
+                + &quot;                               WHERE (\&quot;firstUsername\&quot; = \'&quot; + username + &quot;\'\n&quot;
+                + &quot;                               OR \&quot;secondUsername\&quot; = \'&quot; + username + &quot;\')\n&quot;
+                + &quot;                               AND status = 1)\n&quot;
+                + &quot;ORDER BY \'&quot; + attribute + &quot;\' DESC&quot;;
+
+        try {
+<span class="nc" id="L846">            ResultSet data = dbAdapter.query(query);</span>
+<span class="nc bnc" id="L847" title="All 2 branches missed.">            while (data.next()) {</span>
+<span class="nc" id="L848">                String name = data.getString(&quot;username&quot;);</span>
+<span class="nc" id="L849">                int score = data.getInt(attribute);</span>
+<span class="nc" id="L850">                result.add(new RankingEntry(name,score));</span>
+<span class="nc" id="L851">            }</span>
+<span class="nc" id="L852">            return result;</span>
+<span class="nc" id="L853">        } catch (SQLException e) {</span>
+<span class="nc" id="L854">            return null;</span>
+        }
+    }
+
+}
+
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

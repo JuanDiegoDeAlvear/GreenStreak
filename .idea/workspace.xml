@@ -1,0 +1,1181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="32279478-d1e0-40dd-9697-f00b449cc4d4" name="Default Changelist" comment="" />
+    <ignored path="$PROJECT_DIR$/target/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageViewManager">
+    <option name="myElementSize" value="361" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="isMigrated" value="true" />
+  </component>
+  <component name="ExecutionTargetDialog">
+    <checked>
+      <node key="df0dd8b0-c1ef-4302-b0ae-3e061f24e02f" />
+    </checked>
+  </component>
+  <component name="FileEditorManager">
+    <leaf />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>setDb_adapter</find>
+      <find>DB_Adapter</find>
+      <find>resultset.clo</find>
+      <find>DB_implement</find>
+      <find>action</find>
+      <find>getuser</find>
+      <find>while</find>
+      <find>food</find>
+      <find>carblsix</find>
+      <find>sendLi</find>
+      <find>achiev</find>
+      <find>sendgreen</find>
+      <find>lifes</find>
+      <find>ERROR</find>
+      <find>getProfi</find>
+      <find>achi</find>
+      <find>achieve</find>
+      <find>insert</find>
+      <find>getP</find>
+      <find>first_username</find>
+      <find>second_username</find>
+      <find>action_username</find>
+      <find>signup</find>
+      <find>insertde</find>
+      <find>true</find>
+      <find>equals</find>
+      <find>equal</find>
+      <find>getlife</find>
+      <find>getFood</find>
+      <find>getScores</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>dbAdapter</replace>
+      <replace />
+      <replace>dbFriendshipInstance</replace>
+      <replace>dbFriendship</replace>
+      <replace>friendDatabaseManagerInstance</replace>
+      <replace>dbImplementInstance</replace>
+      <replace>dbImplement</replace>
+      <replace>applianceUse</replace>
+      <replace>databaseProfileInstance</replace>
+      <replace>getDbAdapter</replace>
+      <replace>setDatabaseProfileInstance</replace>
+      <replace>setDbAdapter</replace>
+      <replace>DbAdapter</replace>
+      <replace>DbImplement</replace>
+      <replace>firstUsername</replace>
+      <replace>secondUsername</replace>
+      <replace>actionUsername</replace>
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/server/java/database/DatabaseProfile.java" />
+        <option value="$PROJECT_DIR$/src/server/java/database/DB_implement.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/server/database/DB_implementTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/server/spring/FriendController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/server/database/DB_BackupScript/DB_BackupScript.sql" />
+        <option value="$PROJECT_DIR$/src/main/java/com/server/database/DB_Adapter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/client/ServerCommunication.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/client/controllers/UserFriendController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/server/database/DB_implement.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/server/endpoints/ProfileEndpoints.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/client/logic/LifeStyleSurvey.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/server/database/DB_Friendship.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/client/logic/FoodSurvey.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/client/logic/EnergySurvey.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/client/logic/TransportationSurvey.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/client/logic/Achievement.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/server/database/FriendDatabaseManagerTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/server/database/DatabaseProfileTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/server/database/DatabaseManager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/server/database/DatabaseProfile.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/server/database/DatabaseProfileManager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/server/database/DbAdapter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/server/database/DbFriendship.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/server/database/DbImplement.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/server/database/FriendDatabaseManager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/server/debug/DebugTools.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/server/spring/AuthenticationController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/server/spring/ProfileController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/server/spring/ScoreController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/server/spring/PostController.java" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="Starter OOPProject-Template" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="Starter OOPProject-Template" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="Starter OOPProject-Template" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Plugins" type="7aea1407:MavenProjectsStructure$PluginsNode" />
+        </path>
+      </expand>
+      <select />
+    </treeState>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-7" />
+    <option name="width" value="974" />
+    <option name="height" value="1047" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="OOP-Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="OPP" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="OOP-Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="OPP" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="OOP-Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="OPP" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="OOP-Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="OPP" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="OOP-Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="OPP" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="OOP-Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="OPP" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="OOP-Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="OPP" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="OOP-Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="OPP" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="database" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="OOP-Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="OPP" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="database" type="462c0819:PsiDirectoryNode" />
+              <item name="DB_BackupScript" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="OOP-Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="OPP" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="debug" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="OOP-Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="OPP" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="endpoints" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="OOP-Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="OPP" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="spring" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="OOP-Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="OPP" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="OOP-Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="OPP" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="OOP-Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="OPP" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="OOP-Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="OPP" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="OOP-Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="OPP" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="database" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="OOP-Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="OPP" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="spring" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="OOP-Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="OPP" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="OOP-Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="OPP" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
+              <item name="site" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="OOP-Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="OPP" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
+              <item name="test-classes" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="postgresql" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554035243635" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+    <option name="contentProportion" value="0.065476194" />
+  </component>
+  <component name="RunManager" selected="Maven.OOP-Project [install,exec:java]">
+    <configuration name="DatabaseProfileTest.getFootprintEco" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="OOP-Project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.server.database.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.server.database" />
+      <option name="MAIN_CLASS_NAME" value="com.server.database.DatabaseProfileTest" />
+      <option name="METHOD_NAME" value="getFootprintEco" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DatabaseProfileTest.getLifeStyleSurvey" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="OOP-Project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.server.database.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.server.database" />
+      <option name="MAIN_CLASS_NAME" value="com.server.database.DatabaseProfileTest" />
+      <option name="METHOD_NAME" value="getLifeStyleSurvey" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DatabaseProfileTest.getScores" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="OOP-Project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.server.database.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.server.database" />
+      <option name="MAIN_CLASS_NAME" value="com.server.database.DatabaseProfileTest" />
+      <option name="METHOD_NAME" value="getScores" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="com in OOP-Project" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="OOP-Project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="OOP-Project [install,exec:java]" type="MavenRunConfiguration" factoryName="Maven" nameIsGenerated="true">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="install" />
+                <option value="exec:java" />
+              </list>
+            </option>
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <configuration name="GreenStreakServer" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="OOP-Project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.server.spring.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.server.spring.GreenStreakServer" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="JUnit.DatabaseProfileTest.getLifeStyleSurvey" />
+      <item itemvalue="JUnit.DatabaseProfileTest.getScores" />
+      <item itemvalue="JUnit.DatabaseProfileTest.getFootprintEco" />
+      <item itemvalue="JUnit.com in OOP-Project" />
+      <item itemvalue="Maven.OOP-Project [install,exec:java]" />
+      <item itemvalue="Spring Boot.GreenStreakServer" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.GreenStreakServer" />
+        <item itemvalue="JUnit.com in OOP-Project" />
+        <item itemvalue="JUnit.DatabaseProfileTest.getFootprintEco" />
+        <item itemvalue="JUnit.DatabaseProfileTest.getLifeStyleSurvey" />
+        <item itemvalue="JUnit.DatabaseProfileTest.getScores" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpringBeansView">
+    <option name="beanDetailsProportion" value="0.3" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="32279478-d1e0-40dd-9697-f00b449cc4d4" name="Default Changelist" comment="" />
+      <created>1553637700154</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1553637700154</updated>
+      <workItem from="1553637703764" duration="777000" />
+      <workItem from="1553678608561" duration="3631000" />
+      <workItem from="1553710204722" duration="3326000" />
+      <workItem from="1553761646499" duration="16481000" />
+      <workItem from="1553859181294" duration="6034000" />
+      <workItem from="1553879021913" duration="4224000" />
+      <workItem from="1553938501733" duration="6893000" />
+      <workItem from="1553963472107" duration="716000" />
+      <workItem from="1553964276708" duration="2983000" />
+      <workItem from="1554035518382" duration="622000" />
+      <workItem from="1554037143620" duration="11389000" />
+      <workItem from="1554109154666" duration="6670000" />
+      <workItem from="1554120414724" duration="6426000" />
+      <workItem from="1554290165329" duration="1379000" />
+      <workItem from="1554301966881" duration="3928000" />
+      <workItem from="1554317142880" duration="624000" />
+      <workItem from="1554383278605" duration="11689000" />
+      <workItem from="1554452124902" duration="2177000" />
+      <workItem from="1554543345903" duration="617000" />
+      <workItem from="1554572476935" duration="3500000" />
+      <workItem from="1554642376905" duration="19625000" />
+      <workItem from="1554704417935" duration="4679000" />
+      <workItem from="1554723686854" duration="7391000" />
+      <workItem from="1554731980149" duration="6719000" />
+      <workItem from="1554745411798" duration="1652000" />
+      <workItem from="1554747412194" duration="702000" />
+      <workItem from="1554791354737" duration="9997000" />
+      <workItem from="1554893310839" duration="30000" />
+      <workItem from="1554926262958" duration="6342000" />
+      <workItem from="1555175282172" duration="9312000" />
+      <workItem from="1555231190598" duration="3026000" />
+      <workItem from="1555309160414" duration="9366000" />
+      <workItem from="1555759355483" duration="617000" />
+      <workItem from="1555760581113" duration="708000" />
+      <workItem from="1556903548040" duration="509000" />
+      <workItem from="1556904276507" duration="97000" />
+      <workItem from="1557750226080" duration="615000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TestHistory">
+    <history-entry file="DatabaseProfileTest_getProfile - 2019.04.10 at 23h 51m 10s.xml">
+      <configuration name="DatabaseProfileTest.getProfile" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="DatabaseProfileTest_getProfile - 2019.04.10 at 23h 51m 38s.xml">
+      <configuration name="DatabaseProfileTest.getProfile" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="DatabaseProfileTest_getProfile - 2019.04.10 at 23h 52m 15s.xml">
+      <configuration name="DatabaseProfileTest.getProfile" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="DatabaseProfileTest_getProfile - 2019.04.10 at 23h 55m 37s.xml">
+      <configuration name="DatabaseProfileTest.getProfile" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="DatabaseProfileTest_getScores - 2019.04.13 at 19h 33m 57s.xml">
+      <configuration name="DatabaseProfileTest.getScores" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="DatabaseProfileTest_getScores - 2019.04.13 at 19h 40m 16s.xml">
+      <configuration name="DatabaseProfileTest.getScores" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="DatabaseProfileTest_getLifeStyleSurvey - 2019.04.13 at 23h 04m 19s.xml">
+      <configuration name="DatabaseProfileTest.getLifeStyleSurvey" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="DatabaseProfileTest_getFootprintEco - 2019.04.13 at 23h 04m 42s.xml">
+      <configuration name="DatabaseProfileTest.getFootprintEco" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="com_in_OOP-Project - 2019.04.13 at 23h 09m 05s.xml">
+      <configuration name="com in OOP-Project" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="com_in_OOP-Project - 2019.04.13 at 23h 10m 06s.xml">
+      <configuration name="com in OOP-Project" configurationId="JUnit" />
+    </history-entry>
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="175473000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26100966" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="Capture Tool" order="4" />
+      <window_info id="UI Designer" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info id="Web" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32936078" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3997833" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Run Dashboard" order="6" sideWeight="0.4989339" weight="0.3261105" />
+      <window_info anchor="bottom" id="TODO" order="7" weight="0.32936078" />
+      <window_info anchor="bottom" id="Spring" order="8" weight="0.32936078" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32936078" />
+      <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5010661" side_tool="true" weight="0.32936078" />
+      <window_info anchor="bottom" id="Messages" order="12" weight="0.32936078" />
+      <window_info anchor="bottom" id="Java Enterprise" order="13" weight="0.32936078" />
+      <window_info anchor="bottom" id="Database Changes" order="14" weight="0.32936078" />
+      <window_info anchor="bottom" id="Version Control" order="15" weight="0.32936078" />
+      <window_info anchor="bottom" id="CheckStyle" order="16" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Maven" order="3" sideWeight="0.49596122" weight="0.32975295" />
+      <window_info anchor="right" id="Palette" order="4" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
+      <window_info anchor="right" id="Database" order="6" weight="0.32995737" />
+      <window_info anchor="right" id="Bean Validation" order="7" weight="0.32995737" />
+      <window_info anchor="right" id="Palette&#9;" order="8" />
+      <window_info anchor="right" id="Theme Preview" order="9" />
+      <window_info anchor="right" id="Coverage" order="10" sideWeight="0.50403875" side_tool="true" weight="0.32995737" />
+    </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18656716" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="Capture Tool" order="4" />
+      <window_info id="UI Designer" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info id="Web" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32936078" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3997833" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32936078" />
+      <window_info anchor="bottom" id="Spring" order="7" weight="0.32936078" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32936078" />
+      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5010661" side_tool="true" weight="0.32936078" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.32936078" />
+      <window_info anchor="bottom" id="Java Enterprise" order="12" weight="0.32936078" />
+      <window_info anchor="bottom" id="Database Changes" order="13" weight="0.32936078" />
+      <window_info anchor="bottom" id="Version Control" order="14" weight="0.32936078" />
+      <window_info anchor="bottom" id="Run Dashboard" order="15" sideWeight="0.4989339" visible="true" weight="0.32936078" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Maven" order="3" weight="0.32995737" />
+      <window_info anchor="right" id="Palette" order="4" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
+      <window_info anchor="right" id="Bean Validation" order="6" weight="0.32995737" />
+      <window_info anchor="right" id="Database" order="7" weight="0.32995737" />
+      <window_info anchor="right" id="Palette&#9;" order="8" />
+      <window_info anchor="right" id="Theme Preview" order="9" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="JUnit">
+        <watch expression="((DatabaseProfile)((DatabaseProfileTest)this).databaseProfile).dbAdapter" custom="com.server.database.DatabaseProfile,com.server.database.DatabaseProfileTest" />
+        <watch expression="((MethodInterceptorFilter)this.CGLIB$CALLBACK_0).cglibHacker" custom="org.mockito.internal.creation.MethodInterceptorFilter,com.server.database.DatabaseProfile,com.server.database.DbAdapter,com.server.database.DatabaseProfileTest" />
+        <watch expression="this.CGLIB$CALLBACK_0" custom="java.sql.ResultSet" />
+        <watch expression="((CreationSettings)((MethodInterceptorFilter)this.CGLIB$CALLBACK_0).mockSettings).typeToMock" custom="com.server.database.DatabaseProfile,org.mockito.internal.stubbing.answers.Returns,com.server.database.DatabaseProfileTest,org.mockito.internal.stubbing.StubbedInvocationMatcher,org.mockito.internal.creation.settings.CreationSettings,java.util.LinkedList,java.util.concurrent.ConcurrentLinkedQueue,org.mockito.internal.handler.InvocationNotifierHandler,java.sql.ResultSet,org.mockito.internal.handler.NullResultGuardian,org.mockito.internal.creation.MethodInterceptorFilter,com.server.database.DbAdapter,org.mockito.internal.stubbing.InvocationContainerImpl,org.mockito.internal.handler.MockHandlerImpl" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/OOP_Project$com_in_OOP_Project.ic" NAME="com in OOP-Project Coverage Results" MODIFIED="1555189745884" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/OOP_Project$DatabaseProfileTest_getProfile.ic" NAME="DatabaseProfileTest.getProfile Coverage Results" MODIFIED="1554929864531" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.server.database.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/OOP_Project$DatabaseProfileTest_getLifeStyleSurvey.ic" NAME="DatabaseProfileTest.getLifeStyleSurvey Coverage Results" MODIFIED="1554800771509" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.server.database.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/OOP_Project$DatabaseProfileTest_getCarbonFootprint.ic" NAME="DatabaseProfileTest.getCarbonFootprint Coverage Results" MODIFIED="1554719851304" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.server.database.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/OOP_Project$DatabaseProfileTest_getGreenStreak.ic" NAME="DatabaseProfileTest.getGreenStreak Coverage Results" MODIFIED="1554720659952" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.server.database.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/OOP_Project$DatabaseProfileTest_getFoodSurvey.ic" NAME="DatabaseProfileTest.getFoodSurvey Coverage Results" MODIFIED="1554668265136" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.server.database.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/OOP_Project$DatabaseProfileTest_getScore.ic" NAME="DatabaseProfileTest.getScore Coverage Results" MODIFIED="1554720449534" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.server.database.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/OOP_Project$DatabaseManagerTest.ic" NAME="DatabaseManagerTest Coverage Results" MODIFIED="1554932426327" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.server.database.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/OOP_Project$DatabaseProfileTest_getTransportationSurvey.ic" NAME="DatabaseProfileTest.getTransportationSurvey Coverage Results" MODIFIED="1554667540428" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.server.database.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/OOP_Project$DatabaseProfileTest_getAchievements.ic" NAME="DatabaseProfileTest.getAchievements Coverage Results" MODIFIED="1554932704449" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.server.database.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/OOP_Project$DatabaseProfileTest_getEnergySurvey.ic" NAME="DatabaseProfileTest.getEnergySurvey Coverage Results" MODIFIED="1554669031617" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.server.database.*</FILTER>
+    </SUITE>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2064" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/server/database/DbImplementTest.java" />
+    <entry file="jar://C:/Program Files/Java/jdk-11.0.2/lib/src.zip!/java.base/java/lang/Object.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="49" column="11" selection-start-line="49" selection-start-column="11" selection-end-line="49" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/df0dd8b0-c1ef-4302-b0ae-3e061f24e02f/console.sql">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/client/clientendpoints/PostEndpoints.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/client/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-autoconfigure/2.1.3.RELEASE/spring-boot-autoconfigure-2.1.3.RELEASE.jar!/org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="250" column="44" selection-start-line="250" selection-start-column="44" selection-end-line="250" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/server/spring/GreenStreakServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="11" column="26" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-autoconfigure/2.1.3.RELEASE/spring-boot-autoconfigure-2.1.3.RELEASE-sources.jar!/org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5933">
+          <caret line="497" column="44" selection-start-line="497" selection-start-column="44" selection-end-line="497" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/server/spring/FriendControllerTest.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/server/spring/FriendController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="33" column="19" selection-start-line="33" selection-start-column="19" selection-end-line="33" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/client/controllers/SignupController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="34" column="13" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/client/controllers/PostGroupController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-544">
+          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/client/controllers/FriendsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="537">
+          <caret line="125" column="51" selection-start-line="125" selection-start-column="51" selection-end-line="125" selection-end-column="51" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#5059#5060#0" expanded="true" />
+            <element signature="e#5093#5094#0" expanded="true" />
+            <element signature="e#5125#5126#0" expanded="true" />
+            <element signature="e#5160#5161#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/client/controllers/FriendsCompareController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/client/controllers/UserFriendController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="537">
+          <caret line="128" column="51" selection-start-line="128" selection-start-column="51" selection-end-line="128" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/client/ServerCommunication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="537">
+          <caret line="308" column="2" selection-start-line="308" selection-start-column="2" selection-end-line="308" selection-end-column="2" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/server/endpoints/ProfileEndpoints.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="39" selection-start-line="3" selection-start-column="39" selection-end-line="3" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/mockito/mockito-all/1.9.5/mockito-all-1.9.5.jar!/org/mockito/internal/runners/JUnit45AndHigherRunnerImpl.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="339">
+          <caret line="32" selection-start-line="32" selection-end-line="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-11.0.2/lib/src.zip!/java.sql/java/sql/ResultSet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3564">
+          <caret line="148" column="17" selection-start-line="148" selection-start-column="17" selection-end-line="148" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/client/logic/Survey.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/client/logic/Profile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/client/logic/LifeStyleSurvey.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="537">
+          <caret line="103" column="9" lean-forward="true" selection-start-line="103" selection-start-column="9" selection-end-line="103" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/mockito/mockito-all/1.9.5/mockito-all-1.9.5-sources.jar!/org/mockito/internal/runners/JUnit45AndHigherRunnerImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="356">
+          <caret line="36" column="15" selection-start-line="36" selection-start-column="15" selection-end-line="36" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/client/logic/FriendRelationship.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/client/logic/Achievement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="246" column="4" selection-start-line="246" selection-start-column="4" selection-end-line="246" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/client/logic/FoodSurvey.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="134" column="18" selection-start-line="134" selection-start-column="18" selection-end-line="134" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/client/logic/EnergySurvey.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="251">
+          <caret line="105" column="18" selection-start-line="105" selection-start-column="18" selection-end-line="105" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/client/logic/TransportationSurvey.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="251">
+          <caret line="96" column="18" selection-start-line="96" selection-start-column="18" selection-end-line="96" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/mockito/mockito-all/1.9.5/mockito-all-1.9.5-sources.jar!/org/mockito/BDDMockito.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="177" column="51" selection-start-line="177" selection-start-column="7" selection-end-line="177" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/client/logic/Score.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/server/database/DatabaseManagerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="629">
+          <caret line="50" column="71" selection-start-line="50" selection-start-column="71" selection-end-line="50" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/server/database/DatabaseProfileManagerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="251">
+          <caret line="27" column="9" selection-start-line="27" selection-start-column="9" selection-end-line="27" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/target/site/summary.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="25" column="25" lean-forward="true" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/target/site/index.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/server/database/FriendDatabaseManagerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="78">
+          <caret line="61" selection-start-line="61" selection-end-line="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/server/database/DatabaseProfileTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2580">
+          <caret line="341" column="38" selection-start-line="341" selection-start-column="38" selection-end-line="341" selection-end-column="38" />
+          <folding>
+            <element signature="e#1106#1107#0" expanded="true" />
+            <element signature="e#1181#1182#0" expanded="true" />
+            <element signature="e#1225#1226#0" expanded="true" />
+            <element signature="e#1313#1314#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/server/database/DatabaseManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="146">
+          <caret line="86" column="89" selection-start-line="86" selection-start-column="89" selection-end-line="86" selection-end-column="89" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1928#1929#0" expanded="true" />
+            <element signature="e#1962#1963#0" expanded="true" />
+            <element signature="e#2762#2763#0" expanded="true" />
+            <element signature="e#2817#2818#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/server/database/DatabaseProfile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="497">
+          <caret line="852" column="10" selection-start-line="852" selection-start-column="10" selection-end-line="852" selection-end-column="10" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1665#1666#0" expanded="true" />
+            <element signature="e#1707#1708#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/server/database/DatabaseProfileManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2193">
+          <caret line="130" column="8" selection-start-line="130" selection-start-column="8" selection-end-line="130" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#634#635#0" expanded="true" />
+            <element signature="e#688#689#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/server/database/DbAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="367">
+          <caret line="156" column="4" selection-start-line="156" selection-start-column="4" selection-end-line="156" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/server/database/DbFriendship.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="319">
+          <caret line="317" column="47" selection-start-line="317" selection-start-column="47" selection-end-line="317" selection-end-column="47" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1404#1405#0" expanded="true" />
+            <element signature="e#1446#1447#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/server/database/DbImplement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="503">
+          <caret line="205" lean-forward="true" selection-start-line="205" selection-end-line="205" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/server/database/FriendDatabaseManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1438">
+          <caret line="178" column="7" selection-start-line="178" selection-start-column="7" selection-end-line="178" selection-end-column="7" />
+          <folding>
+            <element signature="e#365#366#0" expanded="true" />
+            <element signature="e#413#414#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/server/debug/DebugTools.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/server/spring/AuthenticationController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="18" column="57" selection-start-line="18" selection-start-column="57" selection-end-line="18" selection-end-column="57" />
+          <folding>
+            <element signature="e#856#857#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/server/spring/ProfileController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="53" column="66" selection-start-line="53" selection-start-column="66" selection-end-line="53" selection-end-column="66" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/server/database/DB_BackupScript/DB_BackupScript.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="50">
+          <caret line="164" selection-start-line="164" selection-end-line="164" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/server/spring/PostController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/server/spring/ScoreController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="841">
+          <caret line="72" column="38" selection-start-line="72" selection-start-column="38" selection-end-line="72" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/target/site/checkstyle.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#1122#1128#0" expanded="true" />
+            <element signature="e#4167#4173#0" expanded="true" />
+            <element signature="e#4177#4183#0" expanded="true" />
+            <element signature="e#4224#4230#0" expanded="true" />
+            <element signature="e#4240#4246#0" expanded="true" />
+            <element signature="e#4289#4295#0" expanded="true" />
+            <element signature="e#4365#4371#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

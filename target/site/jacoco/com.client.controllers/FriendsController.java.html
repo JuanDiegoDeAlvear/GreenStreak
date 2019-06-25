@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FriendsController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Starter OOPProject-Template</a> &gt; <a href="index.source.html" class="el_package">com.client.controllers</a> &gt; <span class="el_source">FriendsController.java</span></div><h1>FriendsController.java</h1><pre class="source lang-java linenums">package com.client.controllers;
+
+import com.client.ServerCommunication;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.control.Alert;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
+<span class="nc" id="L19">public class FriendsController {</span>
+
+    public JFXButton selectedNav;
+    public VBox selectedPane;
+    @FXML
+    public VBox requestsPane;
+    @FXML
+    public VBox sentPane;
+    @FXML
+    VBox friendsPane;
+    @FXML
+    AnchorPane friendsCompare;
+    @FXML
+    private JFXTextField searchBar;
+    @FXML
+    private JFXButton friendsNav;
+    @FXML
+    private JFXButton requestsNav;
+    @FXML
+    private JFXButton sentNav;
+    @FXML
+    private JFXButton searchBtn;
+    @FXML
+    private VBox resultBox;
+
+    private ArrayList&lt;String&gt; searchresult;
+
+
+
+    @FXML
+    void search(ActionEvent event) {
+<span class="nc" id="L50">        searchresult = ServerCommunication.search(searchBar.getText());</span>
+<span class="nc" id="L51">        this.selectedPane = resultBox;</span>
+<span class="nc" id="L52">        loadFriends(searchresult, friendsPane);</span>
+<span class="nc bnc" id="L53" title="All 2 branches missed.">        if (searchresult.size() == 0) {</span>
+<span class="nc" id="L54">            alert(&quot;No users exists with such name &quot;);</span>
+<span class="nc" id="L55">            this.selectedPane = friendsPane;</span>
+<span class="nc" id="L56">            loadFriends(LoginController.userprofile.getFriendList(), friendsPane);</span>
+        }
+<span class="nc" id="L58">    }</span>
+
+    @FXML
+    void searchWithEnterKey(KeyEvent event) throws IOException {
+<span class="nc bnc" id="L62" title="All 2 branches missed.">        if (event.getCode() == KeyCode.ENTER) {</span>
+<span class="nc" id="L63">            searchresult = ServerCommunication.search(searchBar.getText());</span>
+<span class="nc" id="L64">            this.selectedPane = resultBox;</span>
+<span class="nc" id="L65">            loadFriends(searchresult, friendsPane);</span>
+<span class="nc bnc" id="L66" title="All 2 branches missed.">            if (searchresult.size() == 0) {</span>
+<span class="nc" id="L67">                alert(&quot;No users exists with such name &quot;);</span>
+<span class="nc" id="L68">                this.selectedPane = friendsPane;</span>
+<span class="nc" id="L69">                loadFriends(LoginController.userprofile.getFriendList(), friendsPane);</span>
+            }
+        }
+<span class="nc" id="L72">    }</span>
+
+
+    @FXML
+    void changeTab(ActionEvent event) {
+
+<span class="nc" id="L78">        selectedPane.setVisible(false);</span>
+<span class="nc" id="L79">        selectedNav.setStyle(&quot;-fx-background-color: #2c3e50;&quot;);</span>
+
+<span class="nc bnc" id="L81" title="All 2 branches missed.">        if (event.getSource() == friendsNav) {</span>
+<span class="nc" id="L82">            selectedNav = friendsNav;</span>
+<span class="nc" id="L83">            selectedPane = friendsPane;</span>
+<span class="nc" id="L84">            loadFriends(LoginController.userprofile.getFriendList(), friendsPane);</span>
+        }
+
+<span class="nc bnc" id="L87" title="All 2 branches missed.">        if (event.getSource() == requestsNav) {</span>
+<span class="nc" id="L88">            selectedNav = requestsNav;</span>
+<span class="nc" id="L89">            selectedPane = requestsPane;</span>
+<span class="nc" id="L90">            loadFriends(ServerCommunication.getReceivedRequests(</span>
+<span class="nc" id="L91">                    LoginController.getusername()), requestsPane);</span>
+        }
+
+<span class="nc bnc" id="L94" title="All 2 branches missed.">        if (event.getSource() == sentNav) {</span>
+<span class="nc" id="L95">            selectedNav = sentNav;</span>
+<span class="nc" id="L96">            selectedPane = sentPane;</span>
+<span class="nc" id="L97">            loadFriends(ServerCommunication.getSentRequests(</span>
+<span class="nc" id="L98">                    LoginController.getusername()), sentPane);</span>
+        }
+
+<span class="nc" id="L101">        selectedPane.setVisible(true);</span>
+<span class="nc" id="L102">        selectedNav.setStyle(&quot;-fx-background-color: #27ae60;&quot;);</span>
+<span class="nc" id="L103">    }</span>
+
+    @FXML
+    void initialize() {
+<span class="nc" id="L107">        selectedPane = friendsPane;</span>
+<span class="nc" id="L108">        selectedNav = friendsNav;</span>
+<span class="nc" id="L109">        selectedPane.setVisible(true);</span>
+<span class="nc" id="L110">        loadFriends(LoginController.userprofile.getFriendList(), friendsPane);</span>
+<span class="nc" id="L111">        LoginController.userprofile.getAchievement().checkfirstfriend();</span>
+
+<span class="nc" id="L113">    }</span>
+
+    void alert(String statment) {
+<span class="nc" id="L116">        Alert alert = new Alert(Alert.AlertType.INFORMATION);</span>
+<span class="nc" id="L117">        alert.setHeaderText(statment);</span>
+<span class="nc" id="L118">        alert.showAndWait();</span>
+<span class="nc" id="L119">    }</span>
+
+    /**
+     * gets array and process it by creating UserFriendController.
+     */
+    public void loadFriends(ArrayList&lt;String&gt; friends, VBox friendsPane) {
+<span class="nc" id="L125">        filter(friends);</span>
+<span class="nc" id="L126">        friendsPane.getChildren().clear();</span>
+<span class="nc bnc" id="L127" title="All 2 branches missed.">        for (int i = 0; i &lt; friends.size(); i++) {</span>
+<span class="nc" id="L128">            FXMLLoader loader = new FXMLLoader(getClass()</span>
+<span class="nc" id="L129">                    .getResource(&quot;/fxml/user.fxml&quot;));</span>
+<span class="nc" id="L130">            UserFriendController ufc = new UserFriendController(friends.get(i),</span>
+                    this);
+<span class="nc" id="L132">            loader.setController(ufc);</span>
+            try {
+<span class="nc" id="L134">                Parent root = loader.load();</span>
+<span class="nc" id="L135">                friendsPane.getChildren().addAll(root);</span>
+<span class="nc" id="L136">            } catch (IOException e) {</span>
+<span class="nc" id="L137">                e.printStackTrace();</span>
+<span class="nc" id="L138">            }</span>
+
+        }
+<span class="nc" id="L141">    }</span>
+
+    private void filter(ArrayList&lt;String&gt; friends) {
+<span class="nc bnc" id="L144" title="All 2 branches missed.">        for (int i = 0 ; i &lt; friends.size(); i ++) {</span>
+<span class="nc bnc" id="L145" title="All 2 branches missed.">            if (friends.get(i).equals(LoginController.getusername())) {</span>
+<span class="nc" id="L146">                friends.remove(i);</span>
+            }
+        }
+<span class="nc" id="L149">    }</span>
+
+    public VBox getFriendsPane() {
+<span class="nc" id="L152">        return friendsPane;</span>
+    }
+
+    public VBox getreqpane() {
+<span class="nc" id="L156">        return requestsPane;</span>
+    }
+
+    public AnchorPane getfriendcomp() {
+<span class="nc" id="L160">        return friendsCompare;</span>
+    }
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

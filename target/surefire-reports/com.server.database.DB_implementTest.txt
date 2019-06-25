@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.server.database.DB_implementTest
+-------------------------------------------------------------------------------
+Tests run: 18, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.508 s - in com.server.database.DB_implementTest

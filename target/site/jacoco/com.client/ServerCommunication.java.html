@@ -1,0 +1,601 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ServerCommunication.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Starter OOPProject-Template</a> &gt; <a href="index.source.html" class="el_package">com.client</a> &gt; <span class="el_source">ServerCommunication.java</span></div><h1>ServerCommunication.java</h1><pre class="source lang-java linenums">package com.client;
+
+import com.client.clientendpoints.AuthenticationEndpoints;
+import com.client.clientendpoints.FriendEndpoints;
+import com.client.clientendpoints.PostEndpoints;
+import com.client.clientendpoints.ProfileEndpoints;
+import com.client.clientendpoints.ScoreEndpoints;
+import com.client.logic.Achievement;
+import com.client.logic.ConsumptionPost;
+import com.client.logic.EnergySurvey;
+import com.client.logic.FoodPost;
+import com.client.logic.FoodSurvey;
+import com.client.logic.FriendRelationship;
+import com.client.logic.LifeStyleSurvey;
+import com.client.logic.PostCatalog;
+import com.client.logic.Profile;
+import com.client.logic.RankingEntry;
+import com.client.logic.Score;
+import com.client.logic.SignUpUser;
+import com.client.logic.TransportationPost;
+import com.client.logic.TransportationSurvey;
+import com.client.logic.User;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.hash.Hashing;
+import org.springframework.web.client.RestTemplate;
+
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import static com.server.debug.DebugTools.debug;
+
+
+
+
+<span class="nc bnc" id="L37" title="All 2 branches missed.">public abstract class ServerCommunication {</span>
+
+    private static final String serverAddress = &quot;http://localhost:8080&quot;;
+<span class="nc" id="L40">    private static RestTemplate restTemplate = new RestTemplate();</span>
+<span class="nc" id="L41">    private static ObjectMapper mapper = new ObjectMapper();</span>
+
+    /**
+     * Create a new post in db.
+     *
+     * @param post sets post using Consumption post
+     * @return boolean
+     */
+    public static boolean uploadConsume(ConsumptionPost post) {
+<span class="nc" id="L50">        return restTemplate.postForObject(serverAddress + PostEndpoints.POSTS</span>
+                        + PostEndpoints.ADD_CONSUMPTION,
+                post, boolean.class);
+    }
+
+    /**
+     * Create a new post in db.
+     *
+     * @param post sets post using Food post
+     * @return boolean
+     */
+    public static boolean uploadfood(FoodPost post) {
+<span class="nc" id="L62">        return restTemplate.postForObject(serverAddress + PostEndpoints.POSTS</span>
+                        + PostEndpoints.ADD_FOOD,
+                post, boolean.class);
+    }
+
+    /**
+     * Create a new post in db.
+     *
+     * @param post sets post using Transportation post
+     * @return boolean
+     */
+    public static boolean uploadTrans(TransportationPost post) {
+<span class="nc" id="L74">        return restTemplate.postForObject(serverAddress + PostEndpoints.POSTS</span>
+                        + PostEndpoints.ADD_TRANSPORT,
+                post, boolean.class);
+    }
+
+    /**
+     * Receive from com.server an array.
+     *
+     * @param username sets username using String
+     * @return postCatalog
+     */
+    public static PostCatalog recievepostarray(String username) {
+<span class="nc" id="L86">        System.out.println(&quot;Requesting posts from user: &quot; + username);</span>
+<span class="nc" id="L87">        PostCatalog catalog = new PostCatalog();</span>
+
+<span class="nc" id="L89">        ConsumptionPost[] consumptionPosts = getConsumptionPosts(username);</span>
+<span class="nc" id="L90">        FoodPost[] foodPosts = getFoodPosts(username);</span>
+<span class="nc" id="L91">        TransportationPost[] transportationPosts = getTransportationPosts(username);</span>
+
+<span class="nc" id="L93">        catalog.getPostcatalog().addAll(Arrays.asList(consumptionPosts));</span>
+<span class="nc" id="L94">        catalog.getPostcatalog().addAll(Arrays.asList(foodPosts));</span>
+<span class="nc" id="L95">        catalog.getPostcatalog().addAll(Arrays.asList(transportationPosts));</span>
+
+
+<span class="nc" id="L98">        return catalog;</span>
+
+    }
+
+    /**
+     * fetchs all Consumption Posts from db.
+     *
+     * @param username sets username as String
+     * @return List of consumption post
+     */
+    public static ConsumptionPost[] getConsumptionPosts(String username) {
+<span class="nc" id="L109">        return restTemplate.getForObject(serverAddress + PostEndpoints.POSTS</span>
+                + PostEndpoints.GET_CONSUMPTION
+                + &quot;?username=&quot; + username, ConsumptionPost[].class);
+    }
+
+    /**
+     * fetchs all Food Posts from db.
+     *
+     * @param username sets username as String
+     * @return List of food post
+     */
+    public static FoodPost[] getFoodPosts(String username) {
+<span class="nc" id="L121">        return restTemplate.getForObject(serverAddress + PostEndpoints.POSTS</span>
+                + PostEndpoints.GET_FOOD
+                + &quot;?username=&quot; + username, FoodPost[].class);
+    }
+
+    /**
+     * fetchs all transportation Posts from db.
+     *
+     * @param username sets username as String
+     * @return List of transportation post
+     */
+    public static TransportationPost[] getTransportationPosts(String username) {
+<span class="nc" id="L133">        return restTemplate.getForObject(serverAddress + PostEndpoints.POSTS</span>
+                + PostEndpoints.GET_TRANSPORT
+                + &quot;?username=&quot; + username, TransportationPost[].class);
+    }
+
+    /**
+     * User verification.
+     *
+     * @param details user verification details.
+     * @return returns whether the user is in the database.
+     */
+    public static boolean checkLogin(User details) {
+<span class="nc" id="L145">        String password = hashText(details.getPassword());</span>
+<span class="nc" id="L146">        details.setPassword(password);</span>
+
+<span class="nc" id="L148">        System.out.println(&quot;Checking login details for: &quot; + details.getusername()</span>
+<span class="nc" id="L149">                + &quot; password: &quot; + details.getPassword());</span>
+<span class="nc" id="L150">        boolean validated = restTemplate.postForObject(serverAddress</span>
+                + AuthenticationEndpoints.AUTHENTICATION
+                + AuthenticationEndpoints.LOGIN, details, boolean.class);
+
+<span class="nc" id="L154">        System.out.println(&quot;Recevied login validation value: &quot; + validated);</span>
+<span class="nc" id="L155">        return validated;</span>
+    }
+
+    /**
+     * Sends the new Sign up user details to db.
+     * @param details sets details as SignupUser with info.
+     * @return boolean
+     */
+    public static boolean sendsignupuser(SignUpUser details) {
+<span class="nc" id="L164">        details.setPassword(hashText(details.getPassword()));</span>
+
+<span class="nc" id="L166">        boolean validated = restTemplate.postForObject(serverAddress</span>
+                + AuthenticationEndpoints.AUTHENTICATION
+                + AuthenticationEndpoints.SIGNUP, details, boolean.class);
+
+<span class="nc" id="L170">        return validated;</span>
+
+    }
+
+
+    /**
+     * Tells the com.server the user wants to send a friend request.
+     *
+     * @param username1 the user that requests the friendship.
+     * @param username2 the user that is requested friendship.
+     * @return if the operation was successful.
+     */
+    public static boolean sendFriendRequest(String username1, String username2) {
+
+<span class="nc" id="L184">        String[] usernames = {username1, username2};</span>
+<span class="nc" id="L185">        return restTemplate.postForObject(serverAddress + FriendEndpoints.FRIEND</span>
+                        + FriendEndpoints.SEND_REQUEST,
+                usernames, boolean.class);
+
+    }
+
+    /**
+     * Returns all friends of the user.
+     *
+     * @param username the username of the user.
+     * @return an ArrayList of usernames.
+     */
+    public static ArrayList&lt;String&gt; getFriends(String username) {
+
+<span class="nc" id="L199">        String[] usernames = restTemplate.getForObject(serverAddress + FriendEndpoints.FRIEND</span>
+                + FriendEndpoints.GET_USERS_BY_STATUS + &quot;/?name=&quot;
+                + username + &quot;&amp;status=1&quot;, String[].class);
+
+<span class="nc bnc" id="L203" title="All 4 branches missed.">        assert usernames != null;</span>
+<span class="nc" id="L204">        return new ArrayList&lt;String&gt;(Arrays.asList(usernames));</span>
+    }
+
+
+    /**
+     * WIP Returns the usernames of users who have sent a friend request to the given user.
+     *
+     * @param username the user who received the requests.
+     * @return the usernames of the users who sent the requests.
+     */
+    public static ArrayList&lt;String&gt; getReceivedRequests(String username) {
+
+<span class="nc" id="L216">        String[] usernames = restTemplate.getForObject(serverAddress</span>
+                +  FriendEndpoints.FRIEND + FriendEndpoints.GET_RECEIVED_REQUESTS
+                +  &quot;/?name=&quot; + username, String[].class);
+
+<span class="nc" id="L220">        return new ArrayList&lt;&gt;(Arrays.asList(usernames));</span>
+    }
+
+    /**
+     * Checks if the users are friends and if true returns the second's profile.
+     *
+     * @param username1 the user requesting the profile.
+     * @param username2 the use whose profile is being requested.
+     * @return Profile
+     */
+    public static Profile getProfile(String username1, String username2) {
+<span class="nc" id="L231">        Profile profile = restTemplate.getForObject(serverAddress + ProfileEndpoints.PROFILE</span>
+                + ProfileEndpoints.GET_PROFILE
+                + &quot;?request=&quot; + username1 + &quot;&amp;target=&quot; + username2, Profile.class);
+
+<span class="nc" id="L235">        return profile;</span>
+    }
+
+    /**
+     * Accepts the friend request between the first and second user.
+     *
+     * @param username1 the user who accepts the request.
+     * @param username2 the user who sent the request.
+     * @return whether the operation was successful.
+     */
+    public static boolean acceptFriendRequest(String username1, String username2) {
+<span class="nc" id="L246">        String[] usernames = {username1,username2};</span>
+<span class="nc" id="L247">        FriendRelationship request = new FriendRelationship(username1, username2, 1);</span>
+<span class="nc" id="L248">        return restTemplate.postForObject(serverAddress + FriendEndpoints.FRIEND</span>
+                        + FriendEndpoints.ACCEPT_REQUEST,
+                usernames, boolean.class);
+    }
+
+    /**
+     * Declines the friend request between the first and second user.
+     *
+     * @param username1 the user who declines the request.
+     * @param username2 the user who sent the request.
+     * @return whether the operation was successful.
+     */
+    public static boolean declineFriendRequest(String username1, String username2) {
+<span class="nc" id="L261">        String[] usernames = {username1, username2};</span>
+
+<span class="nc" id="L263">        return restTemplate.postForObject(serverAddress + FriendEndpoints.FRIEND</span>
+                        + FriendEndpoints.REMOVE_FRIEND,
+                usernames, boolean.class);
+    }
+
+    /**
+     * Makes the first user block the second user.
+     *
+     * @param username1 the user blocking someone.
+     * @param username2 the person being blocked.
+     * @return whether the operation was successful.
+     */
+    public static boolean blockProfile(String username1, String username2) {
+<span class="nc" id="L276">        FriendRelationship relationship = new FriendRelationship(username1, username2, 2);</span>
+
+<span class="nc" id="L278">        return restTemplate.postForObject(serverAddress + FriendEndpoints.FRIEND</span>
+                        + FriendEndpoints.BLOCK_USER,
+                relationship, boolean.class);
+    }
+
+    /**
+     * Removes the friend relation between the first and second user.
+     *
+     * @param username1 the user that requests the removal.
+     * @param username2 the user being removed as a friend.
+     * @return String[] usernames = {username1,username2}.
+     */
+    public static boolean removeFriend(String username1, String username2) {
+<span class="nc" id="L291">        String[] usernames = {username1, username2};</span>
+
+<span class="nc" id="L293">        return restTemplate.postForObject(serverAddress + FriendEndpoints.FRIEND</span>
+                        + FriendEndpoints.REMOVE_FRIEND,
+                usernames, boolean.class);
+    }
+
+    /**
+     * Requests the friendship status between two users.
+     *
+     * @param username1 one of the users.
+     * @param username2 the other user.
+     * @return 0 - pending, 1 - accepted, 2 - blocked.
+     */
+    public static int getStatus(String username1, String username2) {
+<span class="nc" id="L306">        String[] usernames = {username1, username2};</span>
+
+<span class="nc" id="L308">        return restTemplate.getForObject(serverAddress + FriendEndpoints.FRIEND</span>
+                + FriendEndpoints.GET_STATUS
+                + &quot;?user1=&quot; + username1 + &quot;&amp;user2=&quot; + username2, int.class);
+    }
+
+    /**
+     * Cancels a friend request between the two users.
+     *
+     * @param username1 the user cancelling their friend request.
+     * @param username2 the user receiving the original request.
+     * @return whether the operation was successful.
+     */
+    public static boolean cancelRequest(String username1, String username2) {
+<span class="nc" id="L321">        String[] usernames = {username1, username2};</span>
+
+<span class="nc" id="L323">        return restTemplate.postForObject(serverAddress + FriendEndpoints.FRIEND</span>
+                        + FriendEndpoints.REMOVE_FRIEND,
+                usernames, boolean.class);
+    }
+
+    /**
+     * Returns all known usernames starting with the given username string.
+     *
+     * @param username The (maybe) partially complete username.
+     * @return All recorded usernames starting with the given string.
+     */
+    public static ArrayList&lt;String&gt; search(String username) {
+<span class="nc" id="L335">        String[] usernames = restTemplate.getForObject(serverAddress + ProfileEndpoints.PROFILE</span>
+                + ProfileEndpoints.SEARCH_USERNAME + &quot;?username=&quot; + username, String[].class);
+<span class="nc bnc" id="L337" title="All 4 branches missed.">        assert usernames != null;</span>
+<span class="nc" id="L338">        ArrayList&lt;String&gt; result = new ArrayList&lt;&gt;(Arrays.asList(usernames));</span>
+<span class="nc" id="L339">        debug(result.toString());</span>
+<span class="nc" id="L340">        return result;</span>
+    }
+
+    /**
+     * checks if the username exists in db.
+     *
+     * @param username sets username using String
+     * @return boolean
+     */
+    public static boolean usernameExists(String username) {
+<span class="nc" id="L350">        return restTemplate.getForObject(serverAddress</span>
+                + AuthenticationEndpoints.AUTHENTICATION
+                + AuthenticationEndpoints.USERNAME_EXISTS
+                + &quot;?username=&quot; + username, boolean.class);
+    }
+
+    /**
+     * check if email exists in db.
+     *
+     * @param email sets email using string
+     * @return boolean
+     */
+    public static boolean emailExists(String email) {
+<span class="nc" id="L363">        return restTemplate.getForObject(serverAddress</span>
+                + AuthenticationEndpoints.AUTHENTICATION
+                + AuthenticationEndpoints.EMAIL_EXISTS
+                + &quot;?email=&quot; + email, boolean.class);
+    }
+
+    /**
+     * sends arequest to server for the user's sent requests.
+     *
+     * @param username sets username as String
+     * @return array list
+     */
+    public static ArrayList&lt;String&gt; getSentRequests(String username) {
+<span class="nc" id="L376">        String[] usernames = restTemplate.getForObject(serverAddress</span>
+                + FriendEndpoints.FRIEND
+                + FriendEndpoints.GET_SENT_REQUESTS + &quot;/?name=&quot;
+                + username, String[].class);
+
+<span class="nc" id="L381">        return new ArrayList&lt;String&gt;(Arrays.asList(usernames));</span>
+    }
+
+    /**
+     * Returns the usernames in order of score of the user's friends.
+     *
+     * @param username set username as String
+     * @return  ArrayList of friend rankings
+     */
+    public static ArrayList&lt;String&gt; friendsRanking(String username) {
+<span class="nc" id="L391">        String[] ranking = restTemplate.getForObject(serverAddress + ScoreEndpoints.SCORE</span>
+                + ScoreEndpoints.GET_RANKING_FRIEND + &quot;/?username=&quot; + username, String[].class);
+
+<span class="nc" id="L394">        return new ArrayList&lt;&gt;(Arrays.asList(ranking));</span>
+    }
+
+    /**
+     * Update foodsurvey.
+     *
+     * @param foodSurvey sets food survey as Foodsurvey
+     * @param username sets username survey as String
+     * @return boolean
+     */
+    public static boolean sendFoodSurvey(FoodSurvey foodSurvey, String username) {
+        try {
+<span class="nc" id="L406">            String surveyjson = mapper.writeValueAsString(foodSurvey);</span>
+<span class="nc" id="L407">            String[] request = {username,surveyjson};</span>
+
+<span class="nc" id="L409">            return restTemplate.postForObject(serverAddress + ProfileEndpoints.PROFILE</span>
+                    + ProfileEndpoints.UPDATE_FOOD, request, boolean.class);
+<span class="nc" id="L411">        } catch (JsonProcessingException e) {</span>
+<span class="nc" id="L412">            e.printStackTrace();</span>
+<span class="nc" id="L413">            return false;</span>
+        }
+    }
+
+    /**
+     * Update Transport Survey.
+     *
+     * @param transportationSurvey sets Transportation survey as Transportationsurvey
+     * @param username sets username survey as String
+     * @return boolean
+     */
+    public static boolean sendTransportSurvey(TransportationSurvey transportationSurvey,
+                                              String username) {
+        try {
+<span class="nc" id="L427">            String surveyjson = mapper.writeValueAsString(transportationSurvey);</span>
+<span class="nc" id="L428">            String[] request = {username,surveyjson};</span>
+
+<span class="nc" id="L430">            return restTemplate.postForObject(serverAddress + ProfileEndpoints.PROFILE</span>
+                    + ProfileEndpoints.UPDATE_TRANSPORTATION, request, boolean.class);
+<span class="nc" id="L432">        } catch (JsonProcessingException e) {</span>
+<span class="nc" id="L433">            e.printStackTrace();</span>
+<span class="nc" id="L434">            return false;</span>
+        }
+    }
+
+    /**
+     * Update energy survey.
+     *
+     * @param energySurvey sets energy survey using Energy survey
+     * @param username sets username as String
+     * @return boolean
+     */
+    public static boolean sendEnergySurvey(EnergySurvey energySurvey, String username) {
+        try {
+<span class="nc" id="L447">            String surveyjson = mapper.writeValueAsString(energySurvey);</span>
+<span class="nc" id="L448">            String[] request = {username,surveyjson};</span>
+
+<span class="nc" id="L450">            return restTemplate.postForObject(serverAddress + ProfileEndpoints.PROFILE</span>
+                    + ProfileEndpoints.UPDATE_ENERGY, request, boolean.class);
+<span class="nc" id="L452">        } catch (JsonProcessingException e) {</span>
+<span class="nc" id="L453">            e.printStackTrace();</span>
+<span class="nc" id="L454">            return false;</span>
+        }
+    }
+
+    /**
+     * Update lifestyle survey.
+     *
+     * @param lifeStyleSurvey sets Life Survey using LifeSurvey
+     * @param username  sets username using String
+     * @return  boolean
+     */
+    public static boolean sendLifeStyleSurvey(LifeStyleSurvey lifeStyleSurvey, String username) {
+        try {
+<span class="nc" id="L467">            String surveyjson = mapper.writeValueAsString(lifeStyleSurvey);</span>
+<span class="nc" id="L468">            String[] request = {username,surveyjson};</span>
+
+<span class="nc" id="L470">            return restTemplate.postForObject(serverAddress + ProfileEndpoints.PROFILE</span>
+                    + ProfileEndpoints.UPDATE_LIFESTYLE, request, boolean.class);
+<span class="nc" id="L472">        } catch (JsonProcessingException e) {</span>
+<span class="nc" id="L473">            e.printStackTrace();</span>
+<span class="nc" id="L474">            return false;</span>
+        }
+    }
+
+    /**
+     * sends score to db and checks if it was successful.
+     *
+     * @param score sets score using Score
+     * @return boolean
+     */
+    public static boolean sendScore(String username, Score score) {
+        try {
+<span class="nc" id="L486">            String surveyjson = mapper.writeValueAsString(score);</span>
+<span class="nc" id="L487">            String[] request = {username,surveyjson};</span>
+
+<span class="nc" id="L489">            return restTemplate.postForObject(serverAddress + ProfileEndpoints.PROFILE</span>
+                    + ProfileEndpoints.UPDATE_SCORE, request, boolean.class);
+<span class="nc" id="L491">        } catch (JsonProcessingException e) {</span>
+<span class="nc" id="L492">            e.printStackTrace();</span>
+<span class="nc" id="L493">            return false;</span>
+        }
+    }
+
+    /**
+     * sends Achievment profile and checks if it was successful.
+     *
+     * @param achievement sets achievements using Achievment
+     * @return boolean
+     */
+    public static boolean sendAchievements(String username, Achievement achievement) {
+        try {
+<span class="nc" id="L505">            String surveyjson = mapper.writeValueAsString(achievement);</span>
+<span class="nc" id="L506">            String[] request = {username,surveyjson};</span>
+
+<span class="nc" id="L508">            return restTemplate.postForObject(serverAddress + ProfileEndpoints.PROFILE</span>
+                    + ProfileEndpoints.UPDATE_ACHIEVEMENTS, request, boolean.class);
+<span class="nc" id="L510">        } catch (JsonProcessingException e) {</span>
+<span class="nc" id="L511">            e.printStackTrace();</span>
+<span class="nc" id="L512">            return false;</span>
+        }
+    }
+
+    /**
+     * Returns the usernames of the first 100 people in the world ranking.
+     *
+     * @return .
+     */
+    public static ArrayList&lt;RankingEntry&gt; globalRankingScore() {
+<span class="nc" id="L522">        RankingEntry[] ranking = restTemplate.getForObject(serverAddress + ScoreEndpoints.SCORE</span>
+                        + ScoreEndpoints.GET_RANKING_GLOBAL_SCORE, RankingEntry[].class);
+
+<span class="nc bnc" id="L525" title="All 2 branches missed.">        if (ranking != null) {</span>
+<span class="nc" id="L526">            return new ArrayList&lt;&gt;(Arrays.asList(ranking));</span>
+        } else {
+<span class="nc" id="L528">            return null;</span>
+        }
+    }
+
+    /**
+     * request global ranking eco footprint.
+     *
+     * @return ranking array
+     */
+    public static RankingEntry[] globalRankingEcofootprint() {
+<span class="nc" id="L538">        return restTemplate.getForObject(serverAddress + ScoreEndpoints.SCORE</span>
+                + ScoreEndpoints.GET_RANKING_GLOBAL_ECOPRINT, RankingEntry[].class);
+
+    }
+
+
+    /**
+     * request globalranking footprint.
+     *
+     * @return ranking array
+     */
+    public static RankingEntry[] globalRankingCarbonfootprint() {
+<span class="nc" id="L550">        return restTemplate.getForObject(serverAddress + ScoreEndpoints.SCORE</span>
+                + ScoreEndpoints.GET_RANKING_GLOBAL_CARBONPRINT, RankingEntry[].class);
+
+    }
+
+    /**
+     * gets Friends score ranking.
+     *
+     * @return ArrayList of ranking entry
+     */
+    public static ArrayList&lt;RankingEntry&gt; friendRankingScore() {
+<span class="nc" id="L561">        RankingEntry[] ranking = restTemplate.getForObject(serverAddress + ScoreEndpoints.SCORE</span>
+                + ScoreEndpoints.GET_RANKING_GLOBAL_SCORE, RankingEntry[].class);
+
+<span class="nc bnc" id="L564" title="All 2 branches missed.">        if (ranking != null) {</span>
+<span class="nc" id="L565">            return new ArrayList&lt;&gt;(Arrays.asList(ranking));</span>
+        } else {
+<span class="nc" id="L567">            return null;</span>
+        }
+    }
+
+    /**
+     * gets friend ranking eco carbon footprint.
+     *
+     * @return array of rank
+     */
+    public static RankingEntry[] friendRankingEcofootprint() {
+<span class="nc" id="L577">        return restTemplate.getForObject(serverAddress + ScoreEndpoints.SCORE</span>
+                + ScoreEndpoints.GET_RANKING_GLOBAL_ECOPRINT, RankingEntry[].class);
+
+    }
+
+
+    /**
+     * gets friend ranking carbon footprint.
+     *
+     * @return array of rank
+     */
+    public static RankingEntry[] friendRankingCarbonfootprint() {
+<span class="nc" id="L589">        return restTemplate.getForObject(serverAddress + ScoreEndpoints.SCORE</span>
+                + ScoreEndpoints.GET_RANKING_GLOBAL_CARBONPRINT, RankingEntry[].class);
+
+    }
+
+
+    private static String hashText(String text) {
+<span class="nc" id="L596">        return Hashing.sha256()</span>
+<span class="nc" id="L597">                .hashString(text, StandardCharsets.UTF_8)</span>
+<span class="nc" id="L598">                .toString();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

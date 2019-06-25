@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RankingsController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Starter OOPProject-Template</a> &gt; <a href="index.source.html" class="el_package">com.client.controllers</a> &gt; <span class="el_source">RankingsController.java</span></div><h1>RankingsController.java</h1><pre class="source lang-java linenums">package com.client.controllers;
+
+import com.client.ServerCommunication;
+import com.client.logic.FoodPost;
+import com.client.logic.PostCatalog;
+import com.client.logic.RankingEntry;
+import com.client.logic.ScoreCalc;
+import com.client.logic.TransportationPost;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Date;
+
+<span class="nc" id="L19">public class RankingsController {</span>
+
+    @FXML
+    private VBox scoreRanking;
+
+    @FXML
+    private VBox carbonRanking;
+
+    @FXML
+    private VBox ecoRanking;
+
+    @FXML
+    private Label rank1;
+
+    @FXML
+    private Label rank11;
+
+    @FXML
+    private Label rank22;
+
+
+    /**
+     * Compares dates on posts.
+     *
+     * @param date date
+     * @param obj  date
+     * @return difference in dates
+     */
+    public static boolean compareDate(Date date, Date obj) {
+<span class="nc" id="L48">        Calendar cal = Calendar.getInstance();</span>
+<span class="nc" id="L49">        cal.setTimeInMillis(date.getTime());</span>
+<span class="nc" id="L50">        int year = cal.get(Calendar.YEAR);</span>
+<span class="nc" id="L51">        int day = cal.get(Calendar.DAY_OF_YEAR);</span>
+
+<span class="nc" id="L53">        Calendar calo = Calendar.getInstance();</span>
+<span class="nc" id="L54">        calo.setTimeInMillis(obj.getTime());</span>
+<span class="nc" id="L55">        int year2 = calo.get(Calendar.YEAR);</span>
+<span class="nc" id="L56">        int day2 = calo.get(Calendar.DAY_OF_YEAR);</span>
+
+<span class="nc bnc" id="L58" title="All 4 branches missed.">        return year == year2 &amp;&amp; day == day2;</span>
+    }
+
+    /**
+     * Calculates score for a posts.
+     */
+    public static void scoreCalc() {
+
+<span class="nc" id="L66">        LoginController.userprofile.getScore().setScore(0);</span>
+<span class="nc" id="L67">        PostCatalog posts = PostCatalog.sortByDate(ServerCommunication</span>
+<span class="nc" id="L68">                .recievepostarray(LoginController.getusername()));</span>
+<span class="nc bnc" id="L69" title="All 2 branches missed.">        for (int i = 0; i &lt; posts.size(); i++) {</span>
+<span class="nc" id="L70">            Date today = new Date();</span>
+<span class="nc" id="L71">            System.out.println(posts.size());</span>
+<span class="nc" id="L72">            System.out.println(i);</span>
+<span class="nc bnc" id="L73" title="All 2 branches missed.">            if (!(compareDate(posts.get(i).getDate(), today))) {</span>
+<span class="nc" id="L74">                System.out.println(posts.get(i).getDate());</span>
+<span class="nc" id="L75">                posts.getPostcatalog().remove(posts.get(i));</span>
+
+
+            }
+        }
+<span class="nc bnc" id="L80" title="All 2 branches missed.">        for (int i = 0; i != posts.size(); i++) {</span>
+<span class="nc" id="L81">            System.out.println(posts.size());</span>
+<span class="nc" id="L82">            System.out.println(&quot;Got here&quot;);</span>
+<span class="nc bnc" id="L83" title="All 2 branches missed.">            if (posts.get(i).getPostClass().equals(&quot;food&quot;)) {</span>
+<span class="nc" id="L84">                FoodPost food = (FoodPost) posts.get(i);</span>
+<span class="nc" id="L85">                LoginController.userprofile.getScore().setScore(</span>
+<span class="nc" id="L86">                        LoginController.userprofile.getScore().getScore() + ScoreCalc</span>
+<span class="nc" id="L87">                                .foodScore(food.getType()));</span>
+
+<span class="nc bnc" id="L89" title="All 2 branches missed.">            } else if (posts.get(i).getPostClass().equals(&quot;transportation&quot;)) {</span>
+<span class="nc" id="L90">                TransportationPost transport = (TransportationPost) posts.get(i);</span>
+<span class="nc" id="L91">                transporthelp(transport);</span>
+
+<span class="nc bnc" id="L93" title="All 2 branches missed.">            } else if (posts.get(i).getPostClass().equals(&quot;ConsumptionPost&quot;)) {</span>
+<span class="nc" id="L94">                LoginController.userprofile.getScore().setScore(</span>
+<span class="nc" id="L95">                        LoginController.userprofile.getScore().getScore()</span>
+                                + 250);
+
+            }
+<span class="nc" id="L99">            ServerCommunication.sendScore(LoginController.userprofile.getName(),</span>
+<span class="nc" id="L100">                    LoginController.userprofile.getScore());</span>
+        }
+<span class="nc" id="L102">    }</span>
+
+    private static void transporthelp(TransportationPost transport) {
+<span class="nc bnc" id="L105" title="All 2 branches missed.">        if (transport.getType().equals(&quot;car&quot;)) {</span>
+<span class="nc" id="L106">            LoginController.userprofile.getScore().setScore(</span>
+<span class="nc" id="L107">                    LoginController.userprofile.getScore().getScore()</span>
+                            -
+<span class="nc" id="L109">                            ScoreCalc.carScore((int) transport.getKilometer()));</span>
+        }
+<span class="nc bnc" id="L111" title="All 2 branches missed.">        if (transport.getType().equals(&quot;bike&quot;)) {</span>
+<span class="nc" id="L112">            LoginController.userprofile.getScore().setScore(</span>
+<span class="nc" id="L113">                    LoginController.userprofile.getScore().getScore()</span>
+                            +
+<span class="nc" id="L115">                            ScoreCalc.bikeScore((int) transport.getKilometer()));</span>
+        }
+<span class="nc bnc" id="L117" title="All 2 branches missed.">        if (transport.getType().equals(&quot;plane&quot;)) {</span>
+<span class="nc" id="L118">            LoginController.userprofile.getScore().setScore(</span>
+<span class="nc" id="L119">                    LoginController.userprofile.getScore().getScore()</span>
+                            -
+<span class="nc" id="L121">                            ScoreCalc.planeScore((int) transport.getKilometer()));</span>
+        }
+<span class="nc bnc" id="L123" title="All 2 branches missed.">        if (transport.getType().equals(&quot;publictransportation&quot;)) {</span>
+<span class="nc" id="L124">            LoginController.userprofile.getScore().setScore(</span>
+<span class="nc" id="L125">                    LoginController.userprofile.getScore().getScore()</span>
+<span class="nc" id="L126">                            + ScoreCalc.publicScore((int) transport.getKilometer(),</span>
+                            LoginController.userprofile
+<span class="nc" id="L128">                            .getTransportationProfile()));</span>
+        }
+<span class="nc" id="L130">    }</span>
+
+    @FXML
+    void initialize() {
+<span class="nc" id="L134">        LoginController.userprofile.getAchievement().checktoprank();</span>
+
+
+<span class="nc" id="L137">        ArrayList&lt;RankingEntry&gt; score = ServerCommunication.globalRankingScore();</span>
+
+<span class="nc" id="L139">        System.out.println(score.size());</span>
+<span class="nc" id="L140">        String rank = &quot;&quot;;</span>
+<span class="nc bnc" id="L141" title="All 2 branches missed.">        for (int i = 0; i != score.size(); i++) {</span>
+
+<span class="nc" id="L143">            rank = rank + &quot;\n&quot; + score.get(i).getUsername() + &quot; &quot; + score.get(i).getScore();</span>
+
+        }
+<span class="nc" id="L146">        rank1.setText(rank);</span>
+<span class="nc" id="L147">        String rankcarbon = &quot;&quot;;</span>
+
+<span class="nc" id="L149">        RankingEntry[] carbon = ServerCommunication.globalRankingCarbonfootprint();</span>
+<span class="nc" id="L150">        Collections.reverse(Arrays.asList(carbon));</span>
+
+<span class="nc bnc" id="L152" title="All 2 branches missed.">        for (int i = 0; i != carbon.length; i++) {</span>
+
+<span class="nc" id="L154">            rankcarbon = rankcarbon + &quot;\n&quot; + carbon[i].getUsername() + &quot; &quot; + carbon[i].getScore();</span>
+
+        }
+<span class="nc" id="L157">        rank11.setText(rankcarbon);</span>
+
+<span class="nc" id="L159">        String rankfoot = &quot;&quot;;</span>
+<span class="nc" id="L160">        RankingEntry[] foot = ServerCommunication.globalRankingEcofootprint();</span>
+<span class="nc" id="L161">        Collections.reverse(Arrays.asList(foot));</span>
+
+<span class="nc bnc" id="L163" title="All 2 branches missed.">        for (int i = 0; i != foot.length; i++) {</span>
+
+<span class="nc" id="L165">            rankfoot = rankfoot + &quot;\n&quot; + foot[i].getUsername() + &quot; &quot; + foot[i].getScore();</span>
+
+        }
+<span class="nc" id="L168">        rank22.setText(rankfoot);</span>
+<span class="nc" id="L169">    }</span>
+
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

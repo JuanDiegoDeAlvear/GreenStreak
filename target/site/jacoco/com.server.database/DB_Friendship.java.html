@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DB_Friendship.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Starter OOPProject-Template</a> &gt; <a href="index.source.html" class="el_package">com.server.database</a> &gt; <span class="el_source">DB_Friendship.java</span></div><h1>DB_Friendship.java</h1><pre class="source lang-java linenums">package com.server.database;
+
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import static com.server.debug.DebugTools.DEBUG;
+
+public class DB_Friendship{
+
+    /**
+     * Initializer.
+     */
+<span class="fc" id="L16">    private static DB_Friendship dbFriendshipInstance = null;</span>
+
+    /**
+     * Initializer.
+     */
+    private DbAdapter dbAdapter;
+
+    /**
+     * Constructor.
+     *
+     * @param dbAdapter dbAdapter instance.
+     */
+<span class="nc" id="L28">    private DB_Friendship(DbAdapter dbAdapter){</span>
+<span class="nc" id="L29">        this.dbAdapter = dbAdapter;</span>
+<span class="nc" id="L30">    }</span>
+
+    /**
+     * Getter.
+     *
+     * @return This method will return a dbFriendshipInstance.
+     */
+    public static DB_Friendship getInstance(){
+<span class="pc bpc" id="L38" title="1 of 2 branches missed.">        if (dbFriendshipInstance == null) {</span>
+<span class="nc" id="L39">            dbFriendshipInstance = new DB_Friendship(DbAdapter.getInstance());</span>
+        }
+<span class="fc" id="L41">        return dbFriendshipInstance;</span>
+    }
+
+    public static void setDbFriendshipInstance(DB_Friendship dbFriendshipInstance) {
+<span class="fc" id="L45">        DB_Friendship.dbFriendshipInstance = dbFriendshipInstance;</span>
+<span class="fc" id="L46">    }</span>
+
+    /**
+     * Stores the status of the recent friends request in the database(Literally stores the request).
+     *
+     * @param first_username  This is the user ID of one of the two users involved. It has to be the one with the smallest userID between the two of them.
+     * @param second_username This is the user ID of one of the two users involved. It has to be the one with the smallest userID between the two of them.
+     * @param status          This is the status of the request. 0: pending, 1: accepted, 2:blocked.
+     * @param action_username This states which of the two users has done the last update on the friendship.
+     * @return This method will return whether the request has been stored successfully or not.
+     */
+    public  boolean friendRequest(String first_username, String second_username, int status, String action_username) {
+
+        try {
+
+<span class="nc" id="L61">            String query = &quot;INSERT INTO friendship(first_username, second_username, status, action_username)&quot; + &quot;VALUES(?,?,?,?)&quot;;</span>
+
+<span class="nc" id="L63">            PreparedStatement st = dbAdapter.conn.prepareStatement(query);</span>
+<span class="nc" id="L64">            st.setString(1, first_username);</span>
+<span class="nc" id="L65">            st.setString(2, second_username);</span>
+<span class="nc" id="L66">            st.setInt(3, status);</span>
+<span class="nc" id="L67">            st.setString(4, action_username);</span>
+
+<span class="nc" id="L69">            st.executeUpdate();</span>
+<span class="nc" id="L70">            st.close();</span>
+
+<span class="nc" id="L72">            return true;</span>
+
+<span class="nc" id="L74">        } catch (SQLException e) {</span>
+
+<span class="nc" id="L76">            e.printStackTrace();</span>
+<span class="nc" id="L77">            return false;</span>
+
+        }
+
+    }
+
+    /**
+     * This method will enable the user that has received a friend request to accept it.
+     *
+     * @param first_username    This is the smallest user ID of the two users.
+     * @param second_username    This is the largest user ID of the two users.
+     * @param action_username This is the ID of he user that has accepted the request.
+     * @return retu
+     */
+    public  boolean setStatus (String first_username, String second_username, int status,  String action_username) {
+
+        try {
+
+<span class="nc" id="L95">            String query = &quot;UPDATE friendship SET status =  \'&quot; + status + &quot;\', action_username = \'&quot; + action_username + &quot;\'&quot; +</span>
+                    &quot;WHERE first_username = \'&quot; + first_username + &quot;\' AND  second_username = \'&quot; + second_username+ &quot;\'&quot;;
+
+<span class="nc" id="L98">            PreparedStatement st = dbAdapter.conn.prepareStatement(query);</span>
+
+<span class="nc" id="L100">            st.executeUpdate();</span>
+<span class="nc" id="L101">            st.close();</span>
+
+<span class="nc" id="L103">            return true;</span>
+
+<span class="nc" id="L105">        } catch (SQLException e) {</span>
+
+<span class="nc" id="L107">            e.printStackTrace();</span>
+<span class="nc" id="L108">            return false;</span>
+
+        }
+
+    }
+
+    /**
+     * This method will return the current status of the friend request.
+     *
+     * @param first_username  This is the userID of the current user.
+     * @param second_username This is the userID of the other user.
+     * @return Should return the current status of the friendship relationship within GreenStreak.
+     */
+
+    public int getStatus(String first_username, String second_username) {
+
+        try {
+
+<span class="nc" id="L126">            String query = &quot;SELECT status FROM friendship WHERE first_username = \'&quot; + first_username + &quot;\' AND  second_username = \'&quot; + second_username+ &quot;\'&quot;;</span>
+
+<span class="nc" id="L128">            ResultSet results = dbAdapter.Query(query);</span>
+
+<span class="nc bnc" id="L130" title="All 2 branches missed.">            if(results.next()) {</span>
+
+<span class="nc" id="L132">                int result = results.getInt(&quot;status&quot;);</span>
+
+
+<span class="nc" id="L135">                return result;</span>
+            }
+
+<span class="nc" id="L138">            return -1;</span>
+
+<span class="nc" id="L140">        } catch (SQLException e) {</span>
+
+<span class="nc" id="L142">            e.printStackTrace();</span>
+<span class="nc" id="L143">            return -1;          //If -1 is returned it means that there is no friendship relationship between the users at all.</span>
+
+        }
+
+    }
+
+    /**
+     * This method will return all the UserIDs of all UserOneID's friends.
+     *
+     * @param username This is the username of the current user.
+     * @return The method is supposed to return all of the friends UserIDs.
+     */
+    private ResultSet getUsersByStatusResultSet(String username, int status) {
+
+<span class="nc" id="L157">        int count = 0;</span>
+
+
+<span class="nc" id="L160">        String query = &quot;SELECT * FROM friendship WHERE (first_username = \'&quot; + username + &quot;\' &quot; +</span>
+            &quot;OR second_username = \'&quot; + username + &quot;\') AND status = \'&quot; + status +&quot;\'&quot;;
+
+<span class="nc" id="L163">        ResultSet data = dbAdapter.Query(query);</span>
+
+<span class="nc" id="L165">        return data;</span>
+    }
+
+
+    /**
+     * This method will return all the UserIDs of all UserOneID's friends.
+     *
+     * @param username This is the username of the current user.
+     * @return The method is supposed to return all of the friends UserIDs.
+     */
+     ArrayList&lt;String&gt; getUsersByStatus(String username, int status) {
+
+<span class="nc" id="L177">        int count = 0;</span>
+
+        try {
+
+<span class="nc" id="L181">            ResultSet data = getUsersByStatusResultSet(username,status);</span>
+
+<span class="nc" id="L183">            ArrayList&lt;String&gt; result = new ArrayList&lt;&gt;();</span>
+
+            String username1;
+            String username2;
+            String usernameAction;
+
+<span class="nc bnc" id="L189" title="All 2 branches missed.">            while (data.next()) //noinspection Duplicates</span>
+            {
+
+<span class="nc" id="L192">                username1 = data.getString(&quot;first_username&quot;);</span>
+<span class="nc" id="L193">                username2 = data.getString(&quot;second_username&quot;);</span>
+<span class="nc" id="L194">                usernameAction = data.getString(&quot;action_username&quot;);</span>
+
+<span class="nc" id="L196">                count = count++;</span>
+<span class="nc" id="L197">                System.out.println(&quot;Creating list of friends&quot;);</span>
+
+<span class="nc bnc" id="L199" title="All 2 branches missed.">                if (!username1.equals(username)) {</span>
+<span class="nc" id="L200">                    result.add(username1);</span>
+
+                } else {
+
+<span class="nc" id="L204">                    result.add(username2);</span>
+
+                }
+
+            }
+
+<span class="nc" id="L210">            return result;</span>
+
+
+<span class="nc" id="L213">        } catch (SQLException e) {</span>
+
+<span class="nc" id="L215">            e.printStackTrace();</span>
+<span class="nc" id="L216">            return null;</span>
+
+        }
+    }
+
+    /**
+     * This method will remove a user from your friendships.
+     *
+     * @param first_username  Shortest name.
+     * @param second_username Longest name.
+     * @return This method will return s boolean value.
+     */
+     boolean RemoveFirend (String first_username, String second_username){
+
+        try {
+<span class="nc" id="L231">            String query = &quot;DELETE FROM public.friendship WHERE first_username = \'&quot; + first_username + &quot;AND second_username = \'&quot; + second_username;</span>
+
+<span class="nc" id="L233">            PreparedStatement st = dbAdapter.conn.prepareStatement(query);</span>
+
+<span class="nc" id="L235">            st.executeUpdate();</span>
+<span class="nc" id="L236">            st.close();</span>
+
+<span class="nc" id="L238">            return true;</span>
+
+<span class="nc" id="L240">        }catch(SQLException e){</span>
+
+<span class="nc" id="L242">            e.printStackTrace();</span>
+<span class="nc" id="L243">            return false;</span>
+
+        }
+
+    }
+
+    public ArrayList&lt;String&gt; getSentRequests(String username){
+<span class="nc" id="L250">         ArrayList&lt;String&gt; result = new ArrayList&lt;&gt;();</span>
+
+<span class="nc" id="L252">         ResultSet data = getUsersByStatusResultSet(username,0);</span>
+
+         try {
+             String username1;
+             String username2;
+             String usernameAction;
+<span class="nc bnc" id="L258" title="All 2 branches missed.">             while (data.next()) {</span>
+<span class="nc" id="L259">                 username1 = data.getString(&quot;first_username&quot;);</span>
+<span class="nc" id="L260">                 username2 = data.getString(&quot;second_username&quot;);</span>
+<span class="nc" id="L261">                 usernameAction = data.getString(&quot;action_username&quot;);</span>
+
+<span class="nc bnc" id="L263" title="All 2 branches missed.">                 if (usernameAction.equals(username)) {</span>
+<span class="nc bnc" id="L264" title="All 2 branches missed.">                     if (username1.equals(username)) {</span>
+<span class="nc" id="L265">                         result.add(username2);</span>
+                     }
+                     else{
+<span class="nc" id="L268">                         result.add(username1);</span>
+                     }
+                 }
+             }
+
+<span class="nc" id="L273">             return result;</span>
+<span class="nc" id="L274">         }catch(SQLException e){</span>
+<span class="nc" id="L275">             e.printStackTrace();</span>
+<span class="nc" id="L276">             return null;</span>
+         }
+    }
+
+    public ArrayList&lt;String&gt; getReceivedRequests(String username){
+<span class="nc" id="L281">        ArrayList&lt;String&gt; result = new ArrayList&lt;&gt;();</span>
+
+<span class="nc" id="L283">        ResultSet data = getUsersByStatusResultSet(username,0);</span>
+
+        try {
+            String username1;
+            String username2;
+            String usernameAction;
+
+<span class="nc bnc" id="L290" title="All 2 branches missed.">            while (data.next()) {</span>
+<span class="nc" id="L291">                username1 = data.getString(&quot;first_username&quot;);</span>
+<span class="nc" id="L292">                username2 = data.getString(&quot;second_username&quot;);</span>
+<span class="nc" id="L293">                usernameAction = data.getString(&quot;action_username&quot;);</span>
+<span class="nc" id="L294">                DEBUG(username1+ &quot; - &quot;+username2);</span>
+
+<span class="nc bnc" id="L296" title="All 2 branches missed.">                if (!usernameAction.equals(username)) {</span>
+<span class="nc bnc" id="L297" title="All 2 branches missed.">                    if (username1.equals(username)) {</span>
+<span class="nc" id="L298">                        result.add(username2);</span>
+                    }
+                    else{
+<span class="nc" id="L301">                        result.add(username1);</span>
+                    }
+                }
+            }
+
+<span class="nc" id="L306">            return result;</span>
+<span class="nc" id="L307">        }catch(SQLException e){</span>
+<span class="nc" id="L308">            e.printStackTrace();</span>
+<span class="nc" id="L309">            return null;</span>
+        }
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

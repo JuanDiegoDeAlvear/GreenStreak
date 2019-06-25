@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LoginController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Starter OOPProject-Template</a> &gt; <a href="index.source.html" class="el_package">com.client.controllers</a> &gt; <span class="el_source">LoginController.java</span></div><h1>LoginController.java</h1><pre class="source lang-java linenums">package com.client.controllers;
+
+import com.client.Main;
+import com.client.ServerCommunication;
+import com.client.logic.Calculations;
+import com.client.logic.Profile;
+import com.client.logic.User;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Region;
+import javafx.stage.Stage;
+
+import java.awt.AWTException;
+import java.awt.Image;
+import java.awt.SystemTray;
+import java.awt.Toolkit;
+import java.awt.TrayIcon;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+<span class="nc" id="L33">public class LoginController {</span>
+
+<span class="nc" id="L35">    public static Profile userprofile = new Profile();</span>
+<span class="nc" id="L36">    private static User client = new User();</span>
+    @FXML
+    private ResourceBundle resources;
+    @FXML
+    private URL location;
+    @FXML
+    private JFXTextField username;
+    @FXML
+    private JFXPasswordField password;
+    @FXML
+    private JFXButton loginBtn;
+    @FXML
+    private JFXButton signupBtn;
+
+    public static String getusername() {
+<span class="nc" id="L51">        return client.getusername();</span>
+    }
+
+    /**
+     * Creates alert using statment.
+     *
+     * @param statment sets statment using String
+     */
+    public static void alert(String statment) {
+<span class="nc" id="L60">        Alert alert = new Alert(Alert.AlertType.ERROR, statment, ButtonType.OK);</span>
+<span class="nc" id="L61">        alert.setTitle(&quot;Authentication Error&quot;);</span>
+<span class="nc" id="L62">        alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);</span>
+<span class="nc" id="L63">        alert.setHeaderText(null);</span>
+<span class="nc" id="L64">        alert.showAndWait();</span>
+<span class="nc" id="L65">    }</span>
+
+    @FXML
+    void login(ActionEvent event) throws IOException {
+<span class="nc bnc" id="L69" title="All 2 branches missed.">        if (!loginAuthorization(username.getText(), password.getText())) {</span>
+<span class="nc" id="L70">            alert(&quot;Something is missing&quot;);</span>
+<span class="nc bnc" id="L71" title="All 2 branches missed.">        } else if (ServerCommunication.checkLogin(client)) {</span>
+<span class="nc" id="L72">            userprofile.setName(LoginController.client.getusername());</span>
+<span class="nc" id="L73">            userprofile = ServerCommunication.getProfile(username.getText(), username.getText());</span>
+
+<span class="nc" id="L75">            System.out.println(userprofile.getFoodProfile().getAmountOrganicFood());</span>
+<span class="nc" id="L76">            double carbon = Calculations.totalCarbon(userprofile.getFoodProfile(),</span>
+<span class="nc" id="L77">                    userprofile.getTransportationProfile(), userprofile.getEnergyProfile());</span>
+<span class="nc" id="L78">            double eco = Calculations.totalEco(userprofile.getFoodProfile(),</span>
+<span class="nc" id="L79">                    userprofile.getTransportationProfile(), userprofile.getEnergyProfile(),</span>
+<span class="nc" id="L80">                    userprofile.getLifeStyleProfile());</span>
+
+<span class="nc" id="L82">            userprofile.getScore().setFootprint(carbon);</span>
+<span class="nc" id="L83">            userprofile.getScore().setFootprintEco(eco);</span>
+
+<span class="nc" id="L85">            Stage stage = Main.getStage();</span>
+<span class="nc" id="L86">            Parent content = FXMLLoader.load(getClass().getResource(&quot;/fxml/appFrame.fxml&quot;));</span>
+<span class="nc" id="L87">            setStageContent(stage, content);</span>
+
+<span class="nc bnc" id="L89" title="All 2 branches missed.">            if (SystemTray.isSupported()) {</span>
+<span class="nc" id="L90">                displayTray();</span>
+            } else {
+<span class="nc" id="L92">                System.err.println(&quot;System tray not supported!&quot;);</span>
+            }
+<span class="nc" id="L94">        } else {</span>
+<span class="nc" id="L95">            alert(&quot;Wrong username or password &quot;);</span>
+        }
+<span class="nc" id="L97">    }</span>
+
+    @FXML
+    void loginWithEnterKey(KeyEvent event) throws IOException {
+<span class="nc bnc" id="L101" title="All 2 branches missed.">        if (event.getCode() == KeyCode.ENTER) {</span>
+<span class="nc" id="L102">            login(new ActionEvent());</span>
+        }
+<span class="nc" id="L104">    }</span>
+
+    @FXML
+    void switchToSignupScreen(ActionEvent event) throws IOException {
+
+<span class="nc" id="L109">        Stage stage = (Stage) ((Node)</span>
+<span class="nc" id="L110">                event.getSource()).getScene().getWindow(); //grab the stage</span>
+<span class="nc" id="L111">        Parent content = FXMLLoader.load(getClass().getResource(&quot;/fxml/signup.fxml&quot;));</span>
+<span class="nc" id="L112">        setStageContent(stage, content);</span>
+<span class="nc" id="L113">    }</span>
+
+    @FXML
+<span class="nc" id="L116">    void initialize() {}</span>
+
+    private boolean loginAuthorization(String un, String pass) {
+<span class="nc bnc" id="L119" title="All 4 branches missed.">        if (un.equals(&quot;&quot;) || pass.equals(&quot;&quot;)) {</span>
+<span class="nc" id="L120">            return false;</span>
+        } else {
+<span class="nc" id="L122">            client.setUsername(un);</span>
+<span class="nc" id="L123">            client.setPassword(pass);</span>
+<span class="nc" id="L124">            return true;</span>
+        }
+    }
+
+    private void setStageContent(Stage stage, Parent content) {
+<span class="nc" id="L129">        Scene scene = new Scene(content);</span>
+
+<span class="nc" id="L131">        Main.setCurrentScene(scene);</span>
+
+<span class="nc" id="L133">        String css = this.getClass().getResource(&quot;/css/global.css&quot;).toExternalForm();</span>
+<span class="nc" id="L134">        scene.getStylesheets().add(css);</span>
+<span class="nc" id="L135">        stage.setScene(scene);</span>
+<span class="nc" id="L136">    }</span>
+
+
+    /**
+     * System Tray.
+     *
+     */
+    private void displayTray() {
+<span class="nc" id="L144">        SystemTray tray = SystemTray.getSystemTray();</span>
+<span class="nc" id="L145">        Image image = Toolkit.getDefaultToolkit().createImage(&quot;leaf.png&quot;);</span>
+<span class="nc" id="L146">        TrayIcon trayIcon = new TrayIcon(image, &quot;Tray Demo&quot;);</span>
+<span class="nc" id="L147">        trayIcon.setImageAutoSize(true);</span>
+<span class="nc" id="L148">        trayIcon.setToolTip(&quot;System tray icon demo&quot;);</span>
+        try {
+<span class="nc" id="L150">            tray.add(trayIcon);</span>
+<span class="nc" id="L151">        } catch (AWTException e) {</span>
+<span class="nc" id="L152">            e.printStackTrace();</span>
+<span class="nc" id="L153">        }</span>
+<span class="nc bnc" id="L154" title="All 2 branches missed.">        if (userprofile.getAchievement().isLoggedin()) {</span>
+<span class="nc" id="L155">            trayIcon.displayMessage(&quot;GreenStreak&quot;,</span>
+<span class="nc" id="L156">                    &quot;welcomeback , &quot; + getusername(), TrayIcon.MessageType.INFO);</span>
+        } else {
+<span class="nc" id="L158">            userprofile.getAchievement().loggedin();</span>
+
+        }
+<span class="nc" id="L161">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

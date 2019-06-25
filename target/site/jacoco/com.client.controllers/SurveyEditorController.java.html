@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SurveyEditorController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Starter OOPProject-Template</a> &gt; <a href="index.source.html" class="el_package">com.client.controllers</a> &gt; <span class="el_source">SurveyEditorController.java</span></div><h1>SurveyEditorController.java</h1><pre class="source lang-java linenums">package com.client.controllers;
+
+import com.client.ServerCommunication;
+import com.client.logic.EnergySurvey;
+import com.client.logic.FoodSurvey;
+import com.client.logic.LifeStyleSurvey;
+import com.client.logic.TransportationSurvey;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXCheckBox;
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextField;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import org.kordamp.ikonli.javafx.FontIcon;
+
+public class SurveyEditorController {
+
+    AnchorPane selectedPane;
+    String pane;
+    AnchorPane root;
+    JFXButton selectedTab;
+
+    @FXML
+    private JFXButton closeBtn;
+
+    @FXML
+    private JFXButton foodTab;
+
+    @FXML
+    private JFXButton energyTab;
+
+    @FXML
+    private JFXButton transportTab;
+
+    @FXML
+    private JFXButton lifestyleTab;
+
+    @FXML
+    private AnchorPane surveyPane;
+
+    @FXML
+    private AnchorPane foodPane;
+
+    @FXML
+    private JFXComboBox&lt;String&gt; foodOrganic;
+
+    @FXML
+    private JFXComboBox&lt;String&gt; foodDiet;
+
+    @FXML
+    private JFXComboBox&lt;String&gt; foodLocal;
+
+    @FXML
+    private JFXComboBox&lt;String&gt; foodWaste;
+
+    @FXML
+    private JFXComboBox&lt;String&gt; foodPrepackaged;
+
+    @FXML
+    private JFXComboBox&lt;String&gt; foodCompost;
+
+    @FXML
+    private JFXButton saveFoodBtn;
+
+    @FXML
+    private AnchorPane energyPane;
+
+    @FXML
+    private JFXComboBox&lt;String&gt; energyHouse;
+
+    @FXML
+    private JFXTextField energyRoommate;
+
+    @FXML
+    private JFXCheckBox energyGreenBoolean;
+
+    @FXML
+    private JFXCheckBox energyEfficientBoolean;
+
+    @FXML
+    private JFXComboBox&lt;String&gt; energyUseEstimate;
+
+    @FXML
+    private JFXButton saveEnergyBtn;
+
+    @FXML
+    private AnchorPane transportPane;
+
+    @FXML
+    private JFXTextField transportFlightHours;
+
+    @FXML
+    private JFXComboBox&lt;String&gt; transportCar;
+
+    @FXML
+    private JFXTextField transportTravel;
+
+    @FXML
+    private JFXComboBox&lt;String&gt; transportMainMode;
+
+    @FXML
+    private JFXButton saveTransportBtn;
+
+    @FXML
+    private AnchorPane lifestylePane;
+
+    @FXML
+    private JFXComboBox&lt;String&gt; lifestyleBigPurchase;
+
+    @FXML
+    private JFXComboBox&lt;String&gt; lifestyleWeeklyWaste;
+
+    @FXML
+    private JFXComboBox&lt;String&gt; lifestyleRecycle;
+
+    @FXML
+    private JFXComboBox&lt;String&gt; lifestyleAppliances;
+
+    @FXML
+    private JFXTextField lifestyleShowerTime;
+
+    @FXML
+    private JFXButton saveLifestyleBtn;
+
+<span class="nc" id="L129">    private FoodSurvey foodSurvey = new FoodSurvey();</span>
+
+<span class="nc" id="L131">    private TransportationSurvey transportSurvey = new TransportationSurvey();</span>
+
+<span class="nc" id="L133">    private EnergySurvey energySurvey = new EnergySurvey();</span>
+
+<span class="nc" id="L135">    private LifeStyleSurvey lifeStyleSurvey = new LifeStyleSurvey();</span>
+
+
+<span class="nc" id="L138">    public SurveyEditorController(String pane, AnchorPane root) {</span>
+<span class="nc" id="L139">        this.pane = pane;</span>
+<span class="nc" id="L140">        this.root = root;</span>
+<span class="nc" id="L141">    }</span>
+
+    @FXML
+    void changeTab(ActionEvent event) {
+<span class="nc" id="L145">        FontIcon icon = (FontIcon) selectedTab.getGraphic();</span>
+<span class="nc" id="L146">        icon.setIconColor(Color.rgb(255, 255, 255, 1));</span>
+
+<span class="nc" id="L148">        selectedTab.setTextFill(Color.rgb(255, 255, 255));</span>
+
+<span class="nc bnc" id="L150" title="All 2 branches missed.">        if (event.getSource() == foodTab) {</span>
+<span class="nc" id="L151">            changepane(foodTab, foodPane);</span>
+        }
+
+<span class="nc bnc" id="L154" title="All 2 branches missed.">        if (event.getSource() == energyTab) {</span>
+<span class="nc" id="L155">            changepane(energyTab, energyPane);</span>
+
+        }
+
+<span class="nc bnc" id="L159" title="All 2 branches missed.">        if (event.getSource() == transportTab) {</span>
+<span class="nc" id="L160">            changepane(transportTab, transportPane);</span>
+
+        }
+
+<span class="nc bnc" id="L164" title="All 2 branches missed.">        if (event.getSource() == lifestyleTab) {</span>
+<span class="nc" id="L165">            changepane(lifestyleTab, lifestylePane);</span>
+
+        }
+
+<span class="nc" id="L169">        selectedTab.setTextFill(Color.rgb(39, 174, 96));</span>
+
+<span class="nc" id="L171">        FontIcon ic = (FontIcon) selectedTab.getGraphic();</span>
+<span class="nc" id="L172">        ic.setIconColor(Color.rgb(39, 174, 96, 1));</span>
+<span class="nc" id="L173">    }</span>
+
+    private void changepane(JFXButton foodTab, AnchorPane foodPane) {
+<span class="nc bnc" id="L176" title="All 2 branches missed.">        if (!selectedTab.equals(foodTab)) {</span>
+<span class="nc" id="L177">            selectedPane.setVisible(false);</span>
+<span class="nc" id="L178">            selectedTab = foodTab;</span>
+<span class="nc" id="L179">            foodPane.setVisible(true);</span>
+<span class="nc" id="L180">            selectedPane = foodPane;</span>
+        }
+<span class="nc" id="L182">    }</span>
+
+
+    @FXML
+    void close() {
+<span class="nc" id="L187">        this.root.setVisible(false);</span>
+<span class="nc" id="L188">    }</span>
+
+    @FXML
+    void save(ActionEvent event) {
+<span class="nc bnc" id="L192" title="All 2 branches missed.">        if (event.getSource() == saveFoodBtn) {</span>
+<span class="nc" id="L193">            savefoodhelp();</span>
+<span class="nc bnc" id="L194" title="All 2 branches missed.">        } else if (event.getSource() == saveTransportBtn) {</span>
+<span class="nc" id="L195">            savetransporthelp();</span>
+<span class="nc bnc" id="L196" title="All 2 branches missed.">        } else if (event.getSource() == saveEnergyBtn) {</span>
+<span class="nc" id="L197">            saveenergyhelp();</span>
+<span class="nc bnc" id="L198" title="All 2 branches missed.">        } else if (event.getSource() == saveLifestyleBtn) {</span>
+<span class="nc" id="L199">            savelifestylehelp();</span>
+        }
+
+<span class="nc" id="L202">    }</span>
+
+    private void savefoodhelp() {
+<span class="nc" id="L205">        foodSurveyCreator();</span>
+<span class="nc bnc" id="L206" title="All 2 branches missed.">        if (!LoginController.userprofile.getFoodProfile().equals(foodSurvey)) {</span>
+<span class="nc" id="L207">            saveOptions(foodSurvey);</span>
+        }
+<span class="nc" id="L209">        close();</span>
+<span class="nc" id="L210">    }</span>
+
+    private void savetransporthelp() {
+<span class="nc" id="L213">        transportSurveyCreator();</span>
+<span class="nc bnc" id="L214" title="All 2 branches missed.">        if (!LoginController.userprofile.getTransportationProfile().equals(transportSurvey)) {</span>
+<span class="nc" id="L215">            saveOptions(transportSurvey);</span>
+        }
+<span class="nc" id="L217">        LoginController.userprofile.getAchievement().carblsixach();</span>
+<span class="nc" id="L218">        close();</span>
+<span class="nc" id="L219">    }</span>
+
+    private void savelifestylehelp() {
+<span class="nc" id="L222">        lifeStyleSurveyCreator();</span>
+<span class="nc bnc" id="L223" title="All 2 branches missed.">        if (!LoginController.userprofile.getLifeStyleProfile().equals(lifeStyleSurvey)) {</span>
+<span class="nc" id="L224">            saveOptions(lifeStyleSurvey);</span>
+        }
+<span class="nc" id="L226">        LoginController.userprofile.getAchievement().carblsixach();</span>
+<span class="nc" id="L227">        close();</span>
+<span class="nc" id="L228">    }</span>
+
+    private void saveenergyhelp() {
+<span class="nc" id="L231">        energySurveyCreator();</span>
+<span class="nc bnc" id="L232" title="All 2 branches missed.">        if (!LoginController.userprofile.getEnergyProfile().equals(energySurvey)) {</span>
+<span class="nc" id="L233">            saveOptions(energySurvey);</span>
+        }
+<span class="nc" id="L235">        LoginController.userprofile.getAchievement().carblsixach();</span>
+<span class="nc" id="L236">        close();</span>
+<span class="nc" id="L237">    }</span>
+
+    private void saveOptions(FoodSurvey foodSurvey) {
+<span class="nc bnc" id="L240" title="All 2 branches missed.">        if (alert()) {</span>
+<span class="nc bnc" id="L241" title="All 2 branches missed.">            if (ServerCommunication.sendFoodSurvey(foodSurvey,</span>
+<span class="nc" id="L242">                    LoginController.getusername())) {</span>
+<span class="nc" id="L243">                LoginController.userprofile.setFoodProfile(foodSurvey);</span>
+                //close window
+            } else {
+<span class="nc" id="L246">                alert(&quot;Connection Error&quot;);</span>
+            }
+        }
+<span class="nc" id="L249">    }</span>
+
+    private void saveOptions(TransportationSurvey transportSurvey) {
+<span class="nc bnc" id="L252" title="All 2 branches missed.">        if (alert()) {</span>
+<span class="nc bnc" id="L253" title="All 2 branches missed.">            if (ServerCommunication.sendTransportSurvey(transportSurvey,</span>
+<span class="nc" id="L254">                    LoginController.getusername())) {</span>
+<span class="nc" id="L255">                LoginController.userprofile.setTransportationProfile(transportSurvey);</span>
+                //close window
+            } else {
+<span class="nc" id="L258">                alert(&quot;Connection Error&quot;);</span>
+            }
+        }
+<span class="nc" id="L261">    }</span>
+
+    private void saveOptions(EnergySurvey energySurvey) {
+<span class="nc bnc" id="L264" title="All 2 branches missed.">        if (alert()) {</span>
+<span class="nc bnc" id="L265" title="All 2 branches missed.">            if (ServerCommunication.sendEnergySurvey(energySurvey,</span>
+<span class="nc" id="L266">                    LoginController.getusername())) {</span>
+<span class="nc" id="L267">                LoginController.userprofile.setEnergyProfile(energySurvey);</span>
+                //close window
+            } else {
+<span class="nc" id="L270">                alert(&quot;Connection Error&quot;);</span>
+            }
+        }
+<span class="nc" id="L273">    }</span>
+
+    private void saveOptions(LifeStyleSurvey lifeStyle) {
+<span class="nc bnc" id="L276" title="All 2 branches missed.">        if (alert()) {</span>
+<span class="nc bnc" id="L277" title="All 2 branches missed.">            if (ServerCommunication.sendLifeStyleSurvey(lifeStyle,</span>
+<span class="nc" id="L278">                    LoginController.getusername())) {</span>
+<span class="nc" id="L279">                LoginController.userprofile.setLifeStyleProfile(lifeStyle);</span>
+                //close window
+            } else {
+<span class="nc" id="L282">                alert(&quot;Connection Error&quot;);</span>
+            }
+        }
+<span class="nc" id="L285">    }</span>
+
+    @FXML
+    void initialize() {
+<span class="nc bnc" id="L289" title="All 2 branches missed.">        if (this.pane.equals(&quot;food&quot;)) {</span>
+<span class="nc" id="L290">            this.selectedPane = foodPane;</span>
+<span class="nc" id="L291">            this.selectedTab = foodTab;</span>
+
+<span class="nc bnc" id="L293" title="All 2 branches missed.">        } else if (this.pane.equals(&quot;energy&quot;)) {</span>
+<span class="nc" id="L294">            this.selectedPane = energyPane;</span>
+<span class="nc" id="L295">            this.selectedTab = energyTab;</span>
+
+<span class="nc bnc" id="L297" title="All 2 branches missed.">        } else if (this.pane.equals(&quot;transport&quot;)) {</span>
+<span class="nc" id="L298">            this.selectedPane = transportPane;</span>
+<span class="nc" id="L299">            this.selectedTab = transportTab;</span>
+
+<span class="nc bnc" id="L301" title="All 2 branches missed.">        } else if (this.pane.equals(&quot;lifestyle&quot;)) {</span>
+<span class="nc" id="L302">            this.selectedPane = lifestylePane;</span>
+<span class="nc" id="L303">            this.selectedTab = lifestyleTab;</span>
+
+        } else {
+<span class="nc" id="L306">            this.selectedPane = foodPane;</span>
+<span class="nc" id="L307">            this.selectedTab = foodTab;</span>
+        }
+
+<span class="nc" id="L310">        FontIcon ic = (FontIcon) selectedTab.getGraphic();</span>
+<span class="nc" id="L311">        ic.setIconColor(Color.rgb(39, 174, 96, 1));</span>
+<span class="nc" id="L312">        selectedTab.setTextFill(Color.rgb(39, 174, 96));</span>
+<span class="nc" id="L313">        selectedPane.setVisible(true);</span>
+
+
+        //Here we also need make what the user chose at signup the default selection
+
+<span class="nc" id="L318">        foodOrganic.getItems().add(&quot;All&quot;);</span>
+<span class="nc" id="L319">        foodOrganic.getItems().add(&quot;Most&quot;);</span>
+<span class="nc" id="L320">        foodOrganic.getItems().add(&quot;Some&quot;);</span>
+<span class="nc" id="L321">        foodOrganic.getItems().add(&quot;None&quot;);</span>
+<span class="nc" id="L322">        foodOrganic.getSelectionModel().select(LoginController.userprofile</span>
+<span class="nc" id="L323">                .getFoodProfile().getAmountOrganicFood());</span>
+
+
+<span class="nc" id="L326">        foodDiet.getItems().add(&quot;Vegan&quot;);</span>
+<span class="nc" id="L327">        foodDiet.getItems().add(&quot;Vegetarian&quot;);</span>
+<span class="nc" id="L328">        foodDiet.getItems().add(&quot;Low meat and dairy&quot;);</span>
+<span class="nc" id="L329">        foodDiet.getItems().add(&quot;Average meat and dairy&quot;);</span>
+<span class="nc" id="L330">        foodDiet.getItems().add(&quot;Heavy meat and dairy&quot;);</span>
+<span class="nc" id="L331">        foodDiet.getSelectionModel().select(LoginController.userprofile</span>
+<span class="nc" id="L332">                .getFoodProfile().getDietChoice());</span>
+
+<span class="nc" id="L334">        foodLocal.getItems().add(&quot;Almost all&quot;);</span>
+<span class="nc" id="L335">        foodLocal.getItems().add(&quot;Above average&quot;);</span>
+<span class="nc" id="L336">        foodLocal.getItems().add(&quot;Average&quot;);</span>
+<span class="nc" id="L337">        foodLocal.getItems().add(&quot;Very little&quot;);</span>
+<span class="nc" id="L338">        foodLocal.getSelectionModel().select(LoginController.userprofile</span>
+<span class="nc" id="L339">                .getFoodProfile().getAmountOrganicFood());</span>
+
+<span class="nc" id="L341">        foodWaste.getItems().add(&quot;Above average&quot;);</span>
+<span class="nc" id="L342">        foodWaste.getItems().add(&quot;Average&quot;);</span>
+<span class="nc" id="L343">        foodWaste.getItems().add(&quot;Below average&quot;);</span>
+<span class="nc" id="L344">        foodWaste.getItems().add(&quot;Very little&quot;);</span>
+<span class="nc" id="L345">        foodWaste.getSelectionModel().select(LoginController.userprofile</span>
+<span class="nc" id="L346">                .getFoodProfile().getAmountWastedFood());</span>
+
+<span class="nc" id="L348">        foodPrepackaged.getItems().add(&quot;Above average&quot;);</span>
+<span class="nc" id="L349">        foodPrepackaged.getItems().add(&quot;Average&quot;);</span>
+<span class="nc" id="L350">        foodPrepackaged.getItems().add(&quot;Below average&quot;);</span>
+<span class="nc" id="L351">        foodPrepackaged.getItems().add(&quot;Very little&quot;);</span>
+<span class="nc" id="L352">        foodPrepackaged.getSelectionModel().select(LoginController.userprofile</span>
+<span class="nc" id="L353">                .getFoodProfile().getAmountFoodPackaged());</span>
+
+<span class="nc" id="L355">        foodCompost.getItems().add(&quot;None&quot;);</span>
+<span class="nc" id="L356">        foodCompost.getItems().add(&quot;About a quarter&quot;);</span>
+<span class="nc" id="L357">        foodCompost.getItems().add(&quot;Half&quot;);</span>
+<span class="nc" id="L358">        foodCompost.getItems().add(&quot;All food waste&quot;);</span>
+<span class="nc" id="L359">        foodCompost.getSelectionModel().select(LoginController.userprofile</span>
+<span class="nc" id="L360">                .getFoodProfile().getAmountFoodCompost());</span>
+
+<span class="nc" id="L362">        foodLocal.getSelectionModel().select(LoginController.userprofile</span>
+<span class="nc" id="L363">                .getFoodProfile().getAmountLocalFood());</span>
+
+
+<span class="nc" id="L366">        transportCar.getItems().add(&quot;Small car&quot;);</span>
+<span class="nc" id="L367">        transportCar.getItems().add(&quot;Medium car&quot;);</span>
+<span class="nc" id="L368">        transportCar.getItems().add(&quot;Large car&quot;);</span>
+<span class="nc" id="L369">        transportCar.getItems().add(&quot;Electric&quot;);</span>
+<span class="nc" id="L370">        transportCar.getItems().add(&quot;No car&quot;);</span>
+<span class="nc" id="L371">        transportCar.getSelectionModel().select(LoginController.userprofile</span>
+<span class="nc" id="L372">                .getTransportationProfile().getTypeOfCar());</span>
+
+<span class="nc" id="L374">        transportMainMode.getItems().add(&quot;Public transport&quot;);</span>
+<span class="nc" id="L375">        transportMainMode.getItems().add(&quot;Car&quot;);</span>
+<span class="nc" id="L376">        transportMainMode.getItems().add(&quot;Walking/Biking&quot;);</span>
+<span class="nc" id="L377">        transportMainMode.getItems().add(&quot;Motorcycle/Moped&quot;);</span>
+<span class="nc" id="L378">        transportMainMode.getSelectionModel().select(LoginController.userprofile</span>
+<span class="nc" id="L379">                .getTransportationProfile().getMainModeTransport());</span>
+
+<span class="nc" id="L381">        energyHouse.getItems().add(&quot;Apartment&quot;);</span>
+<span class="nc" id="L382">        energyHouse.getItems().add(&quot;Small house&quot;);</span>
+<span class="nc" id="L383">        energyHouse.getItems().add(&quot;Medium house&quot;);</span>
+<span class="nc" id="L384">        energyHouse.getItems().add(&quot;Large house&quot;);</span>
+<span class="nc" id="L385">        energyHouse.getSelectionModel().select(LoginController.userprofile</span>
+<span class="nc" id="L386">                .getEnergyProfile().getTypeHouse());</span>
+
+<span class="nc" id="L388">        energyUseEstimate.getItems().add(&quot;Below average&quot;);</span>
+<span class="nc" id="L389">        energyUseEstimate.getItems().add(&quot;Average&quot;);</span>
+<span class="nc" id="L390">        energyUseEstimate.getItems().add(&quot;Above average&quot;);</span>
+<span class="nc" id="L391">        energyUseEstimate.getSelectionModel().select(LoginController.userprofile</span>
+<span class="nc" id="L392">                .getEnergyProfile().getAmountEnergy());</span>
+
+<span class="nc" id="L394">        energyGreenBoolean.selectedProperty().setValue(LoginController.userprofile</span>
+<span class="nc" id="L395">                .getEnergyProfile().getGreenEnergy());</span>
+
+<span class="nc" id="L397">        energyEfficientBoolean.selectedProperty().setValue(LoginController.userprofile</span>
+<span class="nc" id="L398">                .getEnergyProfile().getEfficientLighting());</span>
+
+<span class="nc" id="L400">        lifestyleBigPurchase.getItems().add(&quot;More than 5&quot;);</span>
+<span class="nc" id="L401">        lifestyleBigPurchase.getItems().add(&quot;Around 2 - 4&quot;);</span>
+<span class="nc" id="L402">        lifestyleBigPurchase.getItems().add(&quot;Maybe once&quot;);</span>
+<span class="nc" id="L403">        lifestyleBigPurchase.getItems().add(&quot;Very rarely&quot;);</span>
+<span class="nc" id="L404">        lifestyleBigPurchase.getSelectionModel().select(LoginController.userprofile</span>
+<span class="nc" id="L405">                .getLifeStyleProfile().getHowOftenBigPurchase());</span>
+
+<span class="nc" id="L407">        lifestyleWeeklyWaste.getItems().add(&quot;Less than 15kg&quot;);</span>
+<span class="nc" id="L408">        lifestyleWeeklyWaste.getItems().add(&quot;15kg - 30kg&quot;);</span>
+<span class="nc" id="L409">        lifestyleWeeklyWaste.getItems().add(&quot;30kg - 45kg&quot;);</span>
+<span class="nc" id="L410">        lifestyleWeeklyWaste.getItems().add(&quot;45kg - 60kg&quot;);</span>
+<span class="nc" id="L411">        lifestyleWeeklyWaste.getItems().add(&quot;More than 60kg&quot;);</span>
+<span class="nc" id="L412">        lifestyleWeeklyWaste.getSelectionModel().select(LoginController.userprofile</span>
+<span class="nc" id="L413">                .getLifeStyleProfile().getWeeklyWaste());</span>
+
+<span class="nc" id="L415">        lifestyleRecycle.getItems().add(&quot;Glass&quot;);</span>
+<span class="nc" id="L416">        lifestyleRecycle.getItems().add(&quot;Paper&quot;);</span>
+<span class="nc" id="L417">        lifestyleRecycle.getItems().add(&quot;Plastic&quot;);</span>
+<span class="nc" id="L418">        lifestyleRecycle.getItems().add(&quot;Metal&quot;);</span>
+<span class="nc" id="L419">        lifestyleRecycle.getSelectionModel().select(LoginController.userprofile</span>
+<span class="nc" id="L420">                .getLifeStyleProfile().getRecycle());</span>
+
+<span class="nc" id="L422">        lifestyleAppliances.getItems().add(&quot;10x a week&quot;);</span>
+<span class="nc" id="L423">        lifestyleAppliances.getItems().add(&quot;5 - 10x a week&quot;);</span>
+<span class="nc" id="L424">        lifestyleAppliances.getItems().add(&quot;1 - 5x a week&quot;);</span>
+<span class="nc" id="L425">        lifestyleAppliances.getItems().add(&quot;Not applicable&quot;);</span>
+<span class="nc" id="L426">        lifestyleAppliances.getSelectionModel().select(LoginController.userprofile</span>
+<span class="nc" id="L427">                .getLifeStyleProfile().getApplianceUse());</span>
+<span class="nc" id="L428">        lifestyleShowerTime.setText(LoginController.userprofile</span>
+<span class="nc" id="L429">                .getLifeStyleProfile().getAveShowerTime() + &quot;&quot;);</span>
+<span class="nc" id="L430">        transportFlightHours.setText(LoginController.userprofile</span>
+<span class="nc" id="L431">                .getTransportationProfile().getAveHoursFly() + &quot;&quot;);</span>
+<span class="nc" id="L432">        transportTravel.setText(LoginController.userprofile</span>
+<span class="nc" id="L433">                .getTransportationProfile().getAveKmPerDay() + &quot;&quot;);</span>
+<span class="nc" id="L434">        energyRoommate.setText(LoginController.userprofile</span>
+<span class="nc" id="L435">                .getEnergyProfile().getAmountRoommates() + &quot;&quot;);</span>
+<span class="nc" id="L436">    }</span>
+
+    private void foodSurveyCreator() {
+<span class="nc" id="L439">        foodSurvey.setAmountOrganicFood(foodOrganic.getValue());</span>
+<span class="nc" id="L440">        foodSurvey.setDietChoice(foodDiet.getValue());</span>
+<span class="nc" id="L441">        foodSurvey.setAmountLocalFood(foodLocal.getValue());</span>
+<span class="nc" id="L442">        foodSurvey.setAmountWastedFood(foodWaste.getValue());</span>
+<span class="nc" id="L443">        foodSurvey.setAmountFoodPackaged(foodPrepackaged.getValue());</span>
+<span class="nc" id="L444">        foodSurvey.setAmountFoodCompost(foodCompost.getValue());</span>
+<span class="nc" id="L445">    }</span>
+
+    private void transportSurveyCreator() {
+
+<span class="nc" id="L449">        transportSurvey.setAveHoursFly(Integer.parseInt(transportFlightHours.getText()));</span>
+<span class="nc" id="L450">        transportSurvey.setTypeOfCar(transportCar.getValue());</span>
+<span class="nc" id="L451">        transportSurvey.setAveKmPerDay(Integer.parseInt(transportTravel.getText()));</span>
+<span class="nc" id="L452">        transportSurvey.setMainModeTransport(transportMainMode.getValue());</span>
+
+<span class="nc" id="L454">    }</span>
+
+    private void energySurveyCreator() {
+
+<span class="nc" id="L458">        energySurvey.setTypeHouse(energyHouse.getValue());</span>
+<span class="nc" id="L459">        energySurvey.setAmountRoommates(Integer.parseInt(energyRoommate.getText()));</span>
+<span class="nc" id="L460">        energySurvey.setAmountEnergy(energyUseEstimate.getValue());</span>
+<span class="nc" id="L461">        energySurvey.setGreenEnergy(energyGreenBoolean.isSelected());</span>
+<span class="nc" id="L462">        energySurvey.setEfficientLighting(energyEfficientBoolean.isSelected());</span>
+
+<span class="nc" id="L464">    }</span>
+
+    private void lifeStyleSurveyCreator() {
+<span class="nc" id="L467">        lifeStyleSurvey.setApplianceUse(lifestyleAppliances.getValue());</span>
+<span class="nc" id="L468">        lifeStyleSurvey.setAveShowerTime(Integer.parseInt(lifestyleShowerTime.getText()));</span>
+<span class="nc" id="L469">        lifeStyleSurvey.setHowOftenBigPurchase(lifestyleBigPurchase.getValue());</span>
+<span class="nc" id="L470">        lifeStyleSurvey.setWeeklyWaste(lifestyleWeeklyWaste.getValue());</span>
+<span class="nc" id="L471">        lifeStyleSurvey.setRecycle(lifestyleRecycle.getValue());</span>
+
+<span class="nc" id="L473">    }</span>
+
+    boolean alert() {
+<span class="nc" id="L476">        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, &quot;&quot;,</span>
+                ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+<span class="nc" id="L478">        alert.setHeaderText(&quot;Apply changes ? &quot;);</span>
+<span class="nc" id="L479">        alert.showAndWait();</span>
+<span class="nc bnc" id="L480" title="All 2 branches missed.">        return alert.getResult() == ButtonType.YES;</span>
+    }
+
+    private void alert(String statment) {
+<span class="nc" id="L484">        Alert alert = new Alert(Alert.AlertType.INFORMATION);</span>
+<span class="nc" id="L485">        alert.setHeaderText(statment);</span>
+<span class="nc" id="L486">        alert.showAndWait();</span>
+<span class="nc" id="L487">    }</span>
+
+
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

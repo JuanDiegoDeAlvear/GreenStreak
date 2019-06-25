@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TransportationSurvey.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Starter OOPProject-Template</a> &gt; <a href="index.source.html" class="el_package">com.client.logic</a> &gt; <span class="el_source">TransportationSurvey.java</span></div><h1>TransportationSurvey.java</h1><pre class="source lang-java linenums">package com.client.logic;
+
+public class TransportationSurvey extends Survey {
+    private String typeOfCar;
+    private String mainModeTransport;
+    private int aveHoursFly;
+    private int aveKmPerDay;
+
+    /**
+     * Constructor empty.
+     */
+<span class="fc" id="L12">    public TransportationSurvey() {</span>
+<span class="fc" id="L13">        this.aveHoursFly = 0;</span>
+<span class="fc" id="L14">        this.typeOfCar = null;</span>
+<span class="fc" id="L15">        this.aveKmPerDay = 0;</span>
+<span class="fc" id="L16">        this.mainModeTransport = null;</span>
+
+<span class="fc" id="L18">    }</span>
+
+    /**
+     * Constructor.
+     *
+     * @param aveHoursFly       set Hours user has fly using integer
+     * @param typeOfCar         set Type of car the user use using String
+     * @param aveKmPerDay       set distance the user travel per day using integer
+     * @param mainModeTransport set Main method of transportation of the user using String
+     */
+    public TransportationSurvey(int aveHoursFly, String typeOfCar,
+<span class="fc" id="L29">                                int aveKmPerDay, String mainModeTransport) {</span>
+<span class="fc" id="L30">        this.aveHoursFly = aveHoursFly;</span>
+<span class="fc" id="L31">        this.typeOfCar = typeOfCar;</span>
+<span class="fc" id="L32">        this.aveKmPerDay = aveKmPerDay;</span>
+<span class="fc" id="L33">        this.mainModeTransport = mainModeTransport;</span>
+<span class="fc" id="L34">    }</span>
+
+    public String getTypeOfCar() {
+<span class="fc" id="L37">        return typeOfCar;</span>
+    }
+
+    public void setTypeOfCar(String typeOfCar) {
+<span class="fc" id="L41">        this.typeOfCar = typeOfCar;</span>
+<span class="fc" id="L42">    }</span>
+
+    public String getMainModeTransport() {
+<span class="fc" id="L45">        return mainModeTransport;</span>
+    }
+
+    public void setMainModeTransport(String mainModeTransport) {
+<span class="fc" id="L49">        this.mainModeTransport = mainModeTransport;</span>
+<span class="fc" id="L50">    }</span>
+
+    public int getAveHoursFly() {
+<span class="fc" id="L53">        return aveHoursFly;</span>
+    }
+
+    public void setAveHoursFly(int aveHoursFly) {
+<span class="fc" id="L57">        this.aveHoursFly = aveHoursFly;</span>
+<span class="fc" id="L58">    }</span>
+
+    public int getAveKmPerDay() {
+<span class="fc" id="L61">        return aveKmPerDay;</span>
+    }
+
+    public void setAveKmPerDay(int aveKmPerDay) {
+<span class="fc" id="L65">        this.aveKmPerDay = aveKmPerDay;</span>
+<span class="fc" id="L66">    }</span>
+
+    @Override
+    public boolean equals(Object obj) {
+
+
+<span class="fc bfc" id="L72" title="All 2 branches covered.">        if (this == obj) {</span>
+<span class="fc" id="L73">            return true;</span>
+        }
+<span class="fc bfc" id="L75" title="All 2 branches covered.">        if (!(obj instanceof TransportationSurvey)) {</span>
+<span class="fc" id="L76">            return false;</span>
+        }
+
+<span class="fc" id="L79">        TransportationSurvey that = (TransportationSurvey) obj;</span>
+
+<span class="fc bfc" id="L81" title="All 2 branches covered.">        if (getAveHoursFly() != that.getAveHoursFly()) {</span>
+<span class="fc" id="L82">            return false;</span>
+        }
+<span class="fc bfc" id="L84" title="All 2 branches covered.">        if (getAveKmPerDay() != that.getAveKmPerDay()) {</span>
+<span class="fc" id="L85">            return false;</span>
+        }
+<span class="fc bfc" id="L87" title="All 4 branches covered.">        if (getTypeOfCar() != null ? !getTypeOfCar().equals(that</span>
+<span class="pc bpc" id="L88" title="1 of 2 branches missed.">                .getTypeOfCar()) : that.getTypeOfCar() != null) {</span>
+<span class="fc" id="L89">            return false;</span>
+        }
+<span class="fc bfc" id="L91" title="All 2 branches covered.">        return getMainModeTransport() != null ? getMainModeTransport()</span>
+<span class="pc bpc" id="L92" title="1 of 2 branches missed.">                .equals(that.getMainModeTransport()) : that.getMainModeTransport() == null;</span>
+    }
+
+
+    @Override
+    public String toString() {
+<span class="nc" id="L98">        return &quot;TransportationSurvey{&quot;</span>
+                + &quot;typeOfCar='&quot; + typeOfCar + '\''
+                + &quot;, mainModeTransport='&quot; + mainModeTransport + '\''
+                + &quot;, aveHoursFly=&quot; + aveHoursFly
+                + &quot;, aveKmPerDay=&quot; + aveKmPerDay
+                + '}';
+    }
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

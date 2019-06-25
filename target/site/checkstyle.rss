@@ -1,0 +1,922 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<rss version="0.91">
+  <channel>
+    <title>Starter OOPProject-Template - Checkstyle report</title>
+    <link>https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project</link>
+    <description>Starter OOPProject-Template - Checkstyle report</description>
+    <language>en-us</language>
+    <copyright>&#169;2019</copyright>
+    <item>
+      <title>File: 62,
+             Errors: 0,
+             Warnings: 8,
+             Infos: 0
+      </title>
+            <link>https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html</link>
+      <description>
+        <p>Click <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html">here</a> for the full Checkstyle report.</p>
+
+        <table summary="Files" boder="1">
+          <thead>
+            <tr>
+              <th>Files</th>
+              <th style="width:30px;"><abbr title="Info">I</abbr></th>
+              <th style="width:30px;"><abbr title="Warning">W</abbr></th>
+              <th style="width:30px;"><abbr title="Error">E</abbr></th>
+            </tr>
+          </thead>
+          <tbody>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.client.controllers.FriendsCompareController.java">com/client/controllers/FriendsCompareController.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.server.spring.PostController.java">com/server/spring/PostController.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.client.logic.Achievement.java">com/client/logic/Achievement.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.server.spring.FriendController.java">com/server/spring/FriendController.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.server.endpoints.FriendEndpoints.java">com/server/endpoints/FriendEndpoints.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.client.controllers.GoalsController.java">com/client/controllers/GoalsController.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.client.ServerCommunication.java">com/client/ServerCommunication.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.client.controllers.ProfileController.java">com/client/controllers/ProfileController.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.client.logic.TransportationPost.java">com/client/logic/TransportationPost.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.client.controllers.FeedController.java">com/client/controllers/FeedController.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.client.logic.FoodSurvey.java">com/client/logic/FoodSurvey.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.client.logic.Streak.java">com/client/logic/Streak.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.server.debug.DebugTools.java">com/server/debug/DebugTools.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.server.spring.GreenStreakServer.java">com/server/spring/GreenStreakServer.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.server.database.DatabaseProfileManager.java">com/server/database/DatabaseProfileManager.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.client.logic.SuperPost.java">com/client/logic/SuperPost.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.server.endpoints.AuthenticationEndpoints.java">com/server/endpoints/AuthenticationEndpoints.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.server.endpoints.ScoreEndpoints.java">com/server/endpoints/ScoreEndpoints.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.server.spring.AuthenticationController.java">com/server/spring/AuthenticationController.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.client.controllers.DashboardController.java">com/client/controllers/DashboardController.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.client.logic.ConsumptionPost.java">com/client/logic/ConsumptionPost.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.client.controllers.UserFriendController.java">com/client/controllers/UserFriendController.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.client.logic.ScoreCalc.java">com/client/logic/ScoreCalc.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.server.database.DatabaseManager.java">com/server/database/DatabaseManager.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.client.logic.SignUpUser.java">com/client/logic/SignUpUser.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.client.logic.FriendRelationship.java">com/client/logic/FriendRelationship.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.client.clientendpoints.FriendEndpoints.java">com/client/clientendpoints/FriendEndpoints.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.server.database.FriendDatabaseManager.java">com/server/database/FriendDatabaseManager.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.client.controllers.AppFrameController.java">com/client/controllers/AppFrameController.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.client.Main.java">com/client/Main.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.client.controllers.LoginController.java">com/client/controllers/LoginController.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.client.logic.TransportationSurvey.java">com/client/logic/TransportationSurvey.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.client.controllers.SignupController.java">com/client/controllers/SignupController.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  4
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.server.endpoints.PostEndpoints.java">com/server/endpoints/PostEndpoints.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.client.clientendpoints.ScoreEndpoints.java">com/client/clientendpoints/ScoreEndpoints.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.client.controllers.SinglePostController.java">com/client/controllers/SinglePostController.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.server.database.DbFriendship.java">com/server/database/DbFriendship.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.client.logic.Score.java">com/client/logic/Score.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.client.controllers.PostCreatorController.java">com/client/controllers/PostCreatorController.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.server.database.DbAdapter.java">com/server/database/DbAdapter.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.server.spring.ProfileController.java">com/server/spring/ProfileController.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.client.controllers.SurveyEditorController.java">com/client/controllers/SurveyEditorController.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.client.controllers.PostGroupController.java">com/client/controllers/PostGroupController.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.client.logic.Profile.java">com/client/logic/Profile.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.client.logic.EnergySurvey.java">com/client/logic/EnergySurvey.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.client.clientendpoints.ProfileEndpoints.java">com/client/clientendpoints/ProfileEndpoints.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.client.logic.User.java">com/client/logic/User.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.client.clientendpoints.AuthenticationEndpoints.java">com/client/clientendpoints/AuthenticationEndpoints.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.client.logic.LifeStyleSurvey.java">com/client/logic/LifeStyleSurvey.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.server.database.DbImplement.java">com/server/database/DbImplement.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.server.endpoints.ProfileEndpoints.java">com/server/endpoints/ProfileEndpoints.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.client.logic.FoodPost.java">com/client/logic/FoodPost.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.client.controllers.RankingsController.java">com/client/controllers/RankingsController.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.client.controllers.FriendsController.java">com/client/controllers/FriendsController.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.server.database.DatabaseProfile.java">com/server/database/DatabaseProfile.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.client.clientendpoints.PostEndpoints.java">com/client/clientendpoints/PostEndpoints.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.client.logic.Survey.java">com/client/logic/Survey.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.client.logic.Calculations.java">com/client/logic/Calculations.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.client.logic.PostCatalog.java">com/client/logic/PostCatalog.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.server.spring.ScoreController.java">com/server/spring/ScoreController.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.client.controllers.BadgeDrawerController.java">com/client/controllers/BadgeDrawerController.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://projects.spring.io/spring-boot/#/spring-boot-starter-parent/OOP-Project/checkstyle.html#com.client.logic.RankingEntry.java">com/client/logic/RankingEntry.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                      </tbody>
+        </table>
+        
+      </description>
+    </item>
+  </channel>
+</rss>
+
