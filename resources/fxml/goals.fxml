@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.client.controllers.GoalsController">
+   <children>
+      <VBox alignment="CENTER" layoutX="159.0" layoutY="191.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="100.0">
+         <children>
+            <Label text="We got buttons for dayzzz" />
+            <JFXButton fx:id="buttonX" onAction="#methodX" style="-fx-background-color: #f1c40f;" text="Button X" />
+            <JFXButton fx:id="buttonY" onAction="#methodY" style="-fx-background-color: #3498db;" text="Button Y" />
+            <JFXButton fx:id="buttonZ" onAction="#methodZ" style="-fx-background-color: #9b59b6;" text="Button Z" />
+            <JFXButton fx:id="buttonQ" onAction="#methodQ" style="-fx-background-color: #e74c3c;" text="Button Q" />
+            <JFXButton fx:id="buttonW" onAction="#methodW" style="-fx-background-color: #2ecc71;" text="Button W" />
+         </children>
+      </VBox>
+      <Label fx:id="randomLabel" layoutX="505.0" layoutY="266.0" prefHeight="232.0" prefWidth="189.0" text="label for displaying stuff" wrapText="true" AnchorPane.bottomAnchor="268.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="61.0" AnchorPane.topAnchor="100.0" />
+      <TextField fx:id="textInput" layoutX="288.0" layoutY="46.0" promptText="random text input" />
+      <TextArea fx:id="textArea" layoutX="382.0" layoutY="365.0" prefHeight="200.0" prefWidth="200.0" promptText="random text field" />
+   </children>
+</AnchorPane>
